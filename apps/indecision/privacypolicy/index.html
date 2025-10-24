@@ -32,108 +32,189 @@
 
   <section class="legal-section">
     <div class="container">
-      <div class="legal-content">
-        <article>
+      <div class="legal-content">        <article>
           <h2>Introduction</h2>
           <p>Morobo LLC ("we", "our", or "us") operates the Indecision mobile application (the "App"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our App.</p>
           <p>By using Indecision, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, do not download or use the App.</p>
 
-          <h2>Information We Collect</h2>
+          <h2>What We Collect</h2>
           
-          <h3>Personal Information</h3>
-          <p>When you create an account, we may collect:</p>
+          <h3>Account Information</h3>
+          <p>When you create an account, we collect:</p>
           <ul>
-            <li>Email address</li>
-            <li>Name (optional)</li>
-            <li>Profile information you choose to provide</li>
+            <li>Email address (for account recovery and communication)</li>
+            <li>Account credentials (encrypted password)</li>
+            <li>Account settings and preferences</li>
           </ul>
+          <p><strong>Note:</strong> No email verification is required. Account creation is simple and immediate.</p>
 
-          <h3>Usage Data</h3>
-          <p>We automatically collect certain information when you use the App:</p>
+          <h3>Decision Input Data</h3>
+          <p>When you use Indecision, you provide decision information through:</p>
           <ul>
-            <li>Device information (type, operating system, unique identifiers)</li>
-            <li>App usage statistics (features used, time spent)</li>
-            <li>Crash reports and performance data</li>
+            <li><strong>Text input:</strong> Decisions you type into the app</li>
+            <li><strong>Voice input:</strong> Decisions you speak (processed using Apple's built-in speech recognition on your device)</li>
           </ul>
+          <p><strong>Important:</strong> Your decision text is sent to our AI provider for analysis. While we anonymize this data, please avoid including highly sensitive personal information in your decisions (like passwords, financial account numbers, etc.).</p>
 
-          <h3>Decision Data</h3>
-          <p>The decisions you create within the App are stored locally on your device and encrypted. We do not access or store your personal decision content on our servers unless you explicitly choose to sync data for backup purposes.</p>
+          <h3>Usage Statistics</h3>
+          <p>We automatically collect anonymized usage data to improve the app:</p>
+          <ul>
+            <li>Number of decisions analyzed</li>
+            <li>Features used (text vs. voice input)</li>
+            <li>Time spent in the app</li>
+            <li>App crashes and errors (for bug fixing)</li>
+            <li>Device type and operating system version</li>
+          </ul>
+          <p>This data is <strong>not</strong> linked to your personal identity and is used only for improving app performance.</p>
 
           <h2>How We Use Your Information</h2>
-          <p>We use the collected information for:</p>
+          
+          <h3>AI Decision Analysis</h3>
+          <p>When you submit a decision for analysis:</p>
           <ul>
-            <li>Providing and maintaining the App</li>
-            <li>Improving app functionality and user experience</li>
-            <li>Analyzing usage patterns to enhance features</li>
-            <li>Communicating with you about updates, security alerts, and support</li>
-            <li>Processing AI analysis requests</li>
-            <li>Preventing fraud and ensuring security</li>
+            <li>Your decision text is sent to our AI provider's servers</li>
+            <li>The AI analyzes your options and provides recommendations</li>
+            <li>Your decision content is <strong>not permanently stored</strong> by us or the AI provider</li>
+            <li>Processing happens in real-time and data is deleted after the response is generated</li>
+            <li>We do not use your decisions to train AI models</li>
           </ul>
 
-          <h2>AI Processing</h2>
-          <p>When you request AI analysis of a decision, we send anonymized decision data to our AI processing servers. This data is:</p>
+          <h3>Account Management</h3>
+          <p>We use your email to:</p>
           <ul>
-            <li>Processed in real-time and not permanently stored</li>
-            <li>Stripped of personally identifiable information</li>
-            <li>Used solely to generate decision insights</li>
-            <li>Deleted immediately after processing</li>
+            <li>Send you account-related notifications</li>
+            <li>Provide customer support</li>
+            <li>Notify you of important updates or security issues</li>
+            <li>Process password changes and account recovery</li>
+          </ul>
+
+          <h3>App Improvements</h3>
+          <p>We use aggregated, anonymized statistics to:</p>
+          <ul>
+            <li>Identify and fix bugs</li>
+            <li>Understand which features are most valuable</li>
+            <li>Improve AI accuracy and speed</li>
+            <li>Enhance user experience</li>
           </ul>
 
           <h2>Data Storage and Security</h2>
-          <p>We implement industry-standard security measures to protect your information:</p>
+          
+          <h3>Where Your Data Lives</h3>
           <ul>
-            <li>End-to-end encryption for decision data</li>
-            <li>Secure HTTPS connections</li>
-            <li>Local storage with device-level encryption</li>
-            <li>Regular security audits and updates</li>
+            <li><strong>On your device:</strong> Decision history is stored locally on your iPhone</li>
+            <li><strong>On our servers:</strong> Only your email and account settings</li>
+            <li><strong>AI processing:</strong> Temporarily during analysis, then immediately deleted</li>
           </ul>
-          <p>However, no method of transmission over the internet is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.</p>
+
+          <h3>Security Measures</h3>
+          <p>We protect your information through:</p>
+          <ul>
+            <li>Encrypted HTTPS connections for all data transmission</li>
+            <li>Hashed and salted password storage</li>
+            <li>Local device encryption (via Apple's iOS security)</li>
+            <li>Regular security audits and updates</li>
+            <li>Secure server infrastructure</li>
+          </ul>
+          <p><strong>Disclaimer:</strong> While we implement industry-standard security measures, no system is 100% secure. We cannot guarantee absolute security of data transmitted over the internet.</p>
 
           <h2>Third-Party Services</h2>
-          <p>We may use third-party services for:</p>
+          <p>Indecision uses the following third-party services:</p>
           <ul>
-            <li>Analytics (anonymized usage data)</li>
-            <li>Crash reporting</li>
-            <li>Payment processing (App Store)</li>
-            <li>AI processing infrastructure</li>
+            <li><strong>AI Provider:</strong> For processing decision analysis (data is not stored or used for training)</li>
+            <li><strong>Apple App Store:</strong> For payment processing and in-app purchases</li>
+            <li><strong>Apple Speech Recognition:</strong> For voice-to-text conversion (processed on your device)</li>
+            <li><strong>Analytics Service:</strong> For anonymized app usage statistics</li>
+            <li><strong>Crash Reporting:</strong> For identifying and fixing bugs</li>
           </ul>
-          <p>These services have their own privacy policies and we recommend reviewing them.</p>
+          <p>Each service has its own privacy policy. We recommend reviewing them.</p>
 
-          <h2>Data Sharing and Disclosure</h2>
-          <p>We do not sell, trade, or rent your personal information to third parties. We may share information only in these circumstances:</p>
+          <h2>What We Don't Do</h2>
+          <p>To be absolutely clear:</p>
           <ul>
-            <li>With your explicit consent</li>
-            <li>To comply with legal obligations</li>
-            <li>To protect our rights and safety</li>
-            <li>In connection with a business transaction (merger, acquisition)</li>
+            <li>❌ We do <strong>NOT</strong> sell your data to anyone</li>
+            <li>❌ We do <strong>NOT</strong> share your decisions with third parties (except AI processing)</li>
+            <li>❌ We do <strong>NOT</strong> use your decisions to train AI models</li>
+            <li>❌ We do <strong>NOT</strong> send you marketing emails (unless you opt in)</li>
+            <li>❌ We do <strong>NOT</strong> track you across other apps or websites</li>
+            <li>❌ We do <strong>NOT</strong> require email verification to use the app</li>
           </ul>
 
-          <h2>Your Rights and Choices</h2>
-          <p>You have the right to:</p>
+          <h2>Your Rights and Controls</h2>
+          
+          <h3>Account Management</h3>
+          <p>You can manage your account through the app settings:</p>
           <ul>
-            <li>Access your personal information</li>
-            <li>Correct inaccurate data</li>
-            <li>Request deletion of your data</li>
-            <li>Opt-out of marketing communications</li>
-            <li>Export your decision data</li>
-            <li>Disable analytics tracking in settings</li>
+            <li><strong>Change password:</strong> Update your account password anytime</li>
+            <li><strong>Delete account:</strong> Permanently delete your account and all associated data</li>
+            <li><strong>Export data:</strong> Download a copy of your decision history</li>
+            <li><strong>Clear history:</strong> Delete your local decision history</li>
           </ul>
+
+          <h3>Privacy Controls</h3>
+          <p>You can control privacy settings:</p>
+          <ul>
+            <li>Disable analytics tracking</li>
+            <li>Disable crash reporting</li>
+            <li>Choose between text and voice input</li>
+            <li>Opt out of email notifications</li>
+          </ul>
+
+          <h3>Data Deletion</h3>
+          <p>When you delete your account:</p>
+          <ul>
+            <li>Your email and account data are permanently deleted from our servers within 30 days</li>
+            <li>Local decision history is immediately deleted from your device</li>
+            <li>Anonymized usage statistics cannot be deleted (as they're not linked to you)</li>
+            <li>This action is <strong>irreversible</strong></li>
+          </ul>
+
+          <h2>Subscription and Payments</h2>
+          <p>Indecision offers in-app purchases through Apple's App Store:</p>
+          <ul>
+            <li>All payments are processed by Apple</li>
+            <li>We do <strong>NOT</strong> store credit card information</li>
+            <li>Subscription management is handled through your Apple ID</li>
+            <li>Refunds must be requested through Apple</li>
+          </ul>
+          <p>Apple's privacy policy applies to payment data. We only receive confirmation of your subscription status.</p>
 
           <h2>Children's Privacy</h2>
-          <p>The App is not intended for children under 13. We do not knowingly collect information from children under 13. If you believe we have collected such information, please contact us immediately.</p>
+          <p>Indecision is not intended for children under 13 years old. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us at <a href="mailto:privacy@morobo.com">privacy@morobo.com</a> and we will delete it immediately.</p>
 
           <h2>International Users</h2>
-          <p>If you are using the App from outside the United States, please note that your information may be transferred to and processed in the United States where our servers are located.</p>
+          <p>If you use Indecision from outside the United States:</p>
+          <ul>
+            <li>Your data may be transferred to and processed in the United States</li>
+            <li>U.S. data protection laws may differ from your country</li>
+            <li>By using the app, you consent to this transfer</li>
+          </ul>
 
-          <h2>Changes to This Privacy Policy</h2>
-          <p>We may update this Privacy Policy periodically. We will notify you of significant changes through the App or via email. Your continued use of the App after changes constitutes acceptance of the updated policy.</p>
+          <h2>California Privacy Rights (CCPA)</h2>
+          <p>If you are a California resident, you have additional rights:</p>
+          <ul>
+            <li>Right to know what personal information we collect</li>
+            <li>Right to delete your personal information</li>
+            <li>Right to opt-out of data sales (we don't sell data)</li>
+            <li>Right to non-discrimination for exercising your rights</li>
+          </ul>
+          <p>To exercise these rights, contact us at <a href="mailto:privacy@morobo.com">privacy@morobo.com</a>.</p>
+
+          <h2>Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. When we do:</p>
+          <ul>
+            <li>We'll update the "Last Updated" date at the top</li>
+            <li>Significant changes will be communicated through the app</li>
+            <li>Your continued use constitutes acceptance of changes</li>
+          </ul>
 
           <h2>Contact Us</h2>
-          <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
+          <p>If you have questions, concerns, or requests about this Privacy Policy:</p>
           <ul>
-            <li>Email: <a href="mailto:privacy@morobo.com">privacy@morobo.com</a></li>
-            <li>Address: Morobo LLC, Fort Worth, Texas, USA</li>
-          </ul>          <div class="legal-footer">
+            <li><strong>Email:</strong> <a href="mailto:privacy@morobo.com">privacy@morobo.com</a></li>
+            <li><strong>Support:</strong> <a href="../support/">Visit our Support Page</a></li>
+            <li><strong>Mail:</strong> Morobo LLC, Fort Worth, Texas, USA</li>
+          </ul>
+          <p>We typically respond to privacy inquiries within 48 hours.</p><div class="legal-footer">
             <p><a href="../">← Back to Indecision</a></p>
             <p><a href="../support/">Support</a> | <a href="../../../#contact">Contact Us</a></p>
           </div>
