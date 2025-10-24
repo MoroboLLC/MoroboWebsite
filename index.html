@@ -12,18 +12,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Animated Background Canvas -->
+  <canvas id="backgroundCanvas"></canvas>
+
   <!-- Navigation Bar -->
   <header class="navbar">
     <div class="container nav-content">
-      <a href="#home" class="logo">Morobo</a>
-      <nav>
-        <ul>
-          <li><a href="#apps">Apps</a></li>
-          <li><a href="#websites">Websites</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Work with us</a></li>
-        </ul>
+      <a href="index.html" class="logo">Morobo</a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="#about" class="nav-tab">About</a>
+        <a href="#contact" class="nav-tab">Contact Us</a>
       </nav>
     </div>
   </header>
@@ -37,40 +37,30 @@
       <a href="#contact" class="btn btn-primary">Work With Us</a>
     </div>
   </section>
-
   <!-- Apps Section -->
   <section id="apps" class="section reveal">
     <div class="container">
-      <h2 class="section-title">Apps</h2>
+      <h2 class="section-title">Our Apps</h2>
       <p class="section-description">Our applications are designed with a focus on performance, usability and elegance.</p>
       <!-- Swiper slider for apps -->
       <div class="swiper apps-swiper">
         <div class="swiper-wrapper">
+          <!-- App slide for Indecision -->
+          <div class="swiper-slide">
+            <div class="card">
+              <img src="images/indecision_app.png" alt="Indecision app screenshot" onerror="this.src='images/placeholder_app.png'">
+              <h3>Indecision</h3>
+              <p>AI-powered decision making app that helps you make better choices. Available on Apple, coming soon to Android.</p>
+              <a href="apps/indecision/index.html" class="card-link">Learn more</a>
+            </div>
+          </div>
           <!-- App slide for Motonia -->
           <div class="swiper-slide">
             <div class="card">
-              <img src="images/placeholder_app.png" alt="Motonia app screenshot">
+              <img src="images/motonia_app.png" alt="Motonia app screenshot" onerror="this.src='images/placeholder_app.png'">
               <h3>Motonia</h3>
-              <p>A productivity app in development that helps you organize your life and stay motivated.</p>
-              <!-- Link placeholder: user can update to actual app page -->
-              <a href="#" class="card-link">Learn more</a>
-            </div>
-          </div>
-          <!-- Placeholder slides for future apps -->
-          <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>Next App</h3>
-              <p>Description coming soon.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>Another App</h3>
-              <p>Description coming soon.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
+              <p>Motorcycle GPS app with advanced navigation features for riders. Track routes, find scenic roads, and ride safely.</p>
+              <a href="apps/motonia/index.html" class="card-link">Learn more</a>
             </div>
           </div>
         </div>
@@ -80,38 +70,24 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="apps.html" class="btn btn-secondary">View All Apps</a>
+      </div>
     </div>
   </section>
-
   <!-- Websites Section -->
   <section id="websites" class="section reveal">
     <div class="container">
-      <h2 class="section-title">Websites</h2>
+      <h2 class="section-title">Websites We've Created</h2>
       <p class="section-description">From simple landing pages to full-fledged platforms, we create experiences that captivate.</p>
       <div class="swiper websites-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>Portfolio Website</h3>
-              <p>A beautiful portfolio website showcasing your work. Launching soon.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>E‑commerce Platform</h3>
-              <p>A full-featured online store built for performance. Launching soon.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>Blog Platform</h3>
-              <p>A modern blogging platform with all the features you need. Launching soon.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
+            <div class="card">
+              <img src="images/morganmiller_site.png" alt="Morgan Miller website" onerror="this.src='images/placeholder_app.png'">
+              <h3>Morgan Miller</h3>
+              <p>UGC Content Creator portfolio website. Modern, responsive design showcasing creative work.</p>
+              <a href="https://morganmiller.site" target="_blank" class="card-link">Visit Website</a>
             </div>
           </div>
         </div>
@@ -119,44 +95,57 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="websites.html" class="btn btn-secondary">View All Websites</a>
+      </div>
     </div>
   </section>
 
-  <!-- Products Section -->
+  <!-- Partners Marquee -->
+  <section class="partners-section">
+    <div class="container">
+      <h3 class="partners-title">Companies We Work With</h3>
+      <div class="marquee">
+        <div class="marquee-content">
+          <span class="partner-logo">Partner One</span>
+          <span class="partner-logo">Partner Two</span>
+          <span class="partner-logo">Partner Three</span>
+          <span class="partner-logo">Partner Four</span>
+          <span class="partner-logo">Partner Five</span>
+          <span class="partner-logo">Partner Six</span>
+          <!-- Duplicate for seamless loop -->
+          <span class="partner-logo">Partner One</span>
+          <span class="partner-logo">Partner Two</span>
+          <span class="partner-logo">Partner Three</span>
+          <span class="partner-logo">Partner Four</span>
+          <span class="partner-logo">Partner Five</span>
+          <span class="partner-logo">Partner Six</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work With Us CTA Section -->
+  <section class="cta-section reveal">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Have Us Create a Website or App For You</h2>
+        <p>Transform your ideas into reality with our expert development team. We specialize in custom websites, mobile applications, and digital products tailored to your needs.</p>
+        <div class="cta-buttons">
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+          <a href="websites.html" class="btn btn-secondary">View Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section - Updated to show "None so far" -->
   <section id="products" class="section reveal">
     <div class="container">
       <h2 class="section-title">Digital Products</h2>
       <p class="section-description">We offer a range of digital assets and tools to accelerate your projects.</p>
-      <div class="swiper products-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>UI Kit</h3>
-              <p>A collection of user interface components to jumpstart your next project.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>Template Pack</h3>
-              <p>A suite of website templates for various industries and use cases.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card placeholder-card">
-              <div class="placeholder-image">Coming soon</div>
-              <h3>API Service</h3>
-              <p>A robust API for data processing and analytics. Launching soon.</p>
-              <a href="#" class="card-link disabled">Coming soon</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+      <div class="no-products">
+        <p>No digital products available at this time. Check back soon!</p>
       </div>
     </div>
   </section>
@@ -203,10 +192,15 @@
       </div>
     </div>
   </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
       <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
       <ul class="social-links">
         <li><a href="#"><span class="sr-only">Twitter</span><i class="fab fa-twitter"></i></a></li>

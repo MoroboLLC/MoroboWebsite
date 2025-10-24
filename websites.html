@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Websites – Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">Morobo</a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab active">Websites</a>
+        <a href="index.html#about" class="nav-tab">About</a>
+        <a href="index.html#contact" class="nav-tab">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Websites We've Created</h1>
+      <p>Beautiful, functional websites that drive results</p>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio-section">
+    <div class="container">
+      <div class="portfolio-grid">
+        <!-- Morgan Miller Site -->
+        <div class="portfolio-card reveal">
+          <div class="portfolio-image">
+            <img src="images/morganmiller_site.png" alt="Morgan Miller Website" onerror="this.src='images/placeholder_app.png'">
+            <div class="portfolio-overlay">
+              <a href="https://morganmiller.site" target="_blank" class="btn btn-primary">Visit Site</a>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Morgan Miller</h3>
+            <p class="portfolio-category">UGC Content Creator Portfolio</p>
+            <p class="portfolio-description">
+              A stunning portfolio website showcasing Morgan's UGC content creation work. 
+              Features a modern design, video integration, and mobile-responsive layout.
+            </p>
+            <div class="portfolio-tech">
+              <span>HTML5</span>
+              <span>CSS3</span>
+              <span>JavaScript</span>
+              <span>Responsive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section reveal">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Custom Design</h3>
+          <p>Unique, brand-focused designs tailored to your business needs and target audience.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📱</div>
+          <h3>Responsive Development</h3>
+          <p>Websites that look perfect on all devices, from desktop to mobile.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚀</div>
+          <h3>Performance Optimization</h3>
+          <p>Lightning-fast load times and SEO optimization for better rankings.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Maintenance & Support</h3>
+          <p>Ongoing support, updates, and maintenance to keep your site running smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section reveal">
+    <div class="container">
+      <h2 class="section-title">Website Packages</h2>
+      <p class="section-description">Flexible pricing options to fit your needs and budget</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Starter</h3>
+          <div class="price">$2,500</div>
+          <ul class="pricing-features">
+            <li>Up to 5 pages</li>
+            <li>Responsive design</li>
+            <li>Contact form</li>
+            <li>Basic SEO</li>
+            <li>1 month support</li>
+          </ul>
+          <a href="index.html#contact" class="btn btn-secondary">Get Started</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="featured-badge">Popular</div>
+          <h3>Professional</h3>
+          <div class="price">$5,000</div>
+          <ul class="pricing-features">
+            <li>Up to 10 pages</li>
+            <li>Custom design</li>
+            <li>Advanced SEO</li>
+            <li>Blog integration</li>
+            <li>Analytics setup</li>
+            <li>3 months support</li>
+          </ul>
+          <a href="index.html#contact" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Enterprise</h3>
+          <div class="price">Custom</div>
+          <ul class="pricing-features">
+            <li>Unlimited pages</li>
+            <li>Custom features</li>
+            <li>E-commerce integration</li>
+            <li>API development</li>
+            <li>Priority support</li>
+            <li>12 months support</li>
+          </ul>
+          <a href="index.html#contact" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hosting Section -->
+  <section class="hosting-section reveal">
+    <div class="container">
+      <h2 class="section-title">Hosting & Maintenance</h2>
+      <p class="section-description">We handle the technical details so you can focus on your business</p>
+      <div class="hosting-grid">
+        <div class="hosting-card">
+          <h3>Basic Hosting</h3>
+          <div class="hosting-price">$25/month</div>
+          <ul>
+            <li>99.9% uptime guarantee</li>
+            <li>SSL certificate included</li>
+            <li>Daily backups</li>
+            <li>Email support</li>
+          </ul>
+        </div>
+        <div class="hosting-card">
+          <h3>Premium Hosting</h3>
+          <div class="hosting-price">$75/month</div>
+          <ul>
+            <li>Everything in Basic</li>
+            <li>CDN integration</li>
+            <li>Priority support</li>
+            <li>Monthly updates</li>
+            <li>Performance monitoring</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section reveal">
+    <div class="container">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Morobo created an amazing website for my business. Professional, responsive, and exactly what I needed!"</p>
+          <div class="testimonial-author">
+            <strong>Morgan Miller</strong>
+            <span>UGC Content Creator</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Working with Morobo was a pleasure from start to finish. They delivered on time and exceeded expectations."</p>
+          <div class="testimonial-author">
+            <strong>Client Name</strong>
+            <span>Business Owner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section reveal">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Launch Your Website?</h2>
+        <p>Let's create something amazing together. Get in touch to discuss your project.</p>
+        <div class="cta-buttons">
+          <a href="index.html#contact" class="btn btn-primary">Request a Quote</a>
+          <a href="index.html#contact" class="btn btn-secondary">Request Changes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

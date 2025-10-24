@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Apps – Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">Morobo</a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab active">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="index.html#about" class="nav-tab">About</a>
+        <a href="index.html#contact" class="nav-tab">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Apps</h1>
+      <p>Innovative mobile applications designed to make your life easier</p>
+    </div>
+  </section>
+
+  <section class="apps-detail-section">
+    <div class="container">
+      <div class="app-detail-grid">
+        <!-- Indecision App -->
+        <div class="app-detail-card reveal">
+          <div class="app-detail-image">
+            <img src="images/indecision_app.png" alt="Indecision App" onerror="this.src='images/placeholder_app.png'">
+          </div>
+          <div class="app-detail-content">
+            <h2>Indecision</h2>
+            <p class="app-tagline">AI-Powered Decision Making</p>
+            <p class="app-description">
+              Struggling to make decisions? Indecision uses advanced AI to help you analyze options, 
+              weigh pros and cons, and make confident choices. From daily dilemmas to life-changing 
+              decisions, our AI assistant guides you through the process.
+            </p>
+            <div class="app-features">
+              <h3>Features</h3>
+              <ul>
+                <li>AI-powered decision analysis</li>
+                <li>Pros and cons comparison</li>
+                <li>Decision history tracking</li>
+                <li>Custom decision criteria</li>
+                <li>Smart recommendations</li>
+              </ul>
+            </div>
+            <div class="app-availability">
+              <span class="available">Available on Apple</span>
+              <span class="coming-soon">Coming to Android</span>
+            </div>
+            <div class="app-links">
+              <a href="apps/indecision/index.html" class="btn btn-primary">Learn More</a>
+              <a href="apps/indecision/support.html" class="btn btn-secondary">Support</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motonia App -->
+        <div class="app-detail-card reveal">
+          <div class="app-detail-image">
+            <img src="images/motonia_app.png" alt="Motonia App" onerror="this.src='images/placeholder_app.png'">
+          </div>
+          <div class="app-detail-content">
+            <h2>Motonia</h2>
+            <p class="app-tagline">Motorcycle GPS Navigation</p>
+            <p class="app-description">
+              The ultimate GPS app for motorcycle enthusiasts. Motonia provides turn-by-turn navigation 
+              optimized for two-wheeled adventures, scenic route discovery, and safety features designed 
+              specifically for riders.
+            </p>
+            <div class="app-features">
+              <h3>Features</h3>
+              <ul>
+                <li>Motorcycle-optimized navigation</li>
+                <li>Scenic route discovery</li>
+                <li>Offline maps support</li>
+                <li>Rider safety alerts</li>
+                <li>Route sharing with friends</li>
+                <li>Weather integration</li>
+              </ul>
+            </div>
+            <div class="app-availability">
+              <span class="coming-soon">Coming Soon</span>
+            </div>
+            <div class="app-links">
+              <a href="apps/motonia/index.html" class="btn btn-primary">Learn More</a>
+              <a href="apps/motonia/support.html" class="btn btn-secondary">Support</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section reveal">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Have an App Idea?</h2>
+        <p>We can bring your vision to life. From concept to launch, we handle every aspect of mobile app development.</p>
+        <div class="cta-buttons">
+          <a href="index.html#contact" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

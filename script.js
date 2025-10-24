@@ -9,6 +9,77 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Animated M-pattern background
+  const canvas = document.getElementById('backgroundCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // M-pattern lines animation
+    let offset = 0;
+    const lines = [];
+    const numberOfLines = 5;
+    
+    // Create M-pattern lines
+    for (let i = 0; i < numberOfLines; i++) {
+      lines.push({
+        y: (i * canvas.height) / numberOfLines,
+        speed: 0.2 + Math.random() * 0.3,
+        amplitude: 100 + Math.random() * 50
+      });
+    }
+
+    function drawMPattern() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+      ctx.lineWidth = 2;
+
+      lines.forEach((line, index) => {
+        ctx.beginPath();
+        
+        for (let x = 0; x < canvas.width; x += 10) {
+          // Create M pattern: down, up, down, up
+          const segment = (x + offset * line.speed) % 400;
+          let y = line.y;
+          
+          if (segment < 100) {
+            // First downstroke of M
+            y += (segment / 100) * line.amplitude;
+          } else if (segment < 200) {
+            // First upstroke of M
+            y += line.amplitude - ((segment - 100) / 100) * line.amplitude;
+          } else if (segment < 300) {
+            // Second downstroke of M
+            y += ((segment - 200) / 100) * line.amplitude;
+          } else {
+            // Second upstroke of M
+            y += line.amplitude - ((segment - 300) / 100) * line.amplitude;
+          }
+          
+          if (x === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        
+        ctx.stroke();
+      });
+
+      offset += 0.5;
+      requestAnimationFrame(drawMPattern);
+    }
+
+    drawMPattern();
+  }
+
   // Update the footer year dynamically
   const yearSpan = document.getElementById('year');
   if (yearSpan) {
@@ -67,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Optional: highlight navigation links based on scroll position
   const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.navbar nav a');
+  const navLinks = document.querySelectorAll('.nav-tab');
 
   const setActiveLink = () => {
     let index = sections.length;
@@ -78,6 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
       activeLink.classList.add('active');
     }
   };
-  setActiveLink();
-  window.addEventListener('scroll', setActiveLink);
+  
+  if (navLinks.length > 0) {
+    setActiveLink();
+    window.addEventListener('scroll', setActiveLink);
+  }
 });
