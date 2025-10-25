@@ -1,0 +1,5 @@
+[33m9082fbd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Enhanced support page UI and updated Indecision privacy policy with detailed, app-specific content
+[33mfa90e62[m Update CNAME
+[33m06abe6e[m Add comprehensive final status report with URL structure analysis and setup guide
+[33m14db1f6[m Complete clean URL structure - update all internal links to use directory-based URLs without .html extensions
+[33mc250d70[m Improve URL structure with clean URLs (no .html extensions) and add CNAME for morobo.org custom domain setup

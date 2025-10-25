@@ -21,7 +21,6 @@
       </nav>
     </div>
   </header>
-
   <section class="page-header">
     <div class="container">
       <h1>Privacy Policy</h1>
@@ -40,100 +39,207 @@
 
           <h2>Information We Collect</h2>
           
-          <h3>Personal Information</h3>
-          <p>When you create an account, we may collect:</p>
+          <h3>Account Information</h3>
+          <p>When you create an account, we collect:</p>
           <ul>
-            <li>Email address</li>
-            <li>Name (optional)</li>
-            <li>Profile information you choose to provide</li>
+            <li><strong>Email address</strong> (required for account creation and recovery)</li>
+            <li><strong>Password</strong> (securely hashed and encrypted)</li>
+            <li><strong>Account preferences</strong> and settings</li>
           </ul>
+          <p><strong>Note:</strong> We do not require email verification. You can start using the app immediately after creating your account.</p>
 
-          <h3>Usage Data</h3>
-          <p>We automatically collect certain information when you use the App:</p>
+          <h3>Decision Input Data</h3>
+          <p>When you use Indecision to analyze decisions, you provide:</p>
           <ul>
-            <li>Device information (type, operating system, unique identifiers)</li>
-            <li>App usage statistics (features used, time spent)</li>
-            <li>Crash reports and performance data</li>
+            <li><strong>Text input:</strong> The decision text you type into the app</li>
+            <li><strong>Voice input:</strong> Spoken decisions (converted to text using Apple's on-device speech recognition)</li>
+            <li><strong>Decision context:</strong> Any additional information you provide about your decision</li>
           </ul>
+          <p><strong>Important:</strong> Your decision content is sent to Google Gemini AI for analysis. While we don't permanently store your decision content, it is temporarily processed by Google's servers. Avoid including highly sensitive information like passwords, financial account numbers, or confidential data in your decisions.</p>
 
-          <h3>Decision Data</h3>
-          <p>The decisions you create within the App are stored locally on your device and encrypted. We do not access or store your personal decision content on our servers unless you explicitly choose to sync data for backup purposes.</p>
+          <h3>Usage Analytics</h3>
+          <p>We collect usage statistics to improve the app and provide you with insights:</p>
+          <ul>
+            <li><strong>Number of decisions:</strong> How many decisions you've analyzed</li>
+            <li><strong>Decision topics:</strong> Categories/topics of your decisions (for trend analysis)</li>
+            <li><strong>Accuracy tracking:</strong> Whether the AI's recommendations matched your final choice</li>
+            <li><strong>Feature usage:</strong> Which features you use (text vs. voice input, settings, etc.)</li>
+            <li><strong>App performance:</strong> Crash reports, error logs, and performance metrics</li>
+            <li><strong>Device information:</strong> Device type, OS version, app version</li>
+            <li><strong>Time spent:</strong> How long you use the app per session</li>
+          </ul>
 
           <h2>How We Use Your Information</h2>
-          <p>We use the collected information for:</p>
+          
+          <h3>AI-Powered Decision Analysis</h3>
+          <p>When you submit a decision for analysis:</p>
           <ul>
-            <li>Providing and maintaining the App</li>
-            <li>Improving app functionality and user experience</li>
-            <li>Analyzing usage patterns to enhance features</li>
-            <li>Communicating with you about updates, security alerts, and support</li>
-            <li>Processing AI analysis requests</li>
-            <li>Preventing fraud and ensuring security</li>
+            <li>Your decision text is sent to <strong>Google Gemini AI</strong> for processing</li>
+            <li>Google's AI analyzes your decision and provides recommendations</li>
+            <li>The AI response is returned to you in real-time</li>
+            <li>Your decision content is <strong>not permanently stored</strong> by us or Google (per Google's AI API terms)</li>
+            <li>We do <strong>NOT</strong> use your decisions to train AI models</li>
           </ul>
 
-          <h2>AI Processing</h2>
-          <p>When you request AI analysis of a decision, we send anonymized decision data to our AI processing servers. This data is:</p>
+          <h3>Data Storage</h3>
+          <p>We use <strong>Supabase</strong> (a secure, cloud-based database platform) to store:</p>
           <ul>
-            <li>Processed in real-time and not permanently stored</li>
-            <li>Stripped of personally identifiable information</li>
-            <li>Used solely to generate decision insights</li>
-            <li>Deleted immediately after processing</li>
+            <li>Your account information (email, hashed password)</li>
+            <li>Usage statistics (decision count, topics, accuracy metrics)</li>
+            <li>App preferences and settings</li>
+            <li>Subscription status and purchase history</li>
           </ul>
+          <p><strong>Local Storage:</strong> Your decision history (the actual decision content) is stored locally on your iPhone for privacy and quick access. This data stays on your device unless you delete it or uninstall the app.</p>
 
-          <h2>Data Storage and Security</h2>
-          <p>We implement industry-standard security measures to protect your information:</p>
+          <h3>Account Management</h3>
+          <p>We use your email to:</p>
           <ul>
-            <li>End-to-end encryption for decision data</li>
-            <li>Secure HTTPS connections</li>
-            <li>Local storage with device-level encryption</li>
-            <li>Regular security audits and updates</li>
+            <li>Send important account notifications (password resets, security alerts)</li>
+            <li>Provide customer support</li>
+            <li>Notify you of app updates or new features (you can opt out)</li>
+            <li>Send subscription-related communications (payment receipts, renewal reminders)</li>
           </ul>
-          <p>However, no method of transmission over the internet is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.</p>
 
           <h2>Third-Party Services</h2>
-          <p>We may use third-party services for:</p>
+          <p>Indecision integrates with the following trusted third-party services:</p>
+          
+          <h3>Google Gemini AI</h3>
           <ul>
-            <li>Analytics (anonymized usage data)</li>
-            <li>Crash reporting</li>
-            <li>Payment processing (App Store)</li>
-            <li>AI processing infrastructure</li>
-          </ul>
-          <p>These services have their own privacy policies and we recommend reviewing them.</p>
-
-          <h2>Data Sharing and Disclosure</h2>
-          <p>We do not sell, trade, or rent your personal information to third parties. We may share information only in these circumstances:</p>
-          <ul>
-            <li>With your explicit consent</li>
-            <li>To comply with legal obligations</li>
-            <li>To protect our rights and safety</li>
-            <li>In connection with a business transaction (merger, acquisition)</li>
+            <li><strong>Purpose:</strong> Processes your decision analysis requests</li>
+            <li><strong>Data sent:</strong> Decision text/context you provide</li>
+            <li><strong>Data retention:</strong> Google does not permanently store your prompts (per Gemini API terms)</li>
+            <li><strong>Privacy policy:</strong> <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
           </ul>
 
-          <h2>Your Rights and Choices</h2>
-          <p>You have the right to:</p>
+          <h3>Supabase</h3>
           <ul>
-            <li>Access your personal information</li>
-            <li>Correct inaccurate data</li>
-            <li>Request deletion of your data</li>
-            <li>Opt-out of marketing communications</li>
-            <li>Export your decision data</li>
-            <li>Disable analytics tracking in settings</li>
+            <li><strong>Purpose:</strong> Secure database and authentication services</li>
+            <li><strong>Data stored:</strong> Account info, usage statistics, preferences</li>
+            <li><strong>Security:</strong> Industry-standard encryption and access controls</li>
+            <li><strong>Privacy policy:</strong> <a href="https://supabase.com/privacy" target="_blank">Supabase Privacy Policy</a></li>
           </ul>
 
-          <h2>Children's Privacy</h2>
-          <p>The App is not intended for children under 13. We do not knowingly collect information from children under 13. If you believe we have collected such information, please contact us immediately.</p>
+          <h3>RevenueCat</h3>
+          <ul>
+            <li><strong>Purpose:</strong> Manages in-app purchases and subscriptions</li>
+            <li><strong>Data tracked:</strong> Subscription status (active, expired, trial), purchase history</li>
+            <li><strong>Payment processing:</strong> Handled by Apple (RevenueCat does not see credit card details)</li>
+            <li><strong>Privacy policy:</strong> <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat Privacy Policy</a></li>
+          </ul>
+
+          <h3>Apple Services</h3>
+          <ul>
+            <li><strong>App Store:</strong> Handles all payment processing and in-app purchases</li>
+            <li><strong>Speech Recognition:</strong> Converts voice to text (processed on your device, not sent to servers)</li>
+            <li><strong>Privacy policy:</strong> <a href="https://www.apple.com/privacy/" target="_blank">Apple Privacy Policy</a></li>
+          </ul>
+
+          <h2>Data Security</h2>
+          <p>We take your privacy seriously and implement multiple layers of security:</p>
+          <ul>
+            <li><strong>Encrypted connections:</strong> All data transmissions use HTTPS/TLS encryption</li>
+            <li><strong>Secure password storage:</strong> Passwords are hashed using industry-standard algorithms (never stored in plain text)</li>
+            <li><strong>Database security:</strong> Supabase provides enterprise-grade security with access controls and encryption</li>
+            <li><strong>Local encryption:</strong> Decision history on your device is protected by iOS's built-in encryption</li>
+            <li><strong>Regular audits:</strong> We regularly review and update our security practices</li>
+          </ul>
+          <p><strong>Disclaimer:</strong> While we use industry-standard security measures, no system is 100% secure. We cannot guarantee absolute security of data transmitted over the internet.</p>
+
+          <h2>What We Don't Do</h2>
+          <p><strong>Transparency is important to us. Here's what we do NOT do:</strong></p>
+          <ul>
+            <li>❌ We do <strong>NOT</strong> sell your personal data to anyone, ever</li>
+            <li>❌ We do <strong>NOT</strong> share your decision content with third parties (except Google Gemini for processing)</li>
+            <li>❌ We do <strong>NOT</strong> use your decisions to train AI models or improve Google's AI</li>
+            <li>❌ We do <strong>NOT</strong> send marketing/promotional emails unless you opt in</li>
+            <li>❌ We do <strong>NOT</strong> track you across other apps or websites</li>
+            <li>❌ We do <strong>NOT</strong> permanently store your decision content on our servers</li>
+            <li>❌ We do <strong>NOT</strong> require email verification to use the app</li>
+          </ul>
+
+          <h2>Your Rights and Controls</h2>
+          
+          <h3>Account Management (In-App)</h3>
+          <p>You have full control over your account through the app settings:</p>
+          <ul>
+            <li><strong>Change password:</strong> Update your password anytime in Settings → Account</li>
+            <li><strong>Delete account:</strong> Permanently delete your account and all server data in Settings → Account → Delete Account</li>
+            <li><strong>Clear local history:</strong> Delete decision history stored on your device</li>
+            <li><strong>Export data:</strong> Request a copy of your account data (contact support)</li>
+            <li><strong>Opt out of emails:</strong> Unsubscribe from non-essential emails in Settings → Notifications</li>
+          </ul>
+
+          <h3>What Happens When You Delete Your Account</h3>
+          <ul>
+            <li>Your email and account data are <strong>permanently deleted</strong> from Supabase within 30 days</li>
+            <li>Local decision history is <strong>immediately deleted</strong> from your device</li>
+            <li>Usage statistics (anonymized and not linked to you) cannot be deleted</li>
+            <li>Subscription is cancelled (you may need to manage this through Apple as well)</li>
+            <li><strong>This action is irreversible</strong> - you cannot recover your account after deletion</li>
+          </ul>
+
+          <h2>Subscriptions and Payments</h2>
+          <p>Indecision offers premium features through in-app purchases:</p>
+          <ul>
+            <li><strong>Payment processor:</strong> All payments are processed by Apple's App Store</li>
+            <li><strong>Subscription management:</strong> Managed through RevenueCat + Apple</li>
+            <li><strong>No credit card storage:</strong> We never see or store your payment information</li>
+            <li><strong>Subscription management:</strong> Manage subscriptions in Settings → App Store → Subscriptions (on your iPhone)</li>
+            <li><strong>Refunds:</strong> Request refunds through Apple (Settings → App Store → Account → Purchase History)</li>
+          </ul>
+
+          <h2>Children's Privacy (COPPA Compliance)</h2>
+          <p>Indecision is <strong>not intended for children under 13 years old</strong>. We do not knowingly collect personal information from children under 13.</p>
+          <p>If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately at <a href="mailto:morobo.llc@gmail.com">morobo.llc@gmail.com</a> and we will delete it within 48 hours.</p>
 
           <h2>International Users</h2>
-          <p>If you are using the App from outside the United States, please note that your information may be transferred to and processed in the United States where our servers are located.</p>
+          <p>If you use Indecision from outside the United States:</p>
+          <ul>
+            <li>Your data may be transferred to and processed in the United States (via Supabase, Google, and other services)</li>
+            <li>U.S. data protection laws may differ from those in your country</li>
+            <li>By using the app, you consent to this data transfer</li>
+            <li>We comply with applicable international data protection laws, including GDPR where applicable</li>
+          </ul>
+
+          <h2>California Privacy Rights (CCPA)</h2>
+          <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA):</p>
+          <ul>
+            <li><strong>Right to know:</strong> Request what personal information we collect and how we use it</li>
+            <li><strong>Right to delete:</strong> Request deletion of your personal information (available in-app)</li>
+            <li><strong>Right to opt-out:</strong> Opt out of data sales (we don't sell data, so this doesn't apply)</li>
+            <li><strong>Right to non-discrimination:</strong> We will not discriminate against you for exercising your rights</li>
+          </ul>
+          <p>To exercise these rights, email us at <a href="mailto:morobo.llc@gmail.com">morobo.llc@gmail.com</a> or use the in-app account deletion feature.</p>
+
+          <h2>European Users (GDPR)</h2>
+          <p>If you are in the European Economic Area (EEA), you have rights under the General Data Protection Regulation (GDPR):</p>
+          <ul>
+            <li><strong>Legal basis for processing:</strong> Consent and legitimate interests</li>
+            <li><strong>Right to access:</strong> Request a copy of your personal data</li>
+            <li><strong>Right to rectification:</strong> Correct inaccurate data</li>
+            <li><strong>Right to erasure:</strong> Delete your account and data</li>
+            <li><strong>Right to data portability:</strong> Export your data in a structured format</li>
+            <li><strong>Right to object:</strong> Object to processing of your data</li>
+          </ul>
 
           <h2>Changes to This Privacy Policy</h2>
-          <p>We may update this Privacy Policy periodically. We will notify you of significant changes through the App or via email. Your continued use of the App after changes constitutes acceptance of the updated policy.</p>
+          <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. When we do:</p>
+          <ul>
+            <li>We'll update the "Last Updated" date at the top of this policy</li>
+            <li>Significant changes will be communicated through the app or via email</li>
+            <li>Your continued use of the app after changes constitutes acceptance</li>
+            <li>You can always view the latest version at this URL</li>
+          </ul>
 
           <h2>Contact Us</h2>
-          <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
+          <p>If you have questions, concerns, or requests about this Privacy Policy or your data:</p>
           <ul>
-            <li>Email: <a href="mailto:privacy@morobo.com">privacy@morobo.com</a></li>
-            <li>Address: Morobo LLC, Fort Worth, Texas, USA</li>
-          </ul>          <div class="legal-footer">
+            <li><strong>Email:</strong> <a href="mailto:morobo.llc@gmail.com">morobo.llc@gmail.com</a></li>
+            <li><strong>Support:</strong> <a href="../support/">Visit our Support Page</a></li>
+            <li><strong>Mail:</strong> Morobo LLC, Fort Worth, Texas, USA</li>
+          </ul>
+          <p><strong>Response time:</strong> We typically respond to privacy inquiries within 48 hours.</p>
+          <p><strong>Data requests:</strong> For data access, deletion, or export requests, please allow up to 30 days for processing.</p><div class="legal-footer">
             <p><a href="../">← Back to Indecision</a></p>
             <p><a href="../support/">Support</a> | <a href="../../../#contact">Contact Us</a></p>
           </div>
