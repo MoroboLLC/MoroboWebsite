@@ -718,6 +718,35 @@ body {
   flex-wrap: wrap;
 }
 
+/* App Screenshots Section */
+.app-screenshots-section {
+  padding: 4rem 0;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.screenshots-grid img {
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.screenshots-grid img:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+}
+
 /* Portfolio Section */
 .portfolio-section {
   padding: 4rem 0;
