@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .thank-you-container {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .thank-you-container h1 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .thank-you-container p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background Canvas -->
+  <canvas id="backgroundCanvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">Morobo</a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="index.html#about" class="nav-tab">About</a>
+        <a href="index.html#contact" class="nav-tab">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Thank You Content -->
+  <div class="container thank-you-container">
+    <h1>Thank You!</h1>
+    <p>Your message has been successfully sent. We'll get back to you as soon as possible at contact@morobo.org</p>
+    <p>Typically, we respond within 24-48 hours during business days.</p>
+    <a href="index.html" class="btn btn-primary">Return Home</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><span class="sr-only">Twitter</span><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><span class="sr-only">GitHub</span><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><span class="sr-only">LinkedIn</span><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
