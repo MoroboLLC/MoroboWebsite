@@ -1,0 +1,37 @@
+[1mdiff --git a/index.html b/index.html[m
+[1mindex 3c8c6cc..28f2224 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -175,23 +175,27 @@[m
+         <!-- Contact Info -->[m
+         <div class="contact-info">[m
+           <h3>Get in touch</h3>[m
+[31m-          <p>Email us at <a href="mailto:hello@morobo.com">hello@morobo.com</a> and we’ll get back to you as soon as possible.</p>[m
+[32m+[m[32m          <p>Email us at <a href="mailto:contact@morobo.org">contact@morobo.org</a> and we'll get back to you as soon as possible.</p>[m[41m[m
+           <p>Located in Fort Worth, Texas (US Central Time).</p>[m
+         </div>[m
+         <!-- Contact Form -->[m
+[31m-        <form class="contact-form" action="mailto:hello@morobo.com" method="POST" enctype="text/plain">[m
+[32m+[m[32m        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">[m[41m[m
+[32m+[m[32m          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">[m[41m[m
+[32m+[m[32m          <input type="hidden" name="subject" value="New Contact Form Submission from Morobo.org">[m[41m[m
+[32m+[m[32m          <input type="hidden" name="redirect" value="https://morobo.org/thank-you.html">[m[41m[m
+           <div class="form-group">[m
+             <label for="name">Name</label>[m
+[31m-            <input type="text" id="name" name="Name" placeholder="Your Name" required>[m
+[32m+[m[32m            <input type="text" id="name" name="name" placeholder="Your Name" required>[m[41m[m
+           </div>[m
+           <div class="form-group">[m
+             <label for="email">Email</label>[m
+[31m-            <input type="email" id="email" name="Email" placeholder="your@example.com" required>[m
+[32m+[m[32m            <input type="email" id="email" name="email" placeholder="your@example.com" required>[m[41m[m
+           </div>[m
+           <div class="form-group">[m
+             <label for="message">Message</label>[m
+[31m-            <textarea id="message" name="Message" rows="5" placeholder="Tell us about your project" required></textarea>[m
+[32m+[m[32m            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project" required></textarea>[m[41m[m
+           </div>[m
+[32m+[m[32m          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">[m[41m[m
+           <button type="submit" class="btn btn-primary">Send Message</button>[m
+         </form>[m
+       </div>[m
