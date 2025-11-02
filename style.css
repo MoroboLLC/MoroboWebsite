@@ -26,22 +26,22 @@ body {
   position: relative;
 }
 
-/* Colour palette - Dark theme with logo-inspired gradient */
+/* Colour palette - Minimal 3-color scheme */
 :root {
-  /* Logo gradient colors - purple to pink/red */
+  /* Logo gradient colors - purple to pink */
   --primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
   --primary-hover: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
   --primary-solid: #8b5cf6; /* Solid version for borders/text */
   --primary-hover-solid: #7c3aed;
   
-  /* Dark theme backgrounds */
-  --bg: #0a0a0a;
-  --surface: #141414;
-  --card-bg: #1a1a1a;
+  /* Pure black background */
+  --bg: #000000;
+  --surface: #0a0a0a;
+  --card-bg: #0f0f0f;
   
-  /* Text colors */
-  --text-light: #f5f5f5;
-  --text-muted: #a3a3a3;
+  /* Text colors - white and light grey only */
+  --text-light: #ffffff;
+  --text-muted: #b0b0b0;
   
   --border-radius: 12px;
 }
@@ -117,7 +117,7 @@ body {
 .nav-tabs {
   display: flex;
   gap: 0.5rem;
-  background: rgba(26, 26, 26, 0.8);
+  background: rgba(255, 255, 255, 0.05);
   padding: 0.5rem;
   border-radius: 50px;
   backdrop-filter: blur(10px);

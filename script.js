@@ -20,70 +20,70 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    });
-
-    // Create multiple gears with different sizes and positions
+    });    // Create 3 large gears positioned to not overlap
     const gears = [
-      { x: canvas.width * 0.15, y: canvas.height * 0.25, radius: 150, teeth: 20, rotation: 0, speed: 0.002, direction: 1 },
-      { x: canvas.width * 0.45, y: canvas.height * 0.6, radius: 200, teeth: 24, rotation: 0, speed: 0.0015, direction: -1 },
-      { x: canvas.width * 0.75, y: canvas.height * 0.35, radius: 120, teeth: 16, rotation: 0, speed: 0.0025, direction: 1 },
-      { x: canvas.width * 0.85, y: canvas.height * 0.75, radius: 180, teeth: 22, rotation: 0, speed: 0.001, direction: -1 },
-      { x: canvas.width * 0.25, y: canvas.height * 0.8, radius: 100, teeth: 14, rotation: 0, speed: 0.003, direction: 1 }
+      { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 250, teeth: 6, rotation: 0, speed: 0.0003, direction: 1 },
+      { x: canvas.width * 0.65, y: canvas.height * 0.6, radius: 300, teeth: 5, rotation: 0, speed: 0.0002, direction: -1 },
+      { x: canvas.width * 0.85, y: canvas.height * 0.25, radius: 200, teeth: 6, rotation: 0, speed: 0.00025, direction: 1 }
     ];
 
-    function drawGear(x, y, radius, teeth, rotation, opacity = 0.08) {
+    function drawGear(x, y, radius, teeth, rotation) {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(rotation);
       
-      // Draw gear teeth
+      const innerRadius = radius * 0.6;
+      const toothHeight = radius * 0.15;
+      const toothWidth = (Math.PI * 2) / (teeth * 2);
+      
+      // Draw filled gear shape
       ctx.beginPath();
-      const toothDepth = radius * 0.2;
-      const toothWidth = (Math.PI * 2) / teeth / 2;
       
       for (let i = 0; i < teeth; i++) {
-        const angle = (i / teeth) * Math.PI * 2;
-        const nextAngle = ((i + 1) / teeth) * Math.PI * 2;
+        const angle1 = (i / teeth) * Math.PI * 2;
+        const angle2 = ((i + 0.5) / teeth) * Math.PI * 2;
+        const angle3 = ((i + 1) / teeth) * Math.PI * 2;
         
-        // Outer tooth edge
-        const x1 = Math.cos(angle) * (radius + toothDepth);
-        const y1 = Math.sin(angle) * (radius + toothDepth);
-        const x2 = Math.cos(angle + toothWidth) * (radius + toothDepth);
-        const y2 = Math.sin(angle + toothWidth) * (radius + toothDepth);
+        // Outer edge of tooth
+        const outerX1 = Math.cos(angle1 - toothWidth) * radius;
+        const outerY1 = Math.sin(angle1 - toothWidth) * radius;
+        const outerX2 = Math.cos(angle1 + toothWidth) * radius;
+        const outerY2 = Math.sin(angle1 + toothWidth) * radius;
         
-        // Inner tooth edge
-        const x3 = Math.cos(angle + toothWidth) * radius;
-        const y3 = Math.sin(angle + toothWidth) * radius;
-        const x4 = Math.cos(nextAngle - toothWidth) * radius;
-        const y4 = Math.sin(nextAngle - toothWidth) * radius;
+        // Inner edge between teeth
+        const innerX1 = Math.cos(angle1 + toothWidth) * innerRadius;
+        const innerY1 = Math.sin(angle1 + toothWidth) * innerRadius;
+        const innerX2 = Math.cos(angle2 - toothWidth) * innerRadius;
+        const innerY2 = Math.sin(angle2 - toothWidth) * innerRadius;
+        const innerX3 = Math.cos(angle2 + toothWidth) * innerRadius;
+        const innerY3 = Math.sin(angle2 + toothWidth) * innerRadius;
         
         if (i === 0) {
-          ctx.moveTo(x1, y1);
-        } else {
-          ctx.lineTo(x1, y1);
+          ctx.moveTo(outerX1, outerY1);
         }
         
-        ctx.lineTo(x2, y2);
-        ctx.lineTo(x3, y3);
-        ctx.lineTo(x4, y4);
+        // Draw tooth
+        ctx.lineTo(outerX2, outerY2);
+        ctx.lineTo(innerX1, innerY1);
+        ctx.lineTo(innerX2, innerY2);
+        ctx.lineTo(innerX3, innerY3);
+        
+        // Draw next tooth outer edge
+        const nextOuterX = Math.cos(angle3 - toothWidth) * radius;
+        const nextOuterY = Math.sin(angle3 - toothWidth) * radius;
+        ctx.lineTo(nextOuterX, nextOuterY);
       }
       
       ctx.closePath();
-      ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
-      ctx.lineWidth = 3;
-      ctx.stroke();
       
-      // Draw inner circle
-      ctx.beginPath();
-      ctx.arc(0, 0, radius * 0.4, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.7})`;
-      ctx.lineWidth = 2;
-      ctx.stroke();
+      // Fill gear with light grey
+      ctx.fillStyle = 'rgba(128, 128, 128, 0.08)';
+      ctx.fill();
       
-      // Draw center circle
+      // Draw center hole
       ctx.beginPath();
-      ctx.arc(0, 0, radius * 0.15, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(139, 92, 246, ${opacity * 0.5})`;
+      ctx.arc(0, 0, radius * 0.25, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
       ctx.fill();
       
       ctx.restore();
