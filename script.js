@@ -25,65 +25,63 @@ document.addEventListener('DOMContentLoaded', () => {
       { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 250, teeth: 6, rotation: 0, speed: 0.0003, direction: 1 },
       { x: canvas.width * 0.65, y: canvas.height * 0.6, radius: 300, teeth: 5, rotation: 0, speed: 0.0002, direction: -1 },
       { x: canvas.width * 0.85, y: canvas.height * 0.25, radius: 200, teeth: 6, rotation: 0, speed: 0.00025, direction: 1 }
-    ];
-
-    function drawGear(x, y, radius, teeth, rotation) {
+    ];    function drawGear(x, y, radius, teeth, rotation) {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(rotation);
       
-      const innerRadius = radius * 0.6;
-      const toothHeight = radius * 0.15;
-      const toothWidth = (Math.PI * 2) / (teeth * 2);
+      const innerRadius = radius * 0.65; // Body of gear
+      const outerRadius = radius; // Tip of teeth
+      const toothDepth = outerRadius - innerRadius;
       
-      // Draw filled gear shape
+      // Draw the main gear body (circle)
       ctx.beginPath();
-      
-      for (let i = 0; i < teeth; i++) {
-        const angle1 = (i / teeth) * Math.PI * 2;
-        const angle2 = ((i + 0.5) / teeth) * Math.PI * 2;
-        const angle3 = ((i + 1) / teeth) * Math.PI * 2;
-        
-        // Outer edge of tooth
-        const outerX1 = Math.cos(angle1 - toothWidth) * radius;
-        const outerY1 = Math.sin(angle1 - toothWidth) * radius;
-        const outerX2 = Math.cos(angle1 + toothWidth) * radius;
-        const outerY2 = Math.sin(angle1 + toothWidth) * radius;
-        
-        // Inner edge between teeth
-        const innerX1 = Math.cos(angle1 + toothWidth) * innerRadius;
-        const innerY1 = Math.sin(angle1 + toothWidth) * innerRadius;
-        const innerX2 = Math.cos(angle2 - toothWidth) * innerRadius;
-        const innerY2 = Math.sin(angle2 - toothWidth) * innerRadius;
-        const innerX3 = Math.cos(angle2 + toothWidth) * innerRadius;
-        const innerY3 = Math.sin(angle2 + toothWidth) * innerRadius;
-        
-        if (i === 0) {
-          ctx.moveTo(outerX1, outerY1);
-        }
-        
-        // Draw tooth
-        ctx.lineTo(outerX2, outerY2);
-        ctx.lineTo(innerX1, innerY1);
-        ctx.lineTo(innerX2, innerY2);
-        ctx.lineTo(innerX3, innerY3);
-        
-        // Draw next tooth outer edge
-        const nextOuterX = Math.cos(angle3 - toothWidth) * radius;
-        const nextOuterY = Math.sin(angle3 - toothWidth) * radius;
-        ctx.lineTo(nextOuterX, nextOuterY);
-      }
-      
-      ctx.closePath();
-      
-      // Fill gear with light grey
-      ctx.fillStyle = 'rgba(128, 128, 128, 0.08)';
+      ctx.arc(0, 0, innerRadius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(128, 128, 128, 0.12)';
       ctx.fill();
       
-      // Draw center hole
+      // Draw each tooth as a rounded rectangle extending from the body
+      for (let i = 0; i < teeth; i++) {
+        const angle = (i / teeth) * Math.PI * 2;
+        const toothWidth = (Math.PI * 2) / teeth * 0.4; // 40% of the arc between teeth
+        
+        ctx.save();
+        ctx.rotate(angle);
+        
+        // Draw rounded tooth
+        ctx.beginPath();
+        const toothStartX = -innerRadius * Math.sin(toothWidth / 2);
+        const toothStartY = innerRadius * Math.cos(toothWidth / 2);
+        const toothEndX = innerRadius * Math.sin(toothWidth / 2);
+        const toothEndY = innerRadius * Math.cos(toothWidth / 2);
+        
+        // Create tooth shape with rounded corners
+        ctx.moveTo(toothStartX, toothStartY);
+        ctx.lineTo(-outerRadius * Math.sin(toothWidth / 2.2), outerRadius * Math.cos(toothWidth / 2.2));
+        ctx.arcTo(0, outerRadius, outerRadius * Math.sin(toothWidth / 2.2), outerRadius * Math.cos(toothWidth / 2.2), outerRadius * 0.15);
+        ctx.lineTo(outerRadius * Math.sin(toothWidth / 2.2), outerRadius * Math.cos(toothWidth / 2.2));
+        ctx.lineTo(toothEndX, toothEndY);
+        
+        ctx.fillStyle = 'rgba(128, 128, 128, 0.12)';
+        ctx.fill();
+        
+        ctx.restore();
+      }
+      
+      // Draw center hole with gradient for depth
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius * 0.3);
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0.2)');
+      
       ctx.beginPath();
-      ctx.arc(0, 0, radius * 0.25, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+      ctx.arc(0, 0, radius * 0.3, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      
+      // Inner hole
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.15, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
       ctx.fill();
       
       ctx.restore();
