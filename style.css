@@ -28,11 +28,11 @@ body {
 
 /* Colour palette - Minimal 3-color scheme */
 :root {
-  /* Logo gradient colors - purple to blue */
-  --primary: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
-  --primary-hover: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
-  --primary-solid: #8b5cf6; /* Solid version for borders/text */
-  --primary-hover-solid: #7c3aed;
+  /* Logo gradient colors - cyan to purple (from robot logo) */
+  --primary: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
+  --primary-hover: linear-gradient(135deg, #22d3ee 0%, #7c3aed 100%);
+  --primary-solid: #67e8f9; /* Solid cyan for borders/text */
+  --primary-hover-solid: #22d3ee;
   
   /* Pure black background */
   --bg: #000000;
@@ -139,7 +139,7 @@ body {
   background: var(--primary);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(103, 232, 249, 0.4);
 }
 
 /* Hero section */
@@ -229,6 +229,10 @@ body {
   font-weight: 600;
   margin-bottom: 1rem;
   text-align: center;
+  background: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .section-description {
@@ -286,13 +290,26 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(128, 128, 128, 0.15);
-  background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  background: linear-gradient(145deg, rgba(103, 232, 249, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #67e8f9 0%, #8b5cf6 100%);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 32px rgba(103, 232, 249, 0.3);
+  border-color: rgba(103, 232, 249, 0.4);
 }
 
 .card img {
@@ -484,7 +501,7 @@ body {
 
 .partner-logo:hover {
   color: var(--primary);
-  background: rgba(139, 92, 246, 0.2);
+  background: rgba(103, 232, 249, 0.2);
 }
 
 @keyframes scroll {
@@ -499,7 +516,7 @@ body {
 /* CTA Section */
 .cta-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(103, 232, 249, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
 }
 
 .cta-content {
@@ -511,7 +528,7 @@ body {
 .cta-content h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -632,7 +649,7 @@ body {
 .page-header h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -740,7 +757,7 @@ body {
 }
 
 .available {
-  background: rgba(139, 92, 246, 0.2);
+  background: rgba(103, 232, 249, 0.2);
   color: var(--primary);
 }
 
@@ -781,7 +798,7 @@ body {
 
 .screenshots-grid img:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 15px 40px rgba(103, 232, 249, 0.3);
 }
 
 /* Portfolio Section */
@@ -870,7 +887,7 @@ body {
 }
 
 .portfolio-tech span {
-  background: rgba(139, 92, 246, 0.2);
+  background: rgba(103, 232, 249, 0.2);
   color: var(--primary);
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
@@ -942,7 +959,7 @@ body {
 
 .pricing-card.featured {
   border-color: var(--primary);
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(103, 232, 249, 0.1);
 }
 
 .featured-badge {
@@ -1102,7 +1119,7 @@ body {
   height: fit-content;
   position: sticky;
   top: 100px;
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(103, 232, 249, 0.2);
 }
 
 .support-sidebar h3 {
@@ -1131,14 +1148,14 @@ body {
 
 .support-menu a:hover {
   color: var(--primary);
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(103, 232, 249, 0.1);
 }
 
 .support-main {
   background: rgba(0, 0, 0, 0.2);
   padding: 3rem;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(103, 232, 249, 0.1);
 }
 
 .support-article {
@@ -1199,12 +1216,12 @@ body {
   padding: 1.5rem;
   border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(103, 232, 249, 0.1);
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: rgba(103, 232, 249, 0.3);
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -1234,12 +1251,12 @@ body {
   background: rgba(0, 0, 0, 0.4);
   padding: 2rem;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(103, 232, 249, 0.1);
   transition: all 0.3s ease;
 }
 
 .contact-option:hover {
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: rgba(103, 232, 249, 0.3);
   transform: translateY(-5px);
 }
 
@@ -1414,7 +1431,7 @@ body {
   flex: 1;
   padding: 0.75rem 1rem;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(103, 232, 249, 0.3);
   background: rgba(0, 0, 0, 0.3);
   color: var(--text-light);
   font-size: 1rem;
@@ -1444,13 +1461,13 @@ body {
   border-radius: var(--border-radius);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(103, 232, 249, 0.1);
 }
 
 .feature-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
-  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 15px 40px rgba(103, 232, 249, 0.2);
+  border-color: rgba(103, 232, 249, 0.3);
 }
 
 .feature-icon {
@@ -1472,7 +1489,7 @@ body {
 /* App CTA Section */
 .app-cta-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(103, 232, 249, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
 }
 
 /* App Links Section */
