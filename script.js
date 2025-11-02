@@ -9,7 +9,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Animated M-pattern background
+  // Animated rotating gears background
   const canvas = document.getElementById('backgroundCanvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -22,62 +22,86 @@ document.addEventListener('DOMContentLoaded', () => {
       canvas.height = window.innerHeight;
     });
 
-    // M-pattern lines animation
-    let offset = 0;
-    const lines = [];
-    const numberOfLines = 5;
-    
-    // Create M-pattern lines
-    for (let i = 0; i < numberOfLines; i++) {
-      lines.push({
-        y: (i * canvas.height) / numberOfLines,
-        speed: 0.2 + Math.random() * 0.3,
-        amplitude: 100 + Math.random() * 50
-      });
-    }
+    // Create multiple gears with different sizes and positions
+    const gears = [
+      { x: canvas.width * 0.15, y: canvas.height * 0.25, radius: 150, teeth: 20, rotation: 0, speed: 0.002, direction: 1 },
+      { x: canvas.width * 0.45, y: canvas.height * 0.6, radius: 200, teeth: 24, rotation: 0, speed: 0.0015, direction: -1 },
+      { x: canvas.width * 0.75, y: canvas.height * 0.35, radius: 120, teeth: 16, rotation: 0, speed: 0.0025, direction: 1 },
+      { x: canvas.width * 0.85, y: canvas.height * 0.75, radius: 180, teeth: 22, rotation: 0, speed: 0.001, direction: -1 },
+      { x: canvas.width * 0.25, y: canvas.height * 0.8, radius: 100, teeth: 14, rotation: 0, speed: 0.003, direction: 1 }
+    ];
 
-    function drawMPattern() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
-      ctx.lineWidth = 2;
-
-      lines.forEach((line, index) => {
-        ctx.beginPath();
+    function drawGear(x, y, radius, teeth, rotation, opacity = 0.08) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      
+      // Draw gear teeth
+      ctx.beginPath();
+      const toothDepth = radius * 0.2;
+      const toothWidth = (Math.PI * 2) / teeth / 2;
+      
+      for (let i = 0; i < teeth; i++) {
+        const angle = (i / teeth) * Math.PI * 2;
+        const nextAngle = ((i + 1) / teeth) * Math.PI * 2;
         
-        for (let x = 0; x < canvas.width; x += 10) {
-          // Create M pattern: down, up, down, up
-          const segment = (x + offset * line.speed) % 400;
-          let y = line.y;
-          
-          if (segment < 100) {
-            // First downstroke of M
-            y += (segment / 100) * line.amplitude;
-          } else if (segment < 200) {
-            // First upstroke of M
-            y += line.amplitude - ((segment - 100) / 100) * line.amplitude;
-          } else if (segment < 300) {
-            // Second downstroke of M
-            y += ((segment - 200) / 100) * line.amplitude;
-          } else {
-            // Second upstroke of M
-            y += line.amplitude - ((segment - 300) / 100) * line.amplitude;
-          }
-          
-          if (x === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
+        // Outer tooth edge
+        const x1 = Math.cos(angle) * (radius + toothDepth);
+        const y1 = Math.sin(angle) * (radius + toothDepth);
+        const x2 = Math.cos(angle + toothWidth) * (radius + toothDepth);
+        const y2 = Math.sin(angle + toothWidth) * (radius + toothDepth);
+        
+        // Inner tooth edge
+        const x3 = Math.cos(angle + toothWidth) * radius;
+        const y3 = Math.sin(angle + toothWidth) * radius;
+        const x4 = Math.cos(nextAngle - toothWidth) * radius;
+        const y4 = Math.sin(nextAngle - toothWidth) * radius;
+        
+        if (i === 0) {
+          ctx.moveTo(x1, y1);
+        } else {
+          ctx.lineTo(x1, y1);
         }
         
-        ctx.stroke();
-      });
-
-      offset += 0.5;
-      requestAnimationFrame(drawMPattern);
+        ctx.lineTo(x2, y2);
+        ctx.lineTo(x3, y3);
+        ctx.lineTo(x4, y4);
+      }
+      
+      ctx.closePath();
+      ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      
+      // Draw inner circle
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.4, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.7})`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // Draw center circle
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.15, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(139, 92, 246, ${opacity * 0.5})`;
+      ctx.fill();
+      
+      ctx.restore();
     }
 
-    drawMPattern();
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Update and draw each gear
+      gears.forEach(gear => {
+        gear.rotation += gear.speed * gear.direction;
+        drawGear(gear.x, gear.y, gear.radius, gear.teeth, gear.rotation);
+      });
+      
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   }
 
   // Update the footer year dynamically
