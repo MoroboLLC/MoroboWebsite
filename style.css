@@ -27,12 +27,11 @@ body {
 }
 
 /* Colour palette - Minimal 3-color scheme */
-:root {
-  /* Logo gradient colors - cyan to purple (from robot logo) */
-  --primary: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
-  --primary-hover: linear-gradient(135deg, #22d3ee 0%, #7c3aed 100%);
-  --primary-solid: #67e8f9; /* Solid cyan for borders/text */
-  --primary-hover-solid: #22d3ee;
+:root {  /* Logo gradient colors - light blue to purple (EXACT match to robot logo) */
+  --primary: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+  --primary-hover: linear-gradient(135deg, #0ea5e9 0%, #9333ea 100%);
+  --primary-solid: #38bdf8; /* Solid light blue for borders/text */
+  --primary-hover-solid: #0ea5e9;
   
   /* Pure black background */
   --bg: #000000;
@@ -139,7 +138,7 @@ body {
   background: var(--primary);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(103, 232, 249, 0.4);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
 }
 
 /* Hero section */
@@ -229,7 +228,7 @@ body {
   font-weight: 600;
   margin-bottom: 1rem;
   text-align: center;
-  background: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -290,8 +289,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(103, 232, 249, 0.2);
-  background: linear-gradient(145deg, rgba(103, 232, 249, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
   position: relative;
 }
 
@@ -302,14 +301,14 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #67e8f9 0%, #8b5cf6 100%);
+  background: linear-gradient(90deg, #38bdf8 0%, #a855f7 100%);
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 32px rgba(103, 232, 249, 0.3);
-  border-color: rgba(103, 232, 249, 0.4);
+  box-shadow: 0 12px 32px rgba(56, 189, 248, 0.3);
+  border-color: rgba(56, 189, 248, 0.4);
 }
 
 .card img {
@@ -501,7 +500,7 @@ body {
 
 .partner-logo:hover {
   color: var(--primary);
-  background: rgba(103, 232, 249, 0.2);
+  background: rgba(56, 189, 248, 0.2);
 }
 
 @keyframes scroll {
@@ -516,7 +515,7 @@ body {
 /* CTA Section */
 .cta-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, rgba(103, 232, 249, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
 }
 
 .cta-content {
@@ -528,7 +527,7 @@ body {
 .cta-content h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -649,7 +648,7 @@ body {
 .page-header h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -757,7 +756,7 @@ body {
 }
 
 .available {
-  background: rgba(103, 232, 249, 0.2);
+  background: rgba(56, 189, 248, 0.2);
   color: var(--primary);
 }
 
@@ -798,7 +797,7 @@ body {
 
 .screenshots-grid img:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(103, 232, 249, 0.3);
+  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.3);
 }
 
 /* Portfolio Section */
@@ -887,7 +886,7 @@ body {
 }
 
 .portfolio-tech span {
-  background: rgba(103, 232, 249, 0.2);
+  background: rgba(56, 189, 248, 0.2);
   color: var(--primary);
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
@@ -959,7 +958,7 @@ body {
 
 .pricing-card.featured {
   border-color: var(--primary);
-  background: rgba(103, 232, 249, 0.1);
+  background: rgba(56, 189, 248, 0.1);
 }
 
 .featured-badge {
@@ -1119,7 +1118,7 @@ body {
   height: fit-content;
   position: sticky;
   top: 100px;
-  border: 1px solid rgba(103, 232, 249, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 .support-sidebar h3 {
@@ -1148,14 +1147,14 @@ body {
 
 .support-menu a:hover {
   color: var(--primary);
-  background: rgba(103, 232, 249, 0.1);
+  background: rgba(56, 189, 248, 0.1);
 }
 
 .support-main {
   background: rgba(0, 0, 0, 0.2);
   padding: 3rem;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(103, 232, 249, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.1);
 }
 
 .support-article {
@@ -1216,12 +1215,12 @@ body {
   padding: 1.5rem;
   border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(103, 232, 249, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.1);
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-  border-color: rgba(103, 232, 249, 0.3);
+  border-color: rgba(56, 189, 248, 0.3);
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -1251,12 +1250,12 @@ body {
   background: rgba(0, 0, 0, 0.4);
   padding: 2rem;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(103, 232, 249, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.1);
   transition: all 0.3s ease;
 }
 
 .contact-option:hover {
-  border-color: rgba(103, 232, 249, 0.3);
+  border-color: rgba(56, 189, 248, 0.3);
   transform: translateY(-5px);
 }
 
@@ -1431,7 +1430,7 @@ body {
   flex: 1;
   padding: 0.75rem 1rem;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(103, 232, 249, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.3);
   background: rgba(0, 0, 0, 0.3);
   color: var(--text-light);
   font-size: 1rem;
@@ -1461,13 +1460,13 @@ body {
   border-radius: var(--border-radius);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(103, 232, 249, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.1);
 }
 
 .feature-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(103, 232, 249, 0.2);
-  border-color: rgba(103, 232, 249, 0.3);
+  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.3);
 }
 
 .feature-icon {
@@ -1489,7 +1488,7 @@ body {
 /* App CTA Section */
 .app-cta-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, rgba(103, 232, 249, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
 }
 
 /* App Links Section */
@@ -1659,3 +1658,4 @@ body {
     padding: 2rem 1.5rem;
   }
 }
+
