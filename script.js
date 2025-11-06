@@ -19,14 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Resize canvas on window resize
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });    // Create 4 minimalist gears positioned to never overlap
-    // Positioned in corners and edges for maximum separation
+      canvas.height = window.innerHeight;    });    // Create 3 gears: 2 smaller on left side, 1 large on right side
+    // Layout: Left side has 2 vertically stacked, right side has 1 large centered
     const gears = [
-      { x: canvas.width * 0.15, y: canvas.height * 0.2, radius: 180, teeth: 8, rotation: 0, speed: 0.0002, direction: 1 },
-      { x: canvas.width * 0.85, y: canvas.height * 0.25, radius: 150, teeth: 6, rotation: 0, speed: 0.00025, direction: -1 },
-      { x: canvas.width * 0.25, y: canvas.height * 0.75, radius: 200, teeth: 7, rotation: 0, speed: 0.00018, direction: 1 },
-      { x: canvas.width * 0.75, y: canvas.height * 0.8, radius: 160, teeth: 6, rotation: 0, speed: 0.00022, direction: -1 }
+      // Left side - smaller gear on top
+      { x: canvas.width * 0.15, y: canvas.height * 0.28, radius: 160, teeth: 7, rotation: 0, speed: 0.0002, direction: 1 },
+      // Left side - smaller gear on bottom
+      { x: canvas.width * 0.18, y: canvas.height * 0.72, radius: 180, teeth: 8, rotation: 0, speed: 0.00018, direction: -1 },
+      // Right side - one large gear centered vertically
+      { x: canvas.width * 0.82, y: canvas.height * 0.5, radius: 280, teeth: 10, rotation: 0, speed: 0.00015, direction: 1 }
     ];    function drawGear(x, y, radius, teeth, rotation) {
       ctx.save();
       ctx.translate(x, y);
