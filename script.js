@@ -69,25 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const innerRadius = radius * 0.7; // Gear body
       const toothHeight = radius * 0.28; // CHUNKY teeth - stick out more
       const outerRadius = innerRadius + toothHeight;
-      const cornerRadius = 3; // Subtle corner rounding
+      const cornerRadius = 6; // More corner rounding for flowy look
       
       ctx.beginPath();
       
-      // Draw gear with STRAIGHT teeth (almost no taper) + subtle rounded corners
+      // Draw gear with PERFECTLY STRAIGHT teeth (parallel sides)
       for (let i = 0; i < teeth; i++) {
         const angleStep = (Math.PI * 2) / teeth;
         const currentAngle = i * angleStep;
         const nextAngle = (i + 1) * angleStep;
         
         const toothWidth = angleStep * 0.55; // WIDER teeth (55% tooth, 45% gap)
-        
-        // Tooth dimensions - STRAIGHT sides (barely any taper, maybe slight widening outward)
-        const innerToothHalfWidth = (Math.sin(toothWidth / 2) * innerRadius) * 0.98; // Base slightly narrower
-        const outerToothHalfWidth = (Math.sin(toothWidth / 2) * outerRadius) * 1.0; // Top full width
-        
         const toothMidAngle = currentAngle + toothWidth / 2;
         
-        // Calculate tooth corner points (for STRAIGHT teeth)
+        // Calculate SAME width at both inner and outer radius for STRAIGHT sides
+        // Use the inner radius width for BOTH to ensure parallel sides
+        const halfToothArcWidth = (toothWidth / 2);
+        
+        // Calculate the 4 corners of the tooth using SAME angular width
         const innerLeft = {
           x: Math.cos(currentAngle) * innerRadius,
           y: Math.sin(currentAngle) * innerRadius
@@ -112,11 +111,20 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.lineTo(innerLeft.x, innerLeft.y);
         }
         
-        // Left edge - STRAIGHT line with subtle rounded corner at top
-        ctx.lineTo(outerLeft.x - cornerRadius * Math.cos(currentAngle), outerLeft.y - cornerRadius * Math.sin(currentAngle));
+        // Left edge - STRAIGHT line with rounded corner at top
+        const leftEdgeEndX = outerLeft.x - cornerRadius * Math.cos(currentAngle);
+        const leftEdgeEndY = outerLeft.y - cornerRadius * Math.sin(currentAngle);
+        ctx.lineTo(leftEdgeEndX, leftEdgeEndY);
+        
+        // Top-left corner (rounded)
         ctx.arcTo(outerLeft.x, outerLeft.y, outerRight.x, outerRight.y, cornerRadius);
         
-        // Top edge - STRAIGHT line with subtle rounded corners
+        // Top edge - STRAIGHT line
+        const topEdgeEndX = outerRight.x - cornerRadius * Math.cos(currentAngle + toothWidth + Math.PI/2);
+        const topEdgeEndY = outerRight.y - cornerRadius * Math.sin(currentAngle + toothWidth + Math.PI/2);
+        ctx.lineTo(topEdgeEndX, topEdgeEndY);
+        
+        // Top-right corner (rounded)
         ctx.arcTo(outerRight.x, outerRight.y, innerRight.x, innerRight.y, cornerRadius);
         
         // Right edge - STRAIGHT line
