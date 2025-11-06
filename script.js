@@ -19,36 +19,42 @@ document.addEventListener('DOMContentLoaded', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       updateGearPositions();
-    });
-
-    // Create 3 gears: 2 on left side, 1 large on right side
+    });    // Create 3 gears: 2 on left side, 1 large on right side
     // Teeth: 7-8 per gear, chunky and prominent like reference image
     const gears = [
       // Top left - small gear
-      { x: 0, y: 0, radius: 160, teeth: 7, rotation: 0, speed: 0.0003, direction: 1 },
+      { x: 0, y: 0, radius: 160, baseRadius: 160, teeth: 7, rotation: 0, speed: 0.0003, direction: 1 },
       // Bottom left - bigger
-      { x: 0, y: 0, radius: 220, teeth: 8, rotation: 0, speed: 0.00027, direction: -1 },
+      { x: 0, y: 0, radius: 220, baseRadius: 220, teeth: 8, rotation: 0, speed: 0.00027, direction: -1 },
       // Right side - large gear
-      { x: 0, y: 0, radius: 320, teeth: 8, rotation: 0, speed: 0.00022, direction: 1 }
+      { x: 0, y: 0, radius: 320, baseRadius: 320, teeth: 8, rotation: 0, speed: 0.00022, direction: 1 }
     ];
 
-    // Update gear positions based on screen size
+    // Update gear positions and sizes based on screen size
     function updateGearPositions() {
       const isMobile = window.innerWidth <= 768;
       
       if (isMobile) {
-        // Mobile: prevent overlapping, tighter spacing
-        gears[0].x = canvas.width * 0.15;
-        gears[0].y = canvas.height * 0.25;
-        gears[1].x = canvas.width * 0.20;
-        gears[1].y = canvas.height * 0.75;
-        gears[2].x = canvas.width * 0.85;
+        // Mobile: SMALLER gears to prevent overlapping
+        gears[0].radius = gears[0].baseRadius * 0.65; // 65% size on mobile
+        gears[1].radius = gears[1].baseRadius * 0.65;
+        gears[2].radius = gears[2].baseRadius * 0.65;
+        
+        gears[0].x = canvas.width * 0.18;
+        gears[0].y = canvas.height * 0.22;
+        gears[1].x = canvas.width * 0.22;
+        gears[1].y = canvas.height * 0.78;
+        gears[2].x = canvas.width * 0.82;
         gears[2].y = canvas.height * 0.5;
       } else {
-        // Desktop: spread out more
+        // Desktop: full size, bottom-left MORE TO THE RIGHT (middle)
+        gears[0].radius = gears[0].baseRadius;
+        gears[1].radius = gears[1].baseRadius;
+        gears[2].radius = gears[2].baseRadius;
+        
         gears[0].x = canvas.width * 0.15;
         gears[0].y = canvas.height * 0.28;
-        gears[1].x = canvas.width * 0.28;
+        gears[1].x = canvas.width * 0.35; // MOVED MORE RIGHT (was 0.28)
         gears[1].y = canvas.height * 0.72;
         gears[2].x = canvas.width * 0.82;
         gears[2].y = canvas.height * 0.5;
@@ -61,45 +67,60 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.rotate(rotation);
       
       const innerRadius = radius * 0.7; // Gear body
-      const toothHeight = radius * 0.28; // CHUNKY teeth - stick out more (like reference)
+      const toothHeight = radius * 0.28; // CHUNKY teeth - stick out more
       const outerRadius = innerRadius + toothHeight;
+      const cornerRadius = 3; // Subtle corner rounding
       
       ctx.beginPath();
       
-      // Draw gear with STRAIGHT teeth (chunky like reference image)
+      // Draw gear with STRAIGHT teeth (almost no taper) + subtle rounded corners
       for (let i = 0; i < teeth; i++) {
         const angleStep = (Math.PI * 2) / teeth;
         const currentAngle = i * angleStep;
         const nextAngle = (i + 1) * angleStep;
         
         const toothWidth = angleStep * 0.55; // WIDER teeth (55% tooth, 45% gap)
-        const gapWidth = angleStep * 0.45;
         
-        // Draw the gap (inner circle arc)
-        const gapStart = currentAngle + toothWidth;
-        const gapEnd = nextAngle;
+        // Tooth dimensions - STRAIGHT sides (barely any taper, maybe slight widening outward)
+        const innerToothHalfWidth = (Math.sin(toothWidth / 2) * innerRadius) * 0.98; // Base slightly narrower
+        const outerToothHalfWidth = (Math.sin(toothWidth / 2) * outerRadius) * 1.0; // Top full width
         
-        // Tooth left edge (STRAIGHT line)
-        ctx.lineTo(
-          Math.cos(currentAngle) * innerRadius,
-          Math.sin(currentAngle) * innerRadius
-        );
-        ctx.lineTo(
-          Math.cos(currentAngle) * outerRadius,
-          Math.sin(currentAngle) * outerRadius
-        );
+        const toothMidAngle = currentAngle + toothWidth / 2;
         
-        // Tooth top (STRAIGHT line)
-        ctx.lineTo(
-          Math.cos(currentAngle + toothWidth) * outerRadius,
-          Math.sin(currentAngle + toothWidth) * outerRadius
-        );
+        // Calculate tooth corner points (for STRAIGHT teeth)
+        const innerLeft = {
+          x: Math.cos(currentAngle) * innerRadius,
+          y: Math.sin(currentAngle) * innerRadius
+        };
+        const outerLeft = {
+          x: Math.cos(currentAngle) * outerRadius,
+          y: Math.sin(currentAngle) * outerRadius
+        };
+        const outerRight = {
+          x: Math.cos(currentAngle + toothWidth) * outerRadius,
+          y: Math.sin(currentAngle + toothWidth) * outerRadius
+        };
+        const innerRight = {
+          x: Math.cos(currentAngle + toothWidth) * innerRadius,
+          y: Math.sin(currentAngle + toothWidth) * innerRadius
+        };
         
-        // Tooth right edge (STRAIGHT line)
-        ctx.lineTo(
-          Math.cos(currentAngle + toothWidth) * innerRadius,
-          Math.sin(currentAngle + toothWidth) * innerRadius
-        );
+        // Start at inner left
+        if (i === 0) {
+          ctx.moveTo(innerLeft.x, innerLeft.y);
+        } else {
+          ctx.lineTo(innerLeft.x, innerLeft.y);
+        }
+        
+        // Left edge - STRAIGHT line with subtle rounded corner at top
+        ctx.lineTo(outerLeft.x - cornerRadius * Math.cos(currentAngle), outerLeft.y - cornerRadius * Math.sin(currentAngle));
+        ctx.arcTo(outerLeft.x, outerLeft.y, outerRight.x, outerRight.y, cornerRadius);
+        
+        // Top edge - STRAIGHT line with subtle rounded corners
+        ctx.arcTo(outerRight.x, outerRight.y, innerRight.x, innerRight.y, cornerRadius);
+        
+        // Right edge - STRAIGHT line
+        ctx.lineTo(innerRight.x, innerRight.y);
         
         // Gap arc (smooth curve between teeth)
         ctx.arc(0, 0, innerRadius, currentAngle + toothWidth, nextAngle, false);
