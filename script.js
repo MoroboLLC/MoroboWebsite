@@ -14,39 +14,66 @@ document.addEventListener('DOMContentLoaded', () => {
   if (canvas) {
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // Resize canvas on window resize
+    canvas.height = window.innerHeight;    // Resize canvas on window resize
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;    });    // Create 3 gears: 2 on left side, 1 large on right side
-    // Teeth: 7-8 per gear, straight edges, not too long
+      canvas.height = window.innerHeight;
+      updateGearPositions();
+    });
+
+    // Create 3 gears: 2 on left side, 1 large on right side
+    // Teeth: 7-8 per gear, chunky and prominent like reference image
     const gears = [
       // Top left - small gear
-      { x: canvas.width * 0.15, y: canvas.height * 0.28, radius: 160, teeth: 7, rotation: 0, speed: 0.0002, direction: 1 },
-      // Bottom left - bigger, moved more center
-      { x: canvas.width * 0.25, y: canvas.height * 0.72, radius: 220, teeth: 8, rotation: 0, speed: 0.00018, direction: -1 },
-      // Right side - large gear, even bigger
-      { x: canvas.width * 0.82, y: canvas.height * 0.5, radius: 320, teeth: 8, rotation: 0, speed: 0.00015, direction: 1 }
-    ];    function drawGear(x, y, radius, teeth, rotation) {
+      { x: 0, y: 0, radius: 160, teeth: 7, rotation: 0, speed: 0.0003, direction: 1 },
+      // Bottom left - bigger
+      { x: 0, y: 0, radius: 220, teeth: 8, rotation: 0, speed: 0.00027, direction: -1 },
+      // Right side - large gear
+      { x: 0, y: 0, radius: 320, teeth: 8, rotation: 0, speed: 0.00022, direction: 1 }
+    ];
+
+    // Update gear positions based on screen size
+    function updateGearPositions() {
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        // Mobile: prevent overlapping, tighter spacing
+        gears[0].x = canvas.width * 0.15;
+        gears[0].y = canvas.height * 0.25;
+        gears[1].x = canvas.width * 0.20;
+        gears[1].y = canvas.height * 0.75;
+        gears[2].x = canvas.width * 0.85;
+        gears[2].y = canvas.height * 0.5;
+      } else {
+        // Desktop: spread out more
+        gears[0].x = canvas.width * 0.15;
+        gears[0].y = canvas.height * 0.28;
+        gears[1].x = canvas.width * 0.28;
+        gears[1].y = canvas.height * 0.72;
+        gears[2].x = canvas.width * 0.82;
+        gears[2].y = canvas.height * 0.5;
+      }
+    }
+
+    updateGearPositions();    function drawGear(x, y, radius, teeth, rotation) {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(rotation);
       
-      const innerRadius = radius * 0.75; // Gear body - closer to outer edge
-      const toothHeight = radius * 0.15; // Shorter teeth (15% of radius, not too far)
+      const innerRadius = radius * 0.7; // Gear body
+      const toothHeight = radius * 0.28; // CHUNKY teeth - stick out more (like reference)
       const outerRadius = innerRadius + toothHeight;
       
       ctx.beginPath();
       
-      // Draw gear with STRAIGHT teeth (not angled)
+      // Draw gear with STRAIGHT teeth (chunky like reference image)
       for (let i = 0; i < teeth; i++) {
         const angleStep = (Math.PI * 2) / teeth;
         const currentAngle = i * angleStep;
         const nextAngle = (i + 1) * angleStep;
         
-        const toothWidth = angleStep * 0.4; // 40% tooth, 60% gap
-        const gapWidth = angleStep * 0.6;
+        const toothWidth = angleStep * 0.55; // WIDER teeth (55% tooth, 45% gap)
+        const gapWidth = angleStep * 0.45;
         
         // Draw the gap (inner circle arc)
         const gapStart = currentAngle + toothWidth;
@@ -80,23 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
       
       ctx.closePath();
       
-      // Fill with solid grey (one shade)
-      ctx.fillStyle = 'rgba(128, 128, 128, 0.18)'; // Solid medium grey
+      // ONE SOLID GREY COLOR ONLY (no outline like reference image)
+      ctx.fillStyle = 'rgba(128, 128, 128, 0.25)'; // Single solid grey, more visible
       ctx.fill();
-      
-      // Darker outline stroke
-      ctx.strokeStyle = 'rgba(80, 80, 80, 0.35)'; // Darker grey outline
-      ctx.lineWidth = 2;
-      ctx.stroke();
       
       // Draw center hole
       ctx.beginPath();
       ctx.arc(0, 0, radius * 0.25, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(128, 128, 128, 0.18)'; // Same grey as body
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; // Dark center hole
       ctx.fill();
-      ctx.strokeStyle = 'rgba(80, 80, 80, 0.35)'; // Same darker outline
-      ctx.lineWidth = 2;
-      ctx.stroke();
       
       ctx.restore();
     }
