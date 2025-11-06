@@ -58,22 +58,23 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineTo(Math.cos(outerEnd) * outerRadius, Math.sin(outerEnd) * outerRadius);
         ctx.lineTo(Math.cos(innerEnd) * innerRadius, Math.sin(innerEnd) * innerRadius);
       }
+        ctx.closePath();
       
-      ctx.closePath();
-      
-      // Very light grey stroke only - minimalist
-      ctx.strokeStyle = 'rgba(160, 160, 160, 0.08)';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      
-      // Optional: very subtle fill
-      ctx.fillStyle = 'rgba(128, 128, 128, 0.03)';
+      // Fill gears with visible grey
+      ctx.fillStyle = 'rgba(128, 128, 128, 0.15)'; // Medium grey with good opacity
       ctx.fill();
       
-      // Draw center circle (outline only)
+      // Add subtle stroke for definition
+      ctx.strokeStyle = 'rgba(160, 160, 160, 0.2)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      
+      // Draw center circle with fill
       ctx.beginPath();
       ctx.arc(0, 0, radius * 0.25, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(160, 160, 160, 0.1)';
+      ctx.fillStyle = 'rgba(100, 100, 100, 0.2)'; // Slightly darker center
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(140, 140, 140, 0.25)';
       ctx.lineWidth = 1.5;
       ctx.stroke();
       

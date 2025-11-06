@@ -27,11 +27,11 @@ body {
 }
 
 /* Colour palette - Minimal 3-color scheme */
-:root {  /* Logo gradient colors - light blue to purple (EXACT match to robot logo) */
-  --primary: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
-  --primary-hover: linear-gradient(135deg, #0ea5e9 0%, #9333ea 100%);
-  --primary-solid: #38bdf8; /* Solid light blue for borders/text */
-  --primary-hover-solid: #0ea5e9;
+:root {  /* Logo gradient colors - MORE PURPLE dominant to match logo */
+  --primary: linear-gradient(135deg, #38bdf8 0%, #9333ea 40%, #a855f7 100%);
+  --primary-hover: linear-gradient(135deg, #0ea5e9 0%, #7c3aed 40%, #9333ea 100%);
+  --primary-solid: #a855f7; /* Purple as primary solid color */
+  --primary-hover-solid: #9333ea;
   
   /* Pure black background */
   --bg: #000000;
@@ -228,7 +228,7 @@ body {
   font-weight: 600;
   margin-bottom: 1rem;
   text-align: center;
-  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #9333ea 40%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -301,7 +301,7 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #38bdf8 0%, #a855f7 100%);
+  background: linear-gradient(90deg, #38bdf8 0%, #9333ea 50%, #a855f7 100%);
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
@@ -527,7 +527,7 @@ body {
 .cta-content h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #9333ea 40%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -648,7 +648,7 @@ body {
 .page-header h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #9333ea 40%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
