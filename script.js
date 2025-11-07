@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
       canvas.height = window.innerHeight;
       updateGearPositions();
     });    // Create 3 gears: 2 on left side, 1 large on right side
-    // Teeth: 7-8 per gear, chunky and prominent like reference image
+    // All gears have 7 teeth (uniform design)
     const gears = [
       // Top left - small gear
       { x: 0, y: 0, radius: 160, baseRadius: 160, teeth: 7, rotation: 0, speed: 0.0003, direction: 1 },
       // Bottom left - bigger
-      { x: 0, y: 0, radius: 220, baseRadius: 220, teeth: 8, rotation: 0, speed: 0.00027, direction: -1 },
+      { x: 0, y: 0, radius: 220, baseRadius: 220, teeth: 7, rotation: 0, speed: 0.00027, direction: -1 },
       // Right side - large gear
-      { x: 0, y: 0, radius: 320, baseRadius: 320, teeth: 8, rotation: 0, speed: 0.00022, direction: 1 }
+      { x: 0, y: 0, radius: 320, baseRadius: 320, teeth: 7, rotation: 0, speed: 0.00022, direction: 1 }
     ];
 
     // Update gear positions and sizes based on screen size
@@ -73,65 +73,69 @@ document.addEventListener('DOMContentLoaded', () => {
       
       ctx.beginPath();
       
-      // Draw gear with PERFECTLY STRAIGHT teeth (parallel sides)
+      // Draw gear with PERFECTLY STRAIGHT teeth (using cartesian coordinates for parallel sides)
       for (let i = 0; i < teeth; i++) {
         const angleStep = (Math.PI * 2) / teeth;
         const currentAngle = i * angleStep;
         const nextAngle = (i + 1) * angleStep;
         
-        const toothWidth = angleStep * 0.55; // WIDER teeth (55% tooth, 45% gap)
-        const toothMidAngle = currentAngle + toothWidth / 2;
+        const toothWidth = angleStep * 0.58; // WIDER teeth for 7 teeth (58% tooth, 42% gap)
         
-        // Calculate SAME width at both inner and outer radius for STRAIGHT sides
-        // Use the inner radius width for BOTH to ensure parallel sides
-        const halfToothArcWidth = (toothWidth / 2);
+        // Get the base positions at inner radius
+        const innerLeftAngle = currentAngle;
+        const innerRightAngle = currentAngle + toothWidth;
         
-        // Calculate the 4 corners of the tooth using SAME angular width
-        const innerLeft = {
-          x: Math.cos(currentAngle) * innerRadius,
-          y: Math.sin(currentAngle) * innerRadius
-        };
-        const outerLeft = {
-          x: Math.cos(currentAngle) * outerRadius,
-          y: Math.sin(currentAngle) * outerRadius
-        };
-        const outerRight = {
-          x: Math.cos(currentAngle + toothWidth) * outerRadius,
-          y: Math.sin(currentAngle + toothWidth) * outerRadius
-        };
-        const innerRight = {
-          x: Math.cos(currentAngle + toothWidth) * innerRadius,
-          y: Math.sin(currentAngle + toothWidth) * innerRadius
-        };
+        // Calculate ACTUAL cartesian width at inner radius
+        const innerLeftX = Math.cos(innerLeftAngle) * innerRadius;
+        const innerLeftY = Math.sin(innerLeftAngle) * innerRadius;
+        const innerRightX = Math.cos(innerRightAngle) * innerRadius;
+        const innerRightY = Math.sin(innerRightAngle) * innerRadius;
+        
+        // Calculate the STRAIGHT direction vector (perpendicular to radius at tooth center)
+        const toothCenterAngle = currentAngle + toothWidth / 2;
+        const radialDirX = Math.cos(toothCenterAngle);
+        const radialDirY = Math.sin(toothCenterAngle);
+        
+        // Calculate the tooth width vector (tangent direction at inner radius)
+        const tangentX = -Math.sin(toothCenterAngle);
+        const tangentY = Math.cos(toothCenterAngle);
+        
+        // Get cartesian distance between inner corners
+        const innerWidth = Math.sqrt(
+          Math.pow(innerRightX - innerLeftX, 2) + 
+          Math.pow(innerRightY - innerLeftY, 2)
+        );
+        
+        // Create PARALLEL outer corners by moving straight outward (same width)
+        const outerLeftX = innerLeftX + radialDirX * toothHeight;
+        const outerLeftY = innerLeftY + radialDirY * toothHeight;
+        const outerRightX = innerRightX + radialDirX * toothHeight;
+        const outerRightY = innerRightY + radialDirY * toothHeight;
         
         // Start at inner left
         if (i === 0) {
-          ctx.moveTo(innerLeft.x, innerLeft.y);
+          ctx.moveTo(innerLeftX, innerLeftY);
         } else {
-          ctx.lineTo(innerLeft.x, innerLeft.y);
+          ctx.lineTo(innerLeftX, innerLeftY);
         }
         
-        // Left edge - STRAIGHT line with rounded corner at top
-        const leftEdgeEndX = outerLeft.x - cornerRadius * Math.cos(currentAngle);
-        const leftEdgeEndY = outerLeft.y - cornerRadius * Math.sin(currentAngle);
-        ctx.lineTo(leftEdgeEndX, leftEdgeEndY);
+        // Left edge - STRAIGHT line
+        ctx.lineTo(outerLeftX, outerLeftY);
         
         // Top-left corner (rounded)
-        ctx.arcTo(outerLeft.x, outerLeft.y, outerRight.x, outerRight.y, cornerRadius);
+        ctx.arcTo(outerLeftX, outerLeftY, outerRightX, outerRightY, cornerRadius);
         
-        // Top edge - STRAIGHT line
-        const topEdgeEndX = outerRight.x - cornerRadius * Math.cos(currentAngle + toothWidth + Math.PI/2);
-        const topEdgeEndY = outerRight.y - cornerRadius * Math.sin(currentAngle + toothWidth + Math.PI/2);
-        ctx.lineTo(topEdgeEndX, topEdgeEndY);
+        // Top edge - STRAIGHT line to near right corner
+        ctx.lineTo(outerRightX, outerRightY);
         
         // Top-right corner (rounded)
-        ctx.arcTo(outerRight.x, outerRight.y, innerRight.x, innerRight.y, cornerRadius);
+        ctx.arcTo(outerRightX, outerRightY, innerRightX, innerRightY, cornerRadius);
         
         // Right edge - STRAIGHT line
-        ctx.lineTo(innerRight.x, innerRight.y);
+        ctx.lineTo(innerRightX, innerRightY);
         
         // Gap arc (smooth curve between teeth)
-        ctx.arc(0, 0, innerRadius, currentAngle + toothWidth, nextAngle, false);
+        ctx.arc(0, 0, innerRadius, innerRightAngle, nextAngle, false);
       }
       
       ctx.closePath();
