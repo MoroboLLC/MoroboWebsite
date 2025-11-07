@@ -1,0 +1,14 @@
+# Merivilla Icon Placeholder
+
+This is a placeholder for the Merivilla website icon.
+
+Please replace this file with the actual Merivilla icon image.
+
+**Recommended specifications:**
+- Format: PNG with transparency
+- Size: 512x512px or larger (square)
+- File name: MerivillaIcon.png
+
+**Alternative:**
+You can use a screenshot or logo from the Merivilla website:
+https://morobollc.github.io/MerivillaWebsite/
