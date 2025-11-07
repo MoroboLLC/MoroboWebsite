@@ -224,22 +224,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // Optional: highlight navigation links based on scroll position
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-tab');
-
-  const setActiveLink = () => {
-    let index = sections.length;
-    while(--index && window.scrollY + 150 < sections[index].offsetTop) {}
-    navLinks.forEach(link => link.classList.remove('active'));
-    const activeLink = navLinks[index];
-    if (activeLink) {
-      activeLink.classList.add('active');
-    }
-  };
+  // Optional: highlight navigation links based on scroll position (only on homepage)
+  const isHomepage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '/MoroboWebsite/' || window.location.pathname.endsWith('/');
   
-  if (navLinks.length > 0) {
-    setActiveLink();
-    window.addEventListener('scroll', setActiveLink);
+  if (isHomepage) {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-tab');
+
+    const setActiveLink = () => {
+      let index = sections.length;
+      while(--index && window.scrollY + 150 < sections[index].offsetTop) {}
+      navLinks.forEach(link => link.classList.remove('active'));
+      const activeLink = navLinks[index];
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    };
+    
+    if (navLinks.length > 0) {
+      setActiveLink();
+      window.addEventListener('scroll', setActiveLink);
+    }
   }
 });

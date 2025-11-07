@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Automation & Agents – Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        Morobo
+      </a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="ai.html" class="nav-tab active">AI</a>
+        <a href="index.html#about" class="nav-tab">About</a>
+        <a href="index.html#contact" class="nav-tab">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>AI Automation & Intelligent Agents</h1>
+      <p>Transform your business with cutting-edge AI solutions</p>
+    </div>
+  </section>
+
+  <!-- AI Services Overview -->
+  <section class="ai-overview-section">
+    <div class="container">
+      <h2 class="section-title">Intelligent Automation for Modern Businesses</h2>
+      <p class="section-description">
+        Leverage the power of artificial intelligence to automate workflows, enhance customer experiences, 
+        and unlock insights from your data. Our AI solutions are tailored to your specific business needs, 
+        delivering measurable results and competitive advantages.
+      </p>
+      
+      <div class="ai-services-grid">
+        <div class="card ai-service-card">
+          <div class="service-icon">🤖</div>
+          <h3>Custom AI Chatbots</h3>
+          <p>Intelligent conversational agents that handle customer inquiries, provide support, and engage users 24/7.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Natural language processing</li>
+            <li><i class="fas fa-check"></i> Multi-platform integration</li>
+            <li><i class="fas fa-check"></i> Custom training on your data</li>
+            <li><i class="fas fa-check"></i> Analytics & insights dashboard</li>
+          </ul>
+        </div>
+
+        <div class="card ai-service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Workflow Automation</h3>
+          <p>Streamline repetitive tasks and processes with AI-powered automation that saves time and reduces errors.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Process optimization analysis</li>
+            <li><i class="fas fa-check"></i> Intelligent data entry automation</li>
+            <li><i class="fas fa-check"></i> Document processing & extraction</li>
+            <li><i class="fas fa-check"></i> Smart task scheduling & routing</li>
+          </ul>
+        </div>
+
+        <div class="card ai-service-card">
+          <div class="service-icon">💬</div>
+          <h3>AI Customer Service</h3>
+          <p>Enhance customer experience with AI agents that provide instant, accurate responses and seamless escalation.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Automated ticket classification</li>
+            <li><i class="fas fa-check"></i> Intelligent response generation</li>
+            <li><i class="fas fa-check"></i> Real-time sentiment analysis</li>
+            <li><i class="fas fa-check"></i> Smooth human handoff integration</li>
+          </ul>
+        </div>
+
+        <div class="card ai-service-card">
+          <div class="service-icon">📊</div>
+          <h3>Data Processing & Analysis</h3>
+          <p>Extract insights from large datasets with AI-powered analysis, reporting, and predictive modeling.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Automated data extraction</li>
+            <li><i class="fas fa-check"></i> Advanced pattern recognition</li>
+            <li><i class="fas fa-check"></i> Predictive analytics models</li>
+            <li><i class="fas fa-check"></i> Interactive custom dashboards</li>
+          </ul>
+        </div>
+
+        <div class="card ai-service-card">
+          <div class="service-icon">🔗</div>
+          <h3>AI Integration Consulting</h3>
+          <p>Expert guidance on integrating AI solutions into your existing systems and workflows.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Comprehensive system assessment</li>
+            <li><i class="fas fa-check"></i> Strategic implementation planning</li>
+            <li><i class="fas fa-check"></i> Seamless API integration</li>
+            <li><i class="fas fa-check"></i> Team training & ongoing support</li>
+          </ul>
+        </div>
+
+        <div class="card ai-service-card">
+          <div class="service-icon">🎯</div>
+          <h3>Custom AI Solutions</h3>
+          <p>Tailored AI agents and automation built specifically for your unique business needs and challenges.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> In-depth requirement analysis</li>
+            <li><i class="fas fa-check"></i> Custom model training & tuning</li>
+            <li><i class="fas fa-check"></i> Enterprise-grade scalable architecture</li>
+            <li><i class="fas fa-check"></i> Continuous optimization & updates</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section">
+    <div class="container">
+      <h2 class="section-title">AI Automation Pricing</h2>
+      <p class="section-description">Transparent pricing tailored to your automation needs</p>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Starter</h3>
+          <div class="price">$1,500</div>
+          <p class="price-period">One-time Setup</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Single AI chatbot or automation</li>
+            <li><i class="fas fa-check"></i> Basic integration (1-2 platforms)</li>
+            <li><i class="fas fa-check"></i> Pre-trained models</li>
+            <li><i class="fas fa-check"></i> Up to 1,000 interactions/month</li>
+            <li><i class="fas fa-check"></i> Email support</li>
+            <li><i class="fas fa-check"></i> Basic analytics dashboard</li>
+          </ul>
+          <div class="monthly-fee">
+            <p class="monthly-amount">$99/month</p>
+            <p class="monthly-label">Hosting, Monitoring & Updates</p>
+          </div>
+          <a href="index.html#contact" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <h3>Professional</h3>
+          <div class="price">$4,000</div>
+          <p class="price-period">One-time Setup</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Multiple AI agents (up to 3)</li>
+            <li><i class="fas fa-check"></i> Advanced integrations (3-5 platforms)</li>
+            <li><i class="fas fa-check"></i> Custom training on your data</li>
+            <li><i class="fas fa-check"></i> Up to 10,000 interactions/month</li>
+            <li><i class="fas fa-check"></i> Priority support (24-hour response)</li>
+            <li><i class="fas fa-check"></i> Advanced analytics & reporting</li>
+            <li><i class="fas fa-check"></i> Custom workflow automation</li>
+          </ul>
+          <div class="monthly-fee">
+            <p class="monthly-amount">$249/month</p>
+            <p class="monthly-label">Hosting, Monitoring & Optimization</p>
+          </div>
+          <a href="index.html#contact" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Enterprise</h3>
+          <div class="price">Custom</div>
+          <p class="price-period">Tailored Solutions</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Unlimited AI agents & automations</li>
+            <li><i class="fas fa-check"></i> Full system integration</li>
+            <li><i class="fas fa-check"></i> Custom AI model development</li>
+            <li><i class="fas fa-check"></i> Unlimited interactions</li>
+            <li><i class="fas fa-check"></i> Dedicated support team</li>
+            <li><i class="fas fa-check"></i> Enterprise-grade security</li>
+            <li><i class="fas fa-check"></i> SLA guarantees</li>
+            <li><i class="fas fa-check"></i> On-premise deployment options</li>
+          </ul>
+          <div class="monthly-fee">
+            <p class="monthly-amount">Custom Pricing</p>
+            <p class="monthly-label">Based on Scale & Requirements</p>
+          </div>
+          <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section class="use-cases-section">
+    <div class="container">
+      <h2 class="section-title">Real-World Applications</h2>
+      <p class="section-description">See how AI automation transforms different industries</p>
+      
+      <div class="use-cases-grid">
+        <div class="use-case-card">
+          <div class="use-case-icon">🏪</div>
+          <h3>E-Commerce</h3>
+          <p>Automate customer support, product recommendations, order processing, and inventory management with AI-powered solutions.</p>
+          <ul class="use-case-benefits">
+            <li>24/7 customer assistance</li>
+            <li>Personalized shopping experiences</li>
+            <li>Automated order tracking</li>
+          </ul>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">🏥</div>
+          <h3>Healthcare</h3>
+          <p>Streamline appointment scheduling, patient communication, medical record processing, and preliminary symptom assessment.</p>
+          <ul class="use-case-benefits">
+            <li>Automated appointment reminders</li>
+            <li>Patient intake automation</li>
+            <li>Prescription refill processing</li>
+          </ul>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">🏦</div>
+          <h3>Financial Services</h3>
+          <p>Enhance fraud detection, automate loan processing, provide instant customer support, and analyze financial data.</p>
+          <ul class="use-case-benefits">
+            <li>Real-time fraud alerts</li>
+            <li>Automated compliance checks</li>
+            <li>Intelligent financial advice</li>
+          </ul>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">📚</div>
+          <h3>Education</h3>
+          <p>Automate student inquiries, personalize learning paths, grade assignments, and provide tutoring assistance.</p>
+          <ul class="use-case-benefits">
+            <li>Personalized learning recommendations</li>
+            <li>Automated grading systems</li>
+            <li>24/7 student support</li>
+          </ul>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">🏢</div>
+          <h3>Real Estate</h3>
+          <p>Automate lead qualification, schedule property tours, answer buyer questions, and manage property databases.</p>
+          <ul class="use-case-benefits">
+            <li>Instant lead response</li>
+            <li>Automated tour scheduling</li>
+            <li>Property matching algorithms</li>
+          </ul>
+        </div>
+
+        <div class="use-case-card">
+          <div class="use-case-icon">🍕</div>
+          <h3>Hospitality</h3>
+          <p>Streamline reservations, handle customer inquiries, manage reviews, and personalize guest experiences.</p>
+          <ul class="use-case-benefits">
+            <li>Automated booking confirmations</li>
+            <li>Menu recommendations</li>
+            <li>Review response automation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How long does it take to implement AI automation?</h3>
+          <p>Implementation timelines vary based on complexity. A basic chatbot can be deployed in 2-3 weeks, while comprehensive automation solutions typically take 6-12 weeks for full integration and testing.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do I need technical expertise to use AI solutions?</h3>
+          <p>Not at all! We design our AI solutions to be user-friendly and provide comprehensive training. Our team handles all the technical complexity, and we offer ongoing support to ensure smooth operation.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can AI integrate with my existing systems?</h3>
+          <p>Yes! Our AI solutions are built to integrate seamlessly with popular platforms like Shopify, WordPress, Salesforce, HubSpot, and many others. We also develop custom integrations for proprietary systems.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What kind of ROI can I expect?</h3>
+          <p>Most clients see ROI within 3-6 months through reduced labor costs, improved efficiency, and enhanced customer satisfaction. We provide detailed analytics to track performance and measure impact.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is my data secure with AI automation?</h3>
+          <p>Absolutely. We follow industry-best security practices, including data encryption, secure API connections, and compliance with regulations like GDPR and CCPA. Enterprise clients can opt for on-premise deployment for maximum control.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I customize the AI's responses and behavior?</h3>
+          <p>Yes! We train AI models on your specific data, brand voice, and business rules. You have full control over how the AI communicates and handles different scenarios, with easy tools to update and refine responses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Automate Your Business?</h2>
+      <p>Let's discuss how AI can transform your workflows and drive growth</p>
+      <a href="index.html#contact" class="btn btn-primary">Start Your AI Journey</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="footer-logo-img">
+      </div>
+      <p>&copy; 2025 Morobo. All rights reserved.</p>
+      <p>Contact: <a href="mailto:contact@morobo.org">contact@morobo.org</a></p>
+      <div class="footer-links">
+        <a href="apps/indecision/privacypolicy/index.html">Privacy Policy</a>
+        <a href="apps/indecision/EULA/index.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
