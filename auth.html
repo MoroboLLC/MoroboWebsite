@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        Morobo
+      </a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="ai.html" class="nav-tab">Agents</a>
+        <a href="index.html#contact" class="nav-tab">Contact</a>
+      </nav>
+      <div class="nav-toggle">
+        <button class="toggle-btn" data-view="home" title="Home">
+          <i class="fas fa-home"></i>
+        </button>
+        <button class="toggle-btn active" data-view="profile" title="Profile">
+          <i class="fas fa-user"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="auth-section">
+    <div class="container">
+      <div class="auth-container">
+        <!-- Login Form -->
+        <div class="auth-form" id="loginForm">
+          <h2>Welcome Back</h2>
+          <p class="auth-subtitle">Log in to access your dashboard</p>
+          
+          <form id="loginFormElement">
+            <div class="form-group">
+              <label for="loginEmail">Email</label>
+              <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" name="password" required placeholder="••••••••">
+            </div>
+            
+            <div class="form-options">
+              <label class="checkbox-label">
+                <input type="checkbox" name="remember"> Remember me
+              </label>
+              <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">Log In</button>
+          </form>
+          
+          <p class="auth-switch">
+            Don't have an account? 
+            <a href="#" id="showSignup">Sign up</a>
+          </p>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="auth-form" id="signupForm" style="display: none;">
+          <h2>Create Account</h2>
+          <p class="auth-subtitle">Join Morobo to manage your projects</p>
+          
+          <form id="signupFormElement">
+            <div class="form-group">
+              <label for="signupName">Full Name</label>
+              <input type="text" id="signupName" name="name" required placeholder="John Doe">
+            </div>
+            
+            <div class="form-group">
+              <label for="signupEmail">Email</label>
+              <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="signupPassword">Password</label>
+              <input type="password" id="signupPassword" name="password" required placeholder="••••••••">
+            </div>
+            
+            <div class="form-group">
+              <label for="signupConfirmPassword">Confirm Password</label>
+              <input type="password" id="signupConfirmPassword" name="confirmPassword" required placeholder="••••••••">
+            </div>
+            
+            <div class="form-options">
+              <label class="checkbox-label">
+                <input type="checkbox" name="terms" required> 
+                I agree to the <a href="#">Terms & Conditions</a>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+          </form>
+          
+          <p class="auth-switch">
+            Already have an account? 
+            <a href="#" id="showLogin">Log in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
