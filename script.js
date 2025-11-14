@@ -224,26 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // Optional: highlight navigation links based on scroll position (only on homepage)
-  const isHomepage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '/MoroboWebsite/' || window.location.pathname.endsWith('/');
-  
-  if (isHomepage) {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-tab');
-
-    const setActiveLink = () => {
-      let index = sections.length;
-      while(--index && window.scrollY + 150 < sections[index].offsetTop) {}
-      navLinks.forEach(link => link.classList.remove('active'));
-      const activeLink = navLinks[index];
-      if (activeLink) {
-        activeLink.classList.add('active');
-      }
-    };
-    
-    if (navLinks.length > 0) {
-      setActiveLink();
-      window.addEventListener('scroll', setActiveLink);
-    }
-  }
+  // Scroll-based nav highlighting disabled.
+  // The automatic scroll-sync was causing inconsistent active states.
+  // We keep click/navigation behavior (links use their hrefs), but avoid
+  // programmatically changing `.nav-tab.active` on scroll.
+  // If you want this re-enabled later, restore the block above.
 });
