@@ -80,7 +80,7 @@ body {
   width: 100%;
   z-index: 1000;
   background-color: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: none;
 }
 
 .nav-content {
@@ -997,7 +997,7 @@ body {
   }
 }
 
-/* Legal page footer */
+/* Legal page footer - uses .footer class */
 footer {
   background-color: #000000;
   padding: 2rem 0;
