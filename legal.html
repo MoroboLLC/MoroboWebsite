@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <!-- PDF Download Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
   <canvas id="backgroundCanvas"></canvas>
@@ -192,7 +194,53 @@
             <li>Governing law and arbitration clauses</li>
           </ul>
           <p><strong>⚠️ Important:</strong> Always attach a project-specific SOW and an Order Form to this agreement before client signature.</p>
-          <button onclick="downloadDocument('ToS')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
+          <button onclick="downloadPDF('masterServiceAgreement', 'Master-Service-Agreement')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
+        </div>
+        <!-- Full Document Content (Hidden) -->
+        <div id="masterServiceAgreement" style="display: none;">
+          <h3>MASTER SERVICE AGREEMENT</h3>
+          <p>Morobo LLC ("Morobo") and Client</p>
+          <h4>1. SERVICES OVERVIEW</h4>
+          <p>Morobo will provide development and hosting services for websites, mobile apps, and AI agents.</p>
+          <h4>2. PRICING TIERS & SCOPE LIMITS</h4>
+          <p><strong>WEBSITES:</strong> Basic (5 pages), Pro (10 pages), Enterprise (15+ pages)</p>
+          <p><strong>MOBILE APPS:</strong> Basic (single platform), Pro (multi-platform), Enterprise (complex integrations)</p>
+          <p><strong>AI AGENTS:</strong> Basic, Pro, Enterprise tiers based on complexity</p>
+          <h4>3. SCOPE CREEP & UPGRADE POLICY</h4>
+          <p>Clients requesting features beyond their tier scope will be charged for upgrade to next tier. Morobo retains discretion.</p>
+          <h4>4. PAYMENT TERMS</h4>
+          <p><strong>Website & App Development:</strong> 50% deposit upon contract, 50% upon completion. Alternative split payments available.</p>
+          <p><strong>AI Agents:</strong> First month fee as retainer BEFORE development begins.</p>
+          <p><strong>Hosting & Maintenance:</strong> Monthly subscriptions - Basic ($49/month), Advanced ($79/month), Pro ($99/month)</p>
+          <p>All prices exclusive of tax. Client responsible for tax obligations.</p>
+          <h4>5. NON-REFUNDABLE POLICY</h4>
+          <p>All fees are non-refundable after work commencement. Deposits non-refundable if client cancels.</p>
+          <h4>6. INTELLECTUAL PROPERTY OWNERSHIP</h4>
+          <p>Morobo retains 100% ownership of all code, design, architecture. Client receives NON-EXCLUSIVE LICENSE for contracted term only.</p>
+          <p>Upon termination/non-payment, all access is revoked immediately. Third-party components remain under original licenses.</p>
+          <h4>7. HOSTING & DOMAIN OWNERSHIP</h4>
+          <p><strong>Domains:</strong> Morobo owns all domains. Client receives usage license for contracted term. Upon termination, domain reverts to Morobo.</p>
+          <p><strong>Apps:</strong> Morobo owns app store accounts. Apps published under Morobo accounts. Upon termination, app delisted within 14 days.</p>
+          <h4>8. UPTIME & PERFORMANCE</h4>
+          <p><strong>Uptime:</strong> 99% monthly availability. Scheduled maintenance: Sundays 2am–4am UTC.</p>
+          <p><strong>Support Response:</strong> Basic (48 hours), Pro (4 hours), Enterprise (1 hour, 24/7)</p>
+          <h4>9. CHANGES & REVISIONS</h4>
+          <p>Included: Basic (1/month), Advanced (unlimited), Pro (unlimited + 2 hours optimization)</p>
+          <p>Out-of-scope revisions require upgrade to next tier. Changes beyond tier limits will not proceed until payment adjusted.</p>
+          <h4>10. LIABILITY LIMITATIONS</h4>
+          <p>Morobo liability capped at fees paid in past 12 months (minimum $100). NOT liable for indirect damages, third-party failures, or AI errors.</p>
+          <h4>11. DATA & PRIVACY</h4>
+          <p>Client data retained while service active. Upon termination, Client can request export within 30 days. Permanent deletion 30 days after final billing.</p>
+          <h4>12. AI AGENT SPECIFIC TERMS</h4>
+          <p>Client acknowledges AI may produce inaccurate outputs. Client assumes all risk. Non-Compete: During active contract, Client cannot build competing AI agents.</p>
+          <h4>13. APP-SPECIFIC: REVENUE SHARE</h4>
+          <p>Morobo retains 1% of gross subscription revenue (only if app earns >$2,500/month). IN ADDITION to monthly hosting fee.</p>
+          <h4>14. TERMINATION & CONSEQUENCES</h4>
+          <p>Client may cancel with 30 days notice. Service continues until notice period ends. Domain/app archived, data deleted, access revoked.</p>
+          <h4>15. DISPUTE RESOLUTION</h4>
+          <p>Disputes resolved: Negotiation → Mediation → Binding Arbitration in Travis County, Texas per AAA Commercial Arbitration Rules.</p>
+          <h4>16. GENERAL TERMS</h4>
+          <p>Entire agreement includes MSA + SOW + DPA. Morobo may update terms with 30 days notice. Non-assignable without consent.</p>
         </div>
       </div>
     </section>
@@ -204,18 +252,37 @@
           <button onclick="toggleSection('privacy')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
         <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Explains how we collect, use, store, and share personal data for websites, apps, and AI agents.</p>
-          <h3>Coverage</h3>
+          <h3>Data We Collect</h3>
+          <p><strong>Website Visitors:</strong> IP, browser type, pages visited, contact form submissions</p>
+          <p><strong>App Users:</strong> Email, username, usage data, device info, location (if permitted)</p>
+          <p><strong>AI Agent Clients:</strong> Account credentials, config data, usage logs, end-user messages</p>
+          <h3>Legal Basis for Processing</h3>
           <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Categories of data collected (contact, account, payment, logs)</li>
-            <li>Purposes of processing and legal bases</li>
-            <li>Third-party processors and integrations (Stripe, Supabase, etc.)</li>
-            <li>User rights (access, correction, deletion, portability)</li>
-            <li>Data retention and deletion policy</li>
-            <li>Security measures and incident response</li>
-            <li>International transfers and safeguards</li>
+            <li>Contract: Processing necessary for service delivery</li>
+            <li>Consent: User explicit agreement (opt-in for emails)</li>
+            <li>Legitimate Interest: Analytics, security, fraud prevention</li>
+            <li>Legal Obligation: Tax records, law enforcement</li>
           </ul>
-          <button onclick="downloadDocument('Privacy')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
+          <h3>How We Use Your Data</h3>
+          <ul style="margin-left: 1rem; color: var(--text-muted);">
+            <li>Provide and improve services</li>
+            <li>Respond to inquiries</li>
+            <li>Prevent fraud and security threats</li>
+            <li>Billing and subscription management</li>
+            <li>Enhance AI models (aggregated, anonymized data)</li>
+          </ul>
+          <h3>Data Retention</h3>
+          <p><strong>Website Contact Forms:</strong> 1 year or until inquiry resolved</p>
+          <p><strong>App Users:</strong> Active + 30 days after deletion</p>
+          <p><strong>AI Agent Clients:</strong> While customer; 30 days after cancellation</p>
+          <p><strong>Usage Logs:</strong> 90 days</p>
+          <h3>Your Rights</h3>
+          <p>You may request access, correction, deletion, or export of your data. Email privacy@morobo.org. We respond within 30 days.</p>
+          <h3>Data Security</h3>
+          <p>HTTPS/TLS encryption in transit, AES-256 at rest, regular audits, access controls, employee NDAs.</p>
+          <h3>Third-Party Sharing</h3>
+          <p>We share data with Stripe, Supabase, AWS, Google Analytics, OpenAI, RevenueCat. These parties have their own privacy policies. We do NOT sell data to advertisers.</p>
+          <button onclick="downloadPDF('privacyPolicy', 'Privacy-Policy')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
         </div>
       </div>
     </section>
@@ -459,6 +526,7 @@
    </footer>
 
    <script src="script.js"></script>
+   <script src="legal-documents.js"></script>
    <script>
      function toggleSection(sectionId) {
        const section = document.getElementById(sectionId);
@@ -475,8 +543,27 @@
        }
      }
 
+     function downloadPDF(docId, fileName) {
+       const element = document.getElementById(docId);
+       if (!element) {
+         alert('Document not found');
+         return;
+       }
+       
+       const opt = {
+         margin: 10,
+         filename: `${fileName}.pdf`,
+         image: { type: 'jpeg', quality: 0.98 },
+         html2canvas: { scale: 2 },
+         jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+       };
+       
+       html2pdf().set(opt).from(element).save();
+     }
+
+     // Fallback for older download function
      function downloadDocument(docName) {
-       alert(`Download feature: ${docName} document ready for download. (Implement with actual PDF generation or download link.)`);
+       alert(`Download: ${docName} document. Using html2pdf for client-side PDF generation.`);
      }
    </script>
 
