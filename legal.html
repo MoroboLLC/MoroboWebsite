@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <!-- PDF Download Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="legal-documents.js"></script>
 </head>
 <body>
   <canvas id="backgroundCanvas"></canvas>
@@ -31,387 +31,180 @@
   <main class="container legal-page">
     <h1>Legal & Agreements</h1>
     <p class="section-description">
-      Comprehensive legal documents and templates covering all aspects of our services. 
-      Click on any document to view full details, download, or prepare for client signature.
+      All legal documents dated November 19, 2025. Click any document to see full details with actual pricing ($200-$500), Vegas address, and Texas dispute venue.
     </p>
 
-    <!-- Legal Documents Grid -->
     <div class="legal-cards-grid">
-      
-      <!-- Terms of Service Card -->
       <div class="legal-card" onclick="toggleSection('terms')">
         <div class="legal-card-icon">📋</div>
-        <h3>Terms of Service</h3>
-        <p>Master services agreement governing the relationship between Morobo and clients.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Required</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
+        <h3>Master Service Agreement</h3>
+        <p>EFFECTIVE DATE: November 19, 2025. Websites $200-$400 build + $49-$99/mo. Apps $5k+. AI Agents $50-$500/mo.</p>
       </div>
 
-      <!-- Privacy Policy Card -->
       <div class="legal-card" onclick="toggleSection('privacy')">
         <div class="legal-card-icon">🔐</div>
         <h3>Privacy Policy</h3>
-        <p>How we collect, use, store, and share personal data across all services.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Required</span>
-          <span class="legal-card-tag">Public</span>
-        </div>
+        <p>Contact: 620 S 7th St PMB 1474, Las Vegas, NV 89101-6906. Email: contact@morobo.org</p>
       </div>
 
-      <!-- Data Processing Addendum Card -->
       <div class="legal-card" onclick="toggleSection('dpa')">
         <div class="legal-card-icon">📊</div>
         <h3>Data Processing Addendum</h3>
-        <p>DPA for when Morobo processes personal data on behalf of clients.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Enterprise</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
+        <p>DPA for processing client personal data. Full details on security measures and compliance.</p>
       </div>
 
-      <!-- EULA Card -->
-      <div class="legal-card" onclick="toggleSection('eula')">
-        <div class="legal-card-icon">💾</div>
-        <h3>End-User License Agreement</h3>
-        <p>Software license terms for delivered apps and tools.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Apps Only</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
-      </div>
-
-      <!-- SLA Card -->
       <div class="legal-card" onclick="toggleSection('sla')">
         <div class="legal-card-icon">⏱️</div>
         <h3>Service Level Agreement</h3>
-        <p>Uptime guarantees, maintenance windows, and incident response times.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Hosting</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
+        <p>99% uptime guarantee. Venue: Travis County, Texas. Arbitration rules included.</p>
       </div>
 
-      <!-- NDA Card -->
+      <div class="legal-card" onclick="toggleSection('liability')">
+        <div class="legal-card-icon">⚖️</div>
+        <h3>Liability & Arbitration</h3>
+        <p>Liability capped at 12 months of fees. Binding arbitration in Travis County, Texas.</p>
+      </div>
+
+      <div class="legal-card" onclick="toggleSection('eula')">
+        <div class="legal-card-icon">💾</div>
+        <h3>EULA</h3>
+        <p>End-user license for delivered apps and software.</p>
+      </div>
+
       <div class="legal-card" onclick="toggleSection('nda')">
         <div class="legal-card-icon">🤝</div>
         <h3>Non-Disclosure Agreement</h3>
-        <p>Mutual and unilateral NDA templates for sensitive conversations.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Optional</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
+        <p>Mutual NDA template for confidential conversations.</p>
       </div>
 
-      <!-- Acceptable Use Card -->
-      <div class="legal-card" onclick="toggleSection('aue')">
+      <div class="legal-card" onclick="toggleSection('aup')">
         <div class="legal-card-icon">✅</div>
-        <h3>Acceptable Use & Security</h3>
-        <p>Policies governing use of services and security responsibilities.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Required</span>
-          <span class="legal-card-tag">Public</span>
-        </div>
+        <h3>Acceptable Use Policy</h3>
+        <p>Service usage guidelines and prohibited activities.</p>
       </div>
 
-      <!-- Payments & Billing Card -->
       <div class="legal-card" onclick="toggleSection('payments')">
         <div class="legal-card-icon">💳</div>
-        <h3>Payments & Billing</h3>
-        <p>Payment terms, methods, refunds, and chargeback handling.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Required</span>
-          <span class="legal-card-tag">Public</span>
-        </div>
+        <h3>Payment Terms</h3>
+        <p>50% deposit, 50% upon completion. Non-refundable. All prices as of November 19, 2025.</p>
       </div>
 
-      <!-- IP & Licensing Card -->
       <div class="legal-card" onclick="toggleSection('ip')">
         <div class="legal-card-icon">©️</div>
-        <h3>Intellectual Property</h3>
-        <p>Ownership of code, assets, and third-party component licensing.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Required</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
+        <h3>IP & Licensing</h3>
+        <p>Morobo retains 100% code ownership. Client gets NON-EXCLUSIVE license for contracted term.</p>
       </div>
 
-      <!-- Liability & Disputes Card -->
-      <div class="legal-card" onclick="toggleSection('liability')">
-        <div class="legal-card-icon">⚖️</div>
-        <h3>Liability & Disputes</h3>
-        <p>Liability limitations, indemnification, and dispute resolution terms.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Required</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
-      </div>
-
-      <!-- Statement of Work Card -->
       <div class="legal-card" onclick="toggleSection('sow')">
         <div class="legal-card-icon">📑</div>
         <h3>Statement of Work</h3>
-        <p>Project-specific scope, timeline, deliverables, and payment schedule.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Per Project</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
+        <p>Project-specific scope, timeline, and deliverables template to attach to MSA.</p>
       </div>
 
-      <!-- Signable Forms Card -->
       <div class="legal-card" onclick="toggleSection('forms')">
         <div class="legal-card-icon">✍️</div>
-        <h3>Client Signature Forms</h3>
-        <p>Acceptance, order forms, and authorization templates ready for signature.</p>
-        <div class="legal-card-tags">
-          <span class="legal-card-tag">Templates</span>
-          <span class="legal-card-tag">Signable</span>
-        </div>
+        <h3>Signature Forms</h3>
+        <p>Ready-to-sign order forms and authorization templates with pricing.</p>
       </div>
-
     </div>
 
-    <!-- Detailed Document Sections -->
+    <!-- Document Sections -->
     <section id="terms" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Terms of Service — Master Services Agreement</h2>
+          <h2>Master Service Agreement (Nov 19, 2025)</h2>
           <button onclick="toggleSection('terms')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <h3>Scope</h3>
-          <p>This document governs the relationship between Morobo and any client for website development, app development, AI agent creation, hosting, integrations, and dashboard services.</p>
-          <h3>Key Sections</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Services and deliverables definition</li>
-            <li>Client responsibilities and approvals</li>
-            <li>Change request process and fees</li>
-            <li>Payment schedule and milestones</li>
-            <li>Hosting, maintenance, and monitoring terms</li>
-            <li>Data handling and security obligations</li>
-            <li>Termination rights and post-termination obligations</li>
-            <li>Governing law and arbitration clauses</li>
-          </ul>
-          <p><strong>⚠️ Important:</strong> Always attach a project-specific SOW and an Order Form to this agreement before client signature.</p>
-          <button onclick="downloadPDF('masterServiceAgreement', 'Master-Service-Agreement')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
-        <!-- Full Document Content (Hidden) -->
-        <div id="masterServiceAgreement" style="display: none;">
-          <h3>MASTER SERVICE AGREEMENT</h3>
-          <p>Morobo LLC ("Morobo") and Client</p>
-          <h4>1. SERVICES OVERVIEW</h4>
-          <p>Morobo will provide development and hosting services for websites, mobile apps, and AI agents.</p>
-          <h4>2. PRICING TIERS & SCOPE LIMITS</h4>
-          <p><strong>WEBSITES:</strong> Basic (5 pages), Pro (10 pages), Enterprise (15+ pages)</p>
-          <p><strong>MOBILE APPS:</strong> Basic (single platform), Pro (multi-platform), Enterprise (complex integrations)</p>
-          <p><strong>AI AGENTS:</strong> Basic, Pro, Enterprise tiers based on complexity</p>
-          <h4>3. SCOPE CREEP & UPGRADE POLICY</h4>
-          <p>Clients requesting features beyond their tier scope will be charged for upgrade to next tier. Morobo retains discretion.</p>
-          <h4>4. PAYMENT TERMS</h4>
-          <p><strong>Website & App Development:</strong> 50% deposit upon contract, 50% upon completion. Alternative split payments available.</p>
-          <p><strong>AI Agents:</strong> First month fee as retainer BEFORE development begins.</p>
-          <p><strong>Hosting & Maintenance:</strong> Monthly subscriptions - Basic ($49/month), Advanced ($79/month), Pro ($99/month)</p>
-          <p>All prices exclusive of tax. Client responsible for tax obligations.</p>
-          <h4>5. NON-REFUNDABLE POLICY</h4>
-          <p>All fees are non-refundable after work commencement. Deposits non-refundable if client cancels.</p>
-          <h4>6. INTELLECTUAL PROPERTY OWNERSHIP</h4>
-          <p>Morobo retains 100% ownership of all code, design, architecture. Client receives NON-EXCLUSIVE LICENSE for contracted term only.</p>
-          <p>Upon termination/non-payment, all access is revoked immediately. Third-party components remain under original licenses.</p>
-          <h4>7. HOSTING & DOMAIN OWNERSHIP</h4>
-          <p><strong>Domains:</strong> Morobo owns all domains. Client receives usage license for contracted term. Upon termination, domain reverts to Morobo.</p>
-          <p><strong>Apps:</strong> Morobo owns app store accounts. Apps published under Morobo accounts. Upon termination, app delisted within 14 days.</p>
-          <h4>8. UPTIME & PERFORMANCE</h4>
-          <p><strong>Uptime:</strong> 99% monthly availability. Scheduled maintenance: Sundays 2am–4am UTC.</p>
-          <p><strong>Support Response:</strong> Basic (48 hours), Pro (4 hours), Enterprise (1 hour, 24/7)</p>
-          <h4>9. CHANGES & REVISIONS</h4>
-          <p>Included: Basic (1/month), Advanced (unlimited), Pro (unlimited + 2 hours optimization)</p>
-          <p>Out-of-scope revisions require upgrade to next tier. Changes beyond tier limits will not proceed until payment adjusted.</p>
-          <h4>10. LIABILITY LIMITATIONS</h4>
-          <p>Morobo liability capped at fees paid in past 12 months (minimum $100). NOT liable for indirect damages, third-party failures, or AI errors.</p>
-          <h4>11. DATA & PRIVACY</h4>
-          <p>Client data retained while service active. Upon termination, Client can request export within 30 days. Permanent deletion 30 days after final billing.</p>
-          <h4>12. AI AGENT SPECIFIC TERMS</h4>
-          <p>Client acknowledges AI may produce inaccurate outputs. Client assumes all risk. Non-Compete: During active contract, Client cannot build competing AI agents.</p>
-          <h4>13. APP-SPECIFIC: REVENUE SHARE</h4>
-          <p>Morobo retains 1% of gross subscription revenue (only if app earns >$2,500/month). IN ADDITION to monthly hosting fee.</p>
-          <h4>14. TERMINATION & CONSEQUENCES</h4>
-          <p>Client may cancel with 30 days notice. Service continues until notice period ends. Domain/app archived, data deleted, access revoked.</p>
-          <h4>15. DISPUTE RESOLUTION</h4>
-          <p>Disputes resolved: Negotiation → Mediation → Binding Arbitration in Travis County, Texas per AAA Commercial Arbitration Rules.</p>
-          <h4>16. GENERAL TERMS</h4>
-          <p>Entire agreement includes MSA + SOW + DPA. Morobo may update terms with 30 days notice. Non-assignable without consent.</p>
-        </div>
+        <div id="masterServiceAgreement" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('masterServiceAgreement', 'Master-Service-Agreement')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
     <section id="privacy" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Privacy Policy & Data Handling</h2>
+          <h2>Privacy Policy</h2>
           <button onclick="toggleSection('privacy')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <h3>Data We Collect</h3>
-          <p><strong>Website Visitors:</strong> IP, browser type, pages visited, contact form submissions</p>
-          <p><strong>App Users:</strong> Email, username, usage data, device info, location (if permitted)</p>
-          <p><strong>AI Agent Clients:</strong> Account credentials, config data, usage logs, end-user messages</p>
-          <h3>Legal Basis for Processing</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Contract: Processing necessary for service delivery</li>
-            <li>Consent: User explicit agreement (opt-in for emails)</li>
-            <li>Legitimate Interest: Analytics, security, fraud prevention</li>
-            <li>Legal Obligation: Tax records, law enforcement</li>
-          </ul>
-          <h3>How We Use Your Data</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Provide and improve services</li>
-            <li>Respond to inquiries</li>
-            <li>Prevent fraud and security threats</li>
-            <li>Billing and subscription management</li>
-            <li>Enhance AI models (aggregated, anonymized data)</li>
-          </ul>
-          <h3>Data Retention</h3>
-          <p><strong>Website Contact Forms:</strong> 1 year or until inquiry resolved</p>
-          <p><strong>App Users:</strong> Active + 30 days after deletion</p>
-          <p><strong>AI Agent Clients:</strong> While customer; 30 days after cancellation</p>
-          <p><strong>Usage Logs:</strong> 90 days</p>
-          <h3>Your Rights</h3>
-          <p>You may request access, correction, deletion, or export of your data. Email privacy@morobo.org. We respond within 30 days.</p>
-          <h3>Data Security</h3>
-          <p>HTTPS/TLS encryption in transit, AES-256 at rest, regular audits, access controls, employee NDAs.</p>
-          <h3>Third-Party Sharing</h3>
-          <p>We share data with Stripe, Supabase, AWS, Google Analytics, OpenAI, RevenueCat. These parties have their own privacy policies. We do NOT sell data to advertisers.</p>
-          <button onclick="downloadPDF('privacyPolicy', 'Privacy-Policy')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
+        <div id="privacyPolicy" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('privacyPolicy', 'Privacy-Policy')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
     <section id="dpa" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Data Processing Addendum (DPA)</h2>
+          <h2>Data Processing Addendum</h2>
           <button onclick="toggleSection('dpa')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Use this addendum when processing personal data on behalf of a client.</p>
-          <h3>Key Elements</h3>
-          <ol style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Nature and purpose of processing</li>
-            <li>Duration and categories of data</li>
-            <li>Subprocessors and change notification</li>
-            <li>Security measures and certifications</li>
-            <li>Data subject rights assistance</li>
-            <li>Return or deletion of data on termination</li>
-            <li>Breach notification (72 hours)</li>
-          </ol>
-          <button onclick="downloadDocument('DPA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="eula" class="legal-section-detail">
-      <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>End-User License Agreement (EULA)</h2>
-          <button onclick="toggleSection('eula')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
-        </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>For delivered software (mobile apps or desktop tools) distributed to end users.</p>
-          <h3>Covers</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>License grant and scope</li>
-            <li>Restrictions on use</li>
-            <li>Updates and support terms</li>
-            <li>Warranty disclaimers</li>
-            <li>Termination and revocation</li>
-          </ul>
-          <button onclick="downloadDocument('EULA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
+        <div id="dataProcessingAddendum" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('dataProcessingAddendum', 'DPA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
     <section id="sla" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Service Level Agreement (SLA)</h2>
+          <h2>Service Level Agreement</h2>
           <button onclick="toggleSection('sla')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Define uptime guarantees, maintenance windows, and incident response times for hosting and dashboard services.</p>
-          <h3>Typical Commitments</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>99.9% uptime for production environments</li>
-            <li>Scheduled maintenance windows (2am–4am UTC)</li>
-            <li>Incident response within 1 hour</li>
-            <li>Credits for service lapses</li>
-          </ul>
-          <button onclick="downloadDocument('SLA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
+        <div id="serviceLevel" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('serviceLevel', 'SLA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
+      </div>
+    </section>
+
+    <section id="liability" class="legal-section-detail">
+      <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2>Liability & Arbitration (Travis County, Texas)</h2>
+          <button onclick="toggleSection('liability')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
+        <div id="liabilityArbitration" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('liabilityArbitration', 'Liability-Arbitration')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
+      </div>
+    </section>
+
+    <section id="eula" class="legal-section-detail">
+      <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2>End-User License Agreement</h2>
+          <button onclick="toggleSection('eula')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
+        </div>
+        <div id="endUserLicenseAgreement" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('endUserLicenseAgreement', 'EULA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
     <section id="nda" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Non-Disclosure Agreement (NDA)</h2>
+          <h2>Non-Disclosure Agreement</h2>
           <button onclick="toggleSection('nda')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Mutual and unilateral NDA templates for pre-sales conversations and sensitive integrations.</p>
-          <h3>Includes</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Definition of Confidential Information</li>
-            <li>Permitted disclosures and exclusions</li>
-            <li>Duration of secrecy obligation (typically 3–5 years)</li>
-            <li>Return of materials</li>
-            <li>Remedies and enforcement</li>
-          </ul>
-          <button onclick="downloadDocument('NDA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
+        <div id="nonDisclosureAgreement" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('nonDisclosureAgreement', 'NDA')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
-    <section id="aue" class="legal-section-detail">
+    <section id="aup" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Acceptable Use & Security Policy</h2>
-          <button onclick="toggleSection('aue')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
+          <h2>Acceptable Use Policy</h2>
+          <button onclick="toggleSection('aup')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Governs how customers may use services and their security responsibilities.</p>
-          <h3>Key Policies</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Prohibited content and activities (illegal, infringing, abusive)</li>
-            <li>Account security responsibilities</li>
-            <li>MFA (multi-factor authentication) recommendations</li>
-            <li>Incident reporting and cooperation</li>
-            <li>Access control and least-privilege guidance</li>
-          </ul>
-          <button onclick="downloadDocument('AUE')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
+        <div id="acceptableUsePolicy" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('acceptableUsePolicy', 'AUP')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
     <section id="payments" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Payments, Billing & Refunds</h2>
+          <h2>Payment Terms & Billing</h2>
           <button onclick="toggleSection('payments')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Standard payment terms, accepted methods, overdue handling, and refund policy.</p>
-          <h3>Coverage</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Payment methods (Stripe, bank transfer, etc.)</li>
-            <li>Invoicing and payment terms (Net 30, etc.)</li>
-            <li>Overdue payment and suspension policy</li>
-            <li>Refund and chargeback handling</li>
-            <li>Tax responsibilities</li>
-            <li>Recurring billing and cancellation</li>
-          </ul>
-          <button onclick="downloadDocument('Payments')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
+        <div id="paymentTerms" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('paymentTerms', 'Payment-Terms')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
@@ -421,40 +214,8 @@
           <h2>Intellectual Property & Licensing</h2>
           <button onclick="toggleSection('ip')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Clarifies who owns code, design assets, data, and third-party components.</p>
-          <h3>Key Provisions</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Work-for-hire vs. license grants</li>
-            <li>Third-party libraries and open-source dependencies</li>
-            <li>Transfer of ownership on full payment (if applicable)</li>
-            <li>Client IP assignment and protection</li>
-            <li>Pre-existing Morobo IP (templates, frameworks)</li>
-          </ul>
-          <button onclick="downloadDocument('IP')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="liability" class="legal-section-detail">
-      <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Liability, Indemnity & Dispute Resolution</h2>
-          <button onclick="toggleSection('liability')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
-        </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Standard limitations on liability and dispute resolution approach.</p>
-          <h3>Key Clauses</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Liability cap (e.g., 12 months of fees paid)</li>
-            <li>Exclusions for indirect/consequential damages</li>
-            <li>Indemnification for IP infringement</li>
-            <li>Indemnification by Customer (client misconduct)</li>
-            <li>Dispute resolution: negotiation → mediation → arbitration</li>
-            <li>Governing law and jurisdiction</li>
-          </ul>
-          <button onclick="downloadDocument('Liability')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
+        <div id="intellectualProperty" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('intellectualProperty', 'IP-Licensing')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
@@ -464,257 +225,192 @@
           <h2>Statement of Work (SOW) Template</h2>
           <button onclick="toggleSection('sow')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Project-specific attachment to the Master Services Agreement. Complete one per project.</p>
-          <h3>SOW Sections</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li>Project summary and objectives</li>
-            <li>Deliverables and acceptance criteria</li>
-            <li>Timeline, milestones, and dependencies</li>
-            <li>Payment schedule (deposits, milestones, final)</li>
-            <li>Resources, team roles, and responsibilities</li>
-            <li>Change control process</li>
-            <li>Termination and liability terms</li>
-          </ul>
-          <button onclick="downloadDocument('SOW')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download & Print</button>
-        </div>
+        <div id="statementOfWork" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('statementOfWork', 'SOW')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
     <section id="forms" class="legal-section-detail">
       <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2>Signable Client Forms</h2>
+          <h2>Client Signature Forms</h2>
           <button onclick="toggleSection('forms')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">✕</button>
         </div>
-        <div style="color: var(--text-muted); line-height: 1.8;">
-          <p>Ready-to-use form templates for client signature. Download, print, or embed in your onboarding flow.</p>
-          <h3>Available Forms</h3>
-          <ul style="margin-left: 1rem; color: var(--text-muted);">
-            <li><strong>Project Acceptance:</strong> Client confirmation of SOW and project kickoff</li>
-            <li><strong>Order Form / Recurring Services:</strong> Billing, service details, payment schedule</li>
-            <li><strong>Data Authorization:</strong> Client confirms data handling and compliance</li>
-            <li><strong>NDA Signature:</strong> Client signs mutual or unilateral NDA</li>
-            <li><strong>IP Assignment:</strong> Client assigns or licenses IP as agreed</li>
-            <li><strong>Cancellation/Termination:</strong> Formal service termination request</li>
-          </ul>
-          <p><strong>💡 Tip:</strong> Use DocuSign, Hellosign, or similar for e-signature workflows. Attach these to your onboarding emails.</p>
-          <button onclick="downloadDocument('Forms')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Download Template Pack</button>
-        </div>
+        <div id="signatureForms" style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; max-height: 500px; overflow-y: auto; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+        <button onclick="downloadPDF('signatureForms', 'Signature-Forms')" style="background: var(--primary-solid); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">📥 Download PDF</button>
       </div>
     </section>
 
-   </main>
+  </main>
 
-   <footer class="footer">
-     <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
-     <div class="container footer-content">
-       <div class="footer-links">
-         <a href="apps.html">Apps</a>
-         <a href="websites.html">Websites</a>
-         <a href="legal.html">Legal</a>
-         <a href="index.html#about">About</a>
-         <a href="index.html#contact">Contact</a>
-       </div>
-       <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
-       <ul class="social-links">
-         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-         <li><a href="#"><i class="fab fa-github"></i></a></li>
-         <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-       </ul>
-     </div>
-   </footer>
+  <footer class="footer">
+    <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="legal.html">Legal</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
 
-   <script src="script.js"></script>
-   <script src="legal-documents.js"></script>
-   <script>
-     function toggleSection(sectionId) {
-       const section = document.getElementById(sectionId);
-       if (section.classList.contains('active')) {
-         section.classList.remove('active');
-       } else {
-         document.querySelectorAll('.legal-section-detail.active').forEach(s => {
-           s.classList.remove('active');
-         });
-         section.classList.add('active');
-         setTimeout(() => {
-           section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-         }, 100);
-       }
-     }
+  <script src="script.js"></script>
+  <script>
+    // Load legal documents when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof legalDocuments !== 'undefined') {
+        populateDocuments();
+      }
+    });
 
-     function downloadPDF(docId, fileName) {
-       const element = document.getElementById(docId);
-       if (!element) {
-         alert('Document not found');
-         return;
-       }
-       
-       const opt = {
-         margin: 10,
-         filename: `${fileName}.pdf`,
-         image: { type: 'jpeg', quality: 0.98 },
-         html2canvas: { scale: 2 },
-         jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
-       };
-       
-       html2pdf().set(opt).from(element).save();
-     }
+    function populateDocuments() {
+      const docMap = {
+        'masterServiceAgreement': 'masterServiceAgreement',
+        'privacyPolicy': 'privacyPolicy',
+        'dataProcessingAddendum': 'dataProcessingAddendum',
+        'serviceLevel': 'serviceLevel',
+        'liabilityArbitration': 'liabilityArbitration',
+        'endUserLicenseAgreement': 'endUserLicenseAgreement',
+        'nonDisclosureAgreement': 'nonDisclosureAgreement',
+        'acceptableUsePolicy': 'acceptableUsePolicy',
+        'paymentTerms': 'paymentTerms',
+        'intellectualProperty': 'intellectualProperty',
+        'statementOfWork': 'statementOfWork',
+        'signatureForms': 'signatureForms'
+      };
 
-     // Fallback for older download function
-     function downloadDocument(docName) {
-       alert(`Download: ${docName} document. Using html2pdf for client-side PDF generation.`);
-     }
-   </script>
+      for (const [elementId, docKey] of Object.entries(docMap)) {
+        const element = document.getElementById(elementId);
+        if (element && legalDocuments && legalDocuments[docKey]) {
+          element.textContent = legalDocuments[docKey];
+        }
+      }
+    }
 
-   <style>
-     /* Legal Page Specific Styles */
-     .legal-page {
-       margin-top: 3rem;
-       margin-bottom: 3rem;
-     }
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section.style.display === 'none' || section.style.display === '') {
+        section.style.display = 'block';
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      } else {
+        section.style.display = 'none';
+      }
+    }
 
-     .legal-page h1 {
-       text-align: center;
-       font-size: 2.5rem;
-       margin-bottom: 1rem;
-       background: linear-gradient(135deg, #a855f7, #6366f1);
-       -webkit-background-clip: text;
-       -webkit-text-fill-color: transparent;
-       background-clip: text;
-     }
+    function downloadPDF(docId, fileName) {
+      const element = document.getElementById(docId);
+      if (!element) {
+        alert('Document not found');
+        return;
+      }
+      
+      const opt = {
+        margin: 10,
+        filename: `${fileName}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+      };
+      
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
 
-     .section-description {
-       text-align: center;
-       color: var(--text-muted);
-       font-size: 1.1rem;
-       max-width: 900px;
-       margin: 0 auto 3rem;
-       line-height: 1.8;
-     }
+  <style>
+    .legal-page {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
 
-     /* Legal Cards Grid */
-     .legal-cards-grid {
-       display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-       gap: 2rem;
-       margin-bottom: 4rem;
-     }
+    .legal-page h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-     .legal-card {
-       background: rgba(0, 0, 0, 0.3);
-       border: 1px solid rgba(168, 85, 247, 0.3);
-       border-radius: 12px;
-       padding: 2rem;
-       cursor: pointer;
-       transition: all 0.3s ease;
-     }
+    .section-description {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 100%;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
 
-     .legal-card:hover {
-       background: rgba(0, 0, 0, 0.5);
-       border-color: rgba(168, 85, 247, 0.6);
-       transform: translateY(-4px);
-     }
+    .legal-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
 
-     .legal-card-icon {
-       font-size: 2.5rem;
-       margin-bottom: 1rem;
-     }
+    .legal-card {
+      background: rgba(168, 85, 247, 0.08);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-     .legal-card h3 {
-       font-size: 1.3rem;
-       margin-bottom: 0.75rem;
-       color: white;
-     }
+    .legal-card:hover {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: rgba(168, 85, 247, 0.6);
+      transform: translateY(-4px);
+    }
 
-     .legal-card p {
-       color: var(--text-muted);
-       font-size: 0.95rem;
-       line-height: 1.6;
-       margin-bottom: 1.5rem;
-     }
+    .legal-card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
 
-     .legal-card-tags {
-       display: flex;
-       flex-wrap: wrap;
-       gap: 0.5rem;
-     }
+    .legal-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
 
-     .legal-card-tag {
-       display: inline-block;
-       background: rgba(168, 85, 247, 0.2);
-       color: #a855f7;
-       padding: 0.4rem 0.8rem;
-       border-radius: 20px;
-       font-size: 0.8rem;
-       border: 1px solid rgba(168, 85, 247, 0.4);
-     }
+    .legal-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
 
-     /* Detailed Section Styles */
-     .legal-section-detail {
-       display: none;
-       margin-bottom: 2rem;
-     }
+    .legal-section-detail {
+      display: none;
+      margin-bottom: 2rem;
+    }
 
-     .legal-section-detail.active {
-       display: block;
-       animation: slideDown 0.3s ease;
-     }
+    .legal-section-detail h2 {
+      color: white;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
 
-     @keyframes slideDown {
-       from {
-         opacity: 0;
-         transform: translateY(-10px);
-       }
-       to {
-         opacity: 1;
-         transform: translateY(0);
-       }
-     }
+    @media (max-width: 768px) {
+      .legal-page h1 {
+        font-size: 1.8rem;
+      }
 
-     .legal-section-detail h2 {
-       color: white;
-       font-size: 1.8rem;
-       margin-bottom: 1rem;
-     }
-
-     .legal-section-detail h3 {
-       color: #a855f7;
-       font-size: 1.2rem;
-       margin-top: 1.5rem;
-       margin-bottom: 0.75rem;
-     }
-
-     .legal-section-detail p,
-     .legal-section-detail li {
-       color: var(--text-muted);
-       line-height: 1.8;
-     }
-
-     .legal-section-detail ul,
-     .legal-section-detail ol {
-       margin: 1rem 0;
-     }
-
-     .legal-section-detail ul li,
-     .legal-section-detail ol li {
-       margin: 0.5rem 0;
-     }
-
-     /* Responsive */
-     @media (max-width: 768px) {
-       .legal-page h1 {
-         font-size: 2rem;
-       }
-
-       .legal-cards-grid {
-         grid-template-columns: 1fr;
-       }
-
-       .section-description {
-         font-size: 1rem;
-       }
-     }
-   </style>
- </body>
- </html>
+      .legal-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
