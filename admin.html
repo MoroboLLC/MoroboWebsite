@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Project Management – Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        Morobo
+      </a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="ai.html" class="nav-tab">Agents</a>
+        <a href="track.html" class="nav-tab">Track Project</a>
+        <a href="index.html#contact" class="nav-tab">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Login Screen -->
+  <section id="loginScreen" class="auth-section">
+    <div class="auth-container">
+      <div class="auth-form">
+        <h2>Admin Access</h2>
+        <p class="auth-subtitle">Enter password to manage projects</p>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input 
+              type="password" 
+              id="adminPassword" 
+              name="password" 
+              placeholder="Enter admin password" 
+              required
+              autocomplete="off"
+            >
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Access Admin Panel</button>
+        </form>
+        <div id="loginError" style="display: none; margin-top: 1rem; color: #ef4444; text-align: center; font-size: 0.9rem;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Panel -->
+  <section id="adminPanel" class="section" style="display: none; padding-top: 8rem;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <div>
+          <h1 style="background: var(--primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem;">Project Management</h1>
+          <p style="color: var(--text-muted);">Update project progress and status</p>
+        </div>
+        <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+      </div>
+
+      <!-- Add New Project -->
+      <div class="card" style="margin-bottom: 3rem;">
+        <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Add New Project</h3>
+        <form id="addProjectForm">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group">
+              <label for="newProjectId">Project ID</label>
+              <input type="text" id="newProjectId" placeholder="PROJ-12345" required style="text-transform: uppercase;">
+            </div>
+            <div class="form-group">
+              <label for="newProjectName">Project Name</label>
+              <input type="text" id="newProjectName" placeholder="My Awesome App" required>
+            </div>
+            <div class="form-group">
+              <label for="newProjectType">Type</label>
+              <select id="newProjectType" required style="padding: 0.75rem 1rem; border-radius: var(--border-radius); border: none; background-color: var(--card-bg); color: var(--text-light); font-size: 1rem; outline: none;">
+                <option value="app">Mobile App</option>
+                <option value="website">Website</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Project</button>
+        </form>
+      </div>
+
+      <!-- Existing Projects -->
+      <h2 style="color: var(--text-light); margin-bottom: 2rem;">Existing Projects</h2>
+      <div id="projectsList"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="legal.html">Legal</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><span class="sr-only">Twitter</span><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><span class="sr-only">GitHub</span><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><span class="sr-only">LinkedIn</span><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

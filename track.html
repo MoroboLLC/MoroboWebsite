@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Project – Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        Morobo
+      </a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="ai.html" class="nav-tab">Agents</a>
+        <a href="track.html" class="nav-tab active">Track Project</a>
+        <a href="index.html#contact" class="nav-tab">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Track Your Project</h1>
+      <p>Enter your project ID to view the current progress of your app or website</p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <div class="contact-container" style="max-width: 600px;">
+        <div class="contact-form" style="margin: 0 auto;">
+          <form id="trackForm">
+            <div class="form-group">
+              <label for="projectId">Project ID</label>
+              <input 
+                type="text" 
+                id="projectId" 
+                name="projectId" 
+                placeholder="Enter your project ID (e.g., PROJ-12345)" 
+                required
+                autocomplete="off"
+              >
+              <small style="color: var(--text-muted); margin-top: 0.5rem; display: block;">
+                Your project ID was provided when we started your project
+              </small>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Track Project</button>
+          </form>
+        </div>
+
+        <!-- Project Status Display -->
+        <div id="projectStatus" style="display: none; margin-top: 3rem;">
+          <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <h3 id="projectName" style="color: var(--primary); margin-bottom: 1rem;"></h3>
+            <p id="projectType" style="color: var(--text-muted); margin-bottom: 2rem;"></p>
+            
+            <!-- Progress Bar -->
+            <div style="margin-bottom: 2rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="color: var(--text-light); font-weight: 600;">Progress</span>
+                <span id="progressPercent" style="color: var(--primary); font-weight: 600;"></span>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; overflow: hidden;">
+                <div id="progressBar" style="background: var(--primary); height: 100%; border-radius: 10px; transition: width 0.5s ease;"></div>
+              </div>
+            </div>
+
+            <!-- Status Message -->
+            <div id="statusMessage" style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+              <p id="statusText" style="color: var(--text-light); margin: 0; line-height: 1.6;"></p>
+            </div>
+
+            <!-- Last Updated -->
+            <p id="lastUpdated" style="color: var(--text-muted); font-size: 0.875rem; text-align: center; margin: 0;"></p>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" style="display: none; margin-top: 2rem;">
+          <div class="card" style="max-width: 600px; margin: 0 auto; border-color: rgba(239, 68, 68, 0.3);">
+            <p style="color: #ef4444; margin: 0; text-align: center;">
+              <i class="fas fa-exclamation-circle" style="margin-right: 0.5rem;"></i>
+              Project not found. Please check your project ID and try again.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="legal.html">Legal</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><span class="sr-only">Twitter</span><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><span class="sr-only">GitHub</span><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><span class="sr-only">LinkedIn</span><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="track.js"></script>
+</body>
+</html>
