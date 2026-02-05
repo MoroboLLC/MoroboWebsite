@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentBoard – AI Agent Analytics Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="../../index.html" class="logo">
+        <img src="../../images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        Morobo
+      </a>
+      <nav class="nav-tabs">
+        <a href="../../apps.html" class="nav-tab">Apps</a>
+        <a href="../../websites.html" class="nav-tab">Websites</a>
+        <a href="../../ai.html" class="nav-tab">Agents</a>
+        <a href="../../track.html" class="nav-tab">Track Project</a>
+        <a href="../../index.html#contact" class="nav-tab">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="app-hero">
+    <div class="container">
+      <div class="app-hero-content">
+        <div class="app-hero-text">
+          <h1>AgentBoard</h1>
+          <p class="app-subtitle">AI Agent Analytics Dashboard</p>
+          <p class="app-hero-description">
+            The universal dashboard for AI voice agents. Track performance, analyze metrics, 
+            and share insights with clients—all from one powerful mobile and web platform.
+          </p>
+          <div class="app-badges">
+            <span class="coming-soon-badge">Coming Soon to iOS</span>
+            <span class="coming-soon-badge">Coming Soon to Android</span>
+          </div>
+        </div>
+        <div class="app-hero-image">
+          <img src="../../images/AgentBoardIcon.png" alt="AgentBoard App Icon" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='../../placeholder_app.png';}">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-features-section reveal">
+    <div class="container">
+      <h2 class="section-title">Features</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <h3>Real-Time Analytics</h3>
+          <p>Monitor your AI voice agents in real-time with live dashboards showing calls, outcomes, and performance metrics.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔗</div>
+          <h3>Multi-Platform Integration</h3>
+          <p>Connect to Retell AI, Vapi, Synthflow, and custom webhook providers—all from one unified dashboard.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">👥</div>
+          <h3>Client Portal</h3>
+          <p>Invite clients to view their specific agent performance with branded, professional dashboards.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📱</div>
+          <h3>Mobile & Web</h3>
+          <p>Access your analytics anywhere. Native mobile apps for iOS and Android, plus a powerful web dashboard.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📄</div>
+          <h3>PDF Reports</h3>
+          <p>Generate professional PDF reports to share with clients or stakeholders with one click.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔔</div>
+          <h3>Smart Alerts</h3>
+          <p>Get notified about important events, performance thresholds, and anomalies in your agent metrics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-cta-section reveal">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Track Your AI Agents?</h2>
+        <p>Join the waitlist to be notified when AgentBoard launches.</p>
+        <div class="cta-buttons">
+          <a href="../../index.html#contact" class="btn btn-primary">Get Notified</a>
+          <a href="support/" class="btn btn-secondary">Get Support</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-links-section">
+    <div class="container">
+      <div class="app-footer-links">
+        <a href="support/">Support</a>
+        <a href="privacypolicy/">Privacy Policy</a>
+        <a href="terms/">Terms of Service</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="../../apps.html">Apps</a>
+        <a href="../../websites.html">Websites</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
+  <script src="../../script.js"></script>
+</body>
+</html>
