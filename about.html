@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – Morobo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-hero {
+      padding: 160px 0 80px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .about-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .about-hero .tagline {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .about-section {
+      padding: 60px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .founder-card {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      background: var(--card-bg);
+      border: 1px solid rgba(168, 85, 247, 0.15);
+      border-radius: 16px;
+      padding: 48px;
+      margin-bottom: 60px;
+    }
+    .founder-avatar {
+      flex-shrink: 0;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: 700;
+      color: white;
+    }
+    .founder-info h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .founder-title {
+      font-size: 1rem;
+      color: var(--primary-solid);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .founder-info p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .founder-details {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .founder-detail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .founder-detail i {
+      color: var(--primary-solid);
+      font-size: 1rem;
+    }
+
+    .mission-section {
+      text-align: center;
+      padding: 60px 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .mission-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .mission-section p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(168, 85, 247, 0.1);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+    .service-card .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.75rem;
+    }
+    .service-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .values-section {
+      padding: 60px 0;
+    }
+    .values-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .value-item {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border-left: 3px solid var(--primary-solid);
+    }
+    .value-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .value-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 48px 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .global-section {
+      text-align: center;
+      padding: 60px 0;
+    }
+    .global-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .global-section p {
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .track-project-banner {
+      background: var(--card-bg);
+      border: 1px solid rgba(168, 85, 247, 0.15);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    .track-project-banner h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .track-project-banner p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .track-project-banner .btn {
+      display: inline-block;
+    }
+
+    .cta-bottom {
+      text-align: center;
+      padding: 80px 0 60px;
+    }
+    .cta-bottom h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .cta-bottom p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-hero h1 { font-size: 2rem; }
+      .founder-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+        gap: 24px;
+      }
+      .founder-avatar { width: 120px; height: 120px; font-size: 2.5rem; }
+      .founder-details { justify-content: center; }
+      .stats-bar { gap: 32px; }
+      .stat-number { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        Morobo
+      </a>
+      <nav class="nav-tabs">
+        <a href="apps.html" class="nav-tab">Apps</a>
+        <a href="websites.html" class="nav-tab">Websites</a>
+        <a href="ai.html" class="nav-tab">Agents</a>
+        <a href="about.html" class="nav-tab active">About</a>
+        <a href="index.html#contact" class="nav-tab">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="container">
+      <h1>About Morobo</h1>
+      <p class="tagline">A young, ambitious software company building innovative apps, websites, and AI solutions from Texas to the world.</p>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="about-section">
+    <div class="container">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Apps Published</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">6+</span>
+          <span class="stat-label">Websites Built</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2024</span>
+          <span class="stat-label">Founded</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="about-section">
+    <div class="container">
+      <div class="founder-card">
+        <div class="founder-avatar">RM</div>
+        <div class="founder-info">
+          <h2>Robert McCarthy</h2>
+          <div class="founder-title">Founder & CEO</div>
+          <p>At 23 years old, Robert founded Morobo with a simple belief: great software should be accessible to everyone. What started as a solo venture has grown into a full-service software company delivering real products to real clients.</p>
+          <p>Robert travels full-time while building apps, designing websites, and developing AI solutions. He works closely with digital marketers, professional programmers, and business owners to ensure every project meets the highest quality standards. His hands-on approach means he's involved in every line of code and every design decision.</p>
+          <div class="founder-details">
+            <div class="founder-detail">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Based in Texas</span>
+            </div>
+            <div class="founder-detail">
+              <i class="fas fa-globe"></i>
+              <span>Works Worldwide</span>
+            </div>
+            <div class="founder-detail">
+              <i class="fas fa-code"></i>
+              <span>Full-Stack Developer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="about-section">
+    <div class="container">
+      <div class="mission-section">
+        <h2>Our Mission</h2>
+        <p>We're on a mission to build innovative software that makes an impact. Every app we publish, every website we launch, and every AI agent we deploy is designed to solve real problems and deliver genuine value. We're a startup with big ambitions: to create a product so useful and well-crafted that it becomes part of everyday life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="about-section">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 12px;">What We Do</h2>
+      <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">From concept to deployment, we handle every stage of the development process.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Mobile Apps</h3>
+          <p>We design and develop innovative mobile applications for both iOS and Android. From consumer apps published under the Morobo brand to custom-built apps for clients, every project is crafted for performance and elegance.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-laptop-code"></i></div>
+          <h3>Websites</h3>
+          <p>Beautiful, responsive websites built for businesses of all sizes. Whether it's a portfolio, e-commerce platform, or landing page, we create web experiences that captivate visitors and convert them into customers.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-robot"></i></div>
+          <h3>AI Solutions</h3>
+          <p>Intelligent AI agents that automate business operations. From AI receptionists and customer support bots to content generators, we build solutions that save time and drive growth for businesses.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-handshake"></i></div>
+          <h3>Client Projects</h3>
+          <p>We collaborate with entrepreneurs, digital marketers, and professionals around the world to bring their ideas to life. Every client project gets the same dedication and quality as our own products.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="about-section">
+    <div class="container">
+      <div class="values-section">
+        <h2>What Drives Us</h2>
+        <div class="values-grid">
+          <div class="value-item">
+            <h3>Innovation First</h3>
+            <p>We're not interested in building the same thing everyone else is building. We push boundaries, experiment with new technologies, and aim to create software that stands out in a crowded market.</p>
+          </div>
+          <div class="value-item">
+            <h3>Quality Over Quantity</h3>
+            <p>Every project we take on gets our full attention. We'd rather deliver one exceptional product than ten mediocre ones. Details matter, and we obsess over getting them right.</p>
+          </div>
+          <div class="value-item">
+            <h3>Global Mindset</h3>
+            <p>Software has no borders. We work with clients from anywhere in the world and build products designed for global audiences. Location is never a barrier to great collaboration.</p>
+          </div>
+          <div class="value-item">
+            <h3>Startup Hustle</h3>
+            <p>We move fast, adapt quickly, and stay hungry. As a startup, we bring the energy and dedication that larger companies often lack. Every project is personal to us.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Reach -->
+  <section class="about-section">
+    <div class="container">
+      <div class="global-section">
+        <h2>Built in Texas. Available Everywhere.</h2>
+        <p>Morobo was founded as a solo venture in Texas and has grown into a company that works with clients and collaborators around the world. Whether you're across town or across the globe, we deliver the same quality, communication, and results. Our remote-first approach means we can take on projects from anywhere, anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Track Project Banner -->
+  <section class="about-section">
+    <div class="container">
+      <div class="track-project-banner">
+        <h3>Already Have an Active Project?</h3>
+        <p>Track the status and progress of your project in real time.</p>
+        <a href="track.html" class="btn btn-primary">Track Your Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-section">
+    <div class="container">
+      <div class="cta-bottom">
+        <h2>Ready to Build Something Great?</h2>
+        <p>Let's turn your idea into reality. Reach out and let's start a conversation.</p>
+        <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="apps.html">Apps</a>
+        <a href="websites.html">Websites</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="legal.html">Legal</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="#"><span class="sr-only">Twitter</span><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><span class="sr-only">GitHub</span><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><span class="sr-only">LinkedIn</span><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
