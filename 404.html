@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - Morobo</title>
+  <script>
+    // Handle AgentBoard invite deep links on GitHub Pages
+    // GitHub Pages serves 404.html for unknown paths, so we catch invite links here
+    (function() {
+      var path = window.location.pathname;
+      if (path.indexOf('/apps/agentboard/invite/') === 0) {
+        // This is an invite link - redirect to the invite page
+        // The invite page will read the token from the URL
+        window.location.replace('/apps/agentboard/invite/?token=' + path.split('/').pop());
+        return;
+      }
+    })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .error-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .error-code {
+      font-size: 120px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .error-message {
+      font-size: 24px;
+      color: #E2E8F0;
+      margin-bottom: 8px;
+    }
+    .error-detail {
+      font-size: 16px;
+      color: #94A3B8;
+      margin-bottom: 32px;
+    }
+    .home-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #6366F1, #8B5CF6);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+    .home-btn:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+  <div class="error-container">
+    <div>
+      <div class="error-code">404</div>
+      <p class="error-message">Page Not Found</p>
+      <p class="error-detail">The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/" class="home-btn">Back to Home</a>
+    </div>
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>

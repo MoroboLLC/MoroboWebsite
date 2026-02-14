@@ -1,0 +1,4 @@
+# GitHub Pages configuration
+# Include .well-known directory for Apple Universal Links
+include:
+  - .well-known

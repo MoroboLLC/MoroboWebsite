@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "92RVQNVG5F.com.agentboard.app",
+        "paths": ["/apps/agentboard/invite/*"]
+      }
+    ]
+  }
+}
