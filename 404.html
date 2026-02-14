@@ -9,10 +9,15 @@
     // GitHub Pages serves 404.html for unknown paths, so we catch invite links here
     (function() {
       var path = window.location.pathname;
-      if (path.indexOf('/apps/agentboard/invite/') === 0) {
-        // This is an invite link - redirect to the invite page
-        // The invite page will read the token from the URL
-        window.location.replace('/apps/agentboard/invite/?token=' + path.split('/').pop());
+      // Remove trailing slash for consistent matching
+      if (path.endsWith('/')) path = path.slice(0, -1);
+      
+      // Match /apps/agentboard/invite/{token}
+      var match = path.match(/^\/apps\/agentboard\/invite\/(.+)$/);
+      if (match && match[1]) {
+        var token = match[1];
+        // Redirect to the invite landing page with token as query param
+        window.location.replace('/apps/agentboard/invite/?token=' + encodeURIComponent(token));
         return;
       }
     })();
