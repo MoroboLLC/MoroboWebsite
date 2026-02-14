@@ -28,13 +28,32 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
+      - name: Prepare site (include .well-known)
+        run: |
+          mkdir -p _site
+          rsync -av \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='_site' \
+            --exclude='_config.yml' \
+            . _site/
+      
+      - name: Create Pages artifact
+        run: |
+          cd _site
+          tar \
+            --posix \
+            --dereference \
+            --hard-dereference \
+            -cf ${{ runner.temp }}/artifact.tar \
+            .
+      
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          path: '.'
-          include-hidden-files: true
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
       
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
