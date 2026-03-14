@@ -10,7 +10,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Ensure a consistent favicon across site pages.
   const ensureFavicon = () => {
-    const iconHref = '/images/MoroboIconFinal.png';
+    const iconHref = '/favicon.ico';
 
     let iconLink = document.querySelector('link[rel="icon"]');
     if (!iconLink) {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       iconLink.setAttribute('rel', 'icon');
       document.head.appendChild(iconLink);
     }
-    iconLink.setAttribute('type', 'image/png');
+    iconLink.setAttribute('type', 'image/x-icon');
     iconLink.setAttribute('href', iconHref);
 
     let appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]');
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       appleTouchIcon.setAttribute('rel', 'apple-touch-icon');
       document.head.appendChild(appleTouchIcon);
     }
-    appleTouchIcon.setAttribute('href', iconHref);
+    appleTouchIcon.setAttribute('href', '/apple-touch-icon.png');
   };
   ensureFavicon();
 
