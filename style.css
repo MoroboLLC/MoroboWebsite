@@ -443,43 +443,12 @@ body {
   color: var(--primary-hover);
 }
 
-/* Homepage slider controls: keep arrows beside cards, not over content */
-#apps .swiper,
-#websites .swiper {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
+/* Homepage arrows are mobile-only */
 #apps .swiper-button-prev,
 #apps .swiper-button-next,
 #websites .swiper-button-prev,
 #websites .swiper-button-next {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  backdrop-filter: blur(8px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#apps .swiper-button-prev,
-#websites .swiper-button-prev {
-  left: 0;
-}
-
-#apps .swiper-button-next,
-#websites .swiper-button-next {
-  right: 0;
-}
-
-#apps .swiper-button-prev::after,
-#apps .swiper-button-next::after,
-#websites .swiper-button-prev::after,
-#websites .swiper-button-next::after {
-  font-size: 0.95rem;
-  font-weight: 700;
+  display: none;
 }
 
 /* Swiper pagination bullets */
@@ -3022,8 +2991,8 @@ footer {
   /* Keep homepage arrows visible and beside cards on mobile */
   #apps .swiper,
   #websites .swiper {
-    padding-left: 2.2rem;
-    padding-right: 2.2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   #apps .swiper-button-prev,
@@ -3031,9 +3000,34 @@ footer {
   #websites .swiper-button-prev,
   #websites .swiper-button-next {
     display: flex !important;
-    width: 1.95rem;
-    height: 1.95rem;
+    width: 1.5rem;
+    height: 1.5rem;
     top: 48%;
+    color: var(--primary);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    transform: translateY(-50%);
+  }
+
+  #apps .swiper-button-prev,
+  #websites .swiper-button-prev {
+    left: 0;
+  }
+
+  #apps .swiper-button-next,
+  #websites .swiper-button-next {
+    right: 0;
+  }
+
+  #apps .swiper-button-prev::after,
+  #apps .swiper-button-next::after,
+  #websites .swiper-button-prev::after,
+  #websites .swiper-button-next::after {
+    font-size: 0.85rem;
+    font-weight: 700;
   }
 
   /* Reduce vertical bloat on apps page cards */
