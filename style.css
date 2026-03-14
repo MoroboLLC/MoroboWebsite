@@ -2943,3 +2943,102 @@ footer {
   }
 }
 
+/* ========================================
+   MOBILE POLISH FIXES (NAV + SCROLL + HERO)
+   ======================================== */
+@media (max-width: 768px) {
+  /* Keep top navigation evenly spaced and easier to tap */
+  .nav-content {
+    gap: 0.6rem;
+    padding: 0.65rem 0 0.8rem;
+  }
+
+  .nav-tabs {
+    width: 96%;
+    max-width: 420px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem;
+    border-radius: 16px;
+  }
+
+  .nav-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 38px;
+    padding: 0.45rem 0.25rem;
+    font-size: 0.78rem;
+    line-height: 1.15;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Slider arrows overlap cards on mobile; rely on swipe + pagination */
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+
+  /* Reduce vertical bloat on apps page cards */
+  .apps-detail-section {
+    padding: 2rem 0;
+  }
+
+  .app-detail-grid {
+    gap: 1.5rem;
+  }
+
+  .app-detail-card {
+    padding: 1.25rem 1rem;
+    gap: 1.1rem;
+  }
+
+  .app-detail-image img {
+    max-height: 180px;
+    object-fit: contain;
+  }
+
+  .app-description {
+    margin-bottom: 0.9rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .app-features ul {
+    margin-bottom: 0.9rem;
+  }
+
+  .app-features li:nth-child(n+4) {
+    display: none;
+  }
+
+  .app-links {
+    gap: 0.5rem;
+  }
+
+  .app-links .btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .track-project-banner {
+    margin: 20px 0;
+    padding: 24px 16px;
+  }
+
+  /* Hero watermark logo: slightly bigger and +10% opacity */
+  .hero::before {
+    width: 90%;
+    left: -2%;
+    opacity: 0.088;
+  }
+}
+
