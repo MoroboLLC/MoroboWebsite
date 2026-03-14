@@ -8,6 +8,29 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Ensure a consistent favicon across site pages.
+  const ensureFavicon = () => {
+    const iconHref = '/images/MoroboIconFinal.png';
+
+    let iconLink = document.querySelector('link[rel="icon"]');
+    if (!iconLink) {
+      iconLink = document.createElement('link');
+      iconLink.setAttribute('rel', 'icon');
+      document.head.appendChild(iconLink);
+    }
+    iconLink.setAttribute('type', 'image/png');
+    iconLink.setAttribute('href', iconHref);
+
+    let appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]');
+    if (!appleTouchIcon) {
+      appleTouchIcon = document.createElement('link');
+      appleTouchIcon.setAttribute('rel', 'apple-touch-icon');
+      document.head.appendChild(appleTouchIcon);
+    }
+    appleTouchIcon.setAttribute('href', iconHref);
+  };
+  ensureFavicon();
+
   // Subtle white particles background
   const canvas = document.getElementById('backgroundCanvas');
   if (canvas) {
