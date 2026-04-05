@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Websites – Morobo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Websites We've Built — Morobo</title>
+  <meta name="description" content="A portfolio of client websites built by Morobo — from portfolios to e-commerce platforms.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -14,16 +14,16 @@
 <body>
   <canvas id="backgroundCanvas"></canvas>
 
-  <header class="navbar">    <div class="container nav-content">
+  <header class="navbar">
+    <div class="container nav-content">
       <a href="index.html" class="logo">
-        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        <img src="images/MoroboIconFinal.png" alt="Morobo" class="logo-icon">
         Morobo
       </a>
-            <nav class="nav-tabs" id="navTabs">
+      <nav class="nav-tabs" id="navTabs">
         <a href="apps.html" class="nav-tab">Apps</a>
         <a href="websites.html" class="nav-tab active">Websites</a>
         <a href="about.html" class="nav-tab">About</a>
-        <a href="pricing.html" class="nav-tab">Work With Us</a>
         <a href="index.html#contact" class="nav-tab">Contact</a>
       </nav>
       <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
@@ -34,303 +34,163 @@
 
   <section class="page-header">
     <div class="container">
-      <h1>Websites We've Created</h1>
-      <p>Beautiful, functional websites that drive results</p>
+      <p class="section-eyebrow">Client Work</p>
+      <h1>Websites we've built.</h1>
+      <p>From personal portfolios to real estate platforms — we design and build sites that look great and perform even better.</p>
     </div>
   </section>
 
-  <!-- Portfolio Section -->
   <section class="portfolio-section">
     <div class="container">
-      <div class="portfolio-grid">        <!-- Morgan Miller Site -->
-        <div class="portfolio-card reveal">          <div class="portfolio-image">
-            <img src="images/MorganMillerIcon.png" alt="Morgan Miller Website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="images/MorganMillerIcon.png" alt="Morgan Miller Website" onerror="this.style.background='var(--surface)'">
             <div class="portfolio-overlay">
-              <a href="https://morganmiller.site" target="_blank" class="btn btn-primary">Visit Site</a>
+              <a href="https://morganmiller.site" target="_blank" rel="noopener" class="btn btn-primary">Visit Site</a>
             </div>
           </div>
           <div class="portfolio-content">
             <h3>Morgan Miller</h3>
             <p class="portfolio-category">UGC Content Creator Portfolio</p>
-            <p class="portfolio-description">
-              A stunning portfolio website showcasing Morgan's UGC content creation work. 
-              Features a modern design, video integration, and mobile-responsive layout.
-            </p>
-            <div class="portfolio-tech">
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
-            </div>
+            <p class="portfolio-description">Modern portfolio showcasing UGC content work with video integration and mobile-first design.</p>
+            <div class="portfolio-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
           </div>
         </div>
 
-        <!-- Merivilla Site -->
-        <div class="portfolio-card reveal">          <div class="portfolio-image">
-            <img src="images/MerivillaSS.png" alt="Merivilla Website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="images/MerivillaSS.png" alt="Merivilla Website" onerror="this.style.background='var(--surface)'">
             <div class="portfolio-overlay">
-              <a href="https://morobollc.github.io/MerivillaWebsite/" target="_blank" class="btn btn-primary">Visit Site</a>
+              <a href="https://morobollc.github.io/MerivillaWebsite/" target="_blank" rel="noopener" class="btn btn-primary">Visit Site</a>
             </div>
           </div>
           <div class="portfolio-content">
             <h3>Merivilla</h3>
             <p class="portfolio-category">Real Estate Development</p>
-            <p class="portfolio-description">
-              Elegant website for a luxury real estate development company based in Mérida, Mexico. 
-              Showcases premium properties with beautiful imagery and smooth navigation.
-            </p>
-            <div class="portfolio-tech">
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
-            </div>
+            <p class="portfolio-description">Luxury real estate showcase for a development company in Mérida, Mexico.</p>
+            <div class="portfolio-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
           </div>
         </div>
 
-        <!-- Morgan Blake Photography Site -->
-        <div class="portfolio-card reveal">          <div class="portfolio-image">
-            <img src="images/MorganBlakeSS.png" alt="Morgan Blake Photography Website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="images/MorganBlakeSS.png" alt="Morgan Blake Photography" onerror="this.style.background='var(--surface)'">
             <div class="portfolio-overlay">
-              <a href="https://morganblakestudio.lovable.app" target="_blank" class="btn btn-primary">Visit Site</a>
+              <a href="https://morganblakestudio.lovable.app" target="_blank" rel="noopener" class="btn btn-primary">Visit Site</a>
             </div>
           </div>
           <div class="portfolio-content">
             <h3>Morgan Blake Photography</h3>
             <p class="portfolio-category">Photography Portfolio</p>
-            <p class="portfolio-description">
-              Professional photography website specializing in model photography. 
-              Features a stunning portfolio showcase with elegant design and smooth user experience.
-            </p>
-            <div class="portfolio-tech">
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
-            </div>
+            <p class="portfolio-description">Stunning portfolio for a model photography studio with elegant galleries.</p>
+            <div class="portfolio-tech"><span>React</span><span>Lovable</span><span>Responsive</span></div>
           </div>
         </div>
 
-        <!-- RL Photography Site -->
-        <div class="portfolio-card reveal">          <div class="portfolio-image">
-            <img src="images/RLPhotographySS.png" alt="RL Photography Website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="images/RLPhotographySS.png" alt="RL Photography" onerror="this.style.background='var(--surface)'">
             <div class="portfolio-overlay">
-              <a href="https://rlphotography.lovable.app" target="_blank" class="btn btn-primary">Visit Site</a>
+              <a href="https://rlphotography.lovable.app" target="_blank" rel="noopener" class="btn btn-primary">Visit Site</a>
             </div>
           </div>
           <div class="portfolio-content">
             <h3>RL Photography</h3>
-            <p class="portfolio-category">Wedding & Couple Photography</p>
-            <p class="portfolio-description">
-              Beautiful website for wedding and couple photography services. 
-              Showcases timeless captures of life's most precious moments with elegant presentation.
-            </p>
-            <div class="portfolio-tech">
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
-            </div>
+            <p class="portfolio-category">Wedding &amp; Couple Photography</p>
+            <p class="portfolio-description">Beautiful site for wedding and couple photography with timeless presentation.</p>
+            <div class="portfolio-tech"><span>React</span><span>Lovable</span><span>Responsive</span></div>
           </div>
         </div>
 
-        <!-- Lenscraft Site -->
-        <div class="portfolio-card reveal">          <div class="portfolio-image">
-            <img src="images/LensCraftSS.png" alt="Lenscraft Website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="images/LensCraftSS.png" alt="Lenscraft" onerror="this.style.background='var(--surface)'">
             <div class="portfolio-overlay">
-              <a href="https://lenscraft.lovable.app" target="_blank" class="btn btn-primary">Visit Site</a>
+              <a href="https://lenscraft.lovable.app" target="_blank" rel="noopener" class="btn btn-primary">Visit Site</a>
             </div>
           </div>
           <div class="portfolio-content">
             <h3>Lenscraft</h3>
-            <p class="portfolio-category">Family & Senior Photography</p>
-            <p class="portfolio-description">
-              Professional photography website for family and senior portraits. 
-              Capturing life's beautiful moments with expertise and care.
-            </p>
-            <div class="portfolio-tech">
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
-            </div>
+            <p class="portfolio-category">Family &amp; Senior Photography</p>
+            <p class="portfolio-description">Professional portrait photography site capturing life's moments with warmth.</p>
+            <div class="portfolio-tech"><span>React</span><span>Lovable</span><span>Responsive</span></div>
           </div>
         </div>
 
-        <!-- La Reina Del Disfraz Site -->
-        <div class="portfolio-card reveal">          <div class="portfolio-image">
-            <img src="images/LaReinaDelDisfrazSS.png" alt="La Reina Del Disfraz Website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="images/LaReinaDelDisfrazSS.png" alt="La Reina Del Disfraz" onerror="this.style.background='var(--surface)'">
             <div class="portfolio-overlay">
-              <a href="https://lareinadeldisfraz.lovable.app" target="_blank" class="btn btn-primary">Visit Site</a>
+              <a href="https://lareinadeldisfraz.lovable.app" target="_blank" rel="noopener" class="btn btn-primary">Visit Site</a>
             </div>
           </div>
           <div class="portfolio-content">
             <h3>La Reina Del Disfraz</h3>
-            <p class="portfolio-category">E-commerce</p>
-            <p class="portfolio-description">
-              Modern e-commerce platform for costume and party supplies. 
-              Beautiful design with seamless shopping experience for all your celebration needs.
-            </p>
-            <div class="portfolio-tech">
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>JavaScript</span>
-              <span>E-commerce</span>
-            </div>
+            <p class="portfolio-category">E-Commerce</p>
+            <p class="portfolio-description">Modern e-commerce for costume and party supplies with a seamless shopping experience.</p>
+            <div class="portfolio-tech"><span>React</span><span>Lovable</span><span>E-Commerce</span></div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section class="services-section reveal">
+  <section class="services-section">
     <div class="container">
-      <h2 class="section-title">Our Services</h2>
+      <p class="section-eyebrow">What we do</p>
+      <h2 class="section-title">Every site, built right.</h2>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">🎨</div>
           <h3>Custom Design</h3>
-          <p>Unique, brand-focused designs tailored to your business needs and target audience.</p>
+          <p>Unique, brand-focused designs tailored to your audience — no templates.</p>
         </div>
         <div class="service-card">
           <div class="service-icon">📱</div>
-          <h3>Responsive Development</h3>
-          <p>Websites that look perfect on all devices, from desktop to mobile.</p>
+          <h3>Fully Responsive</h3>
+          <p>Pixel-perfect on every device, from widescreen to the smallest phone.</p>
         </div>
         <div class="service-card">
-          <div class="service-icon">🚀</div>
-          <h3>Performance Optimization</h3>
-          <p>Lightning-fast load times and SEO optimization for better rankings.</p>
+          <div class="service-icon">⚡</div>
+          <h3>Fast by Default</h3>
+          <p>Optimized for speed and SEO from the ground up — not bolted on after.</p>
         </div>
         <div class="service-card">
           <div class="service-icon">🔧</div>
-          <h3>Maintenance & Support</h3>
-          <p>Ongoing support, updates, and maintenance to keep your site running smoothly.</p>
+          <h3>Ongoing Support</h3>
+          <p>We don't disappear after launch. Updates, changes, and fixes always available.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Pricing Section -->
-  <section class="pricing-section reveal">
-    <div class="container">
-      <h2 class="section-title">Website Pricing</h2>
-      <p class="section-description">Professional websites with transparent pricing</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Basic</h3>
-          <div class="price">$200</div>
-          <p class="price-period">Build Fee</p>
-          <ul class="pricing-features">
-            <li>3-5 Pages</li>
-            <li>Fast & Clean Design</li>
-            <li>Mobile Responsive</li>
-            <li>SEO Basics</li>
-            <li>Contact Form</li>
-            <li>1 Edit per Month</li>
-            <li>Basic Support</li>
-          </ul>
-          <div class="monthly-fee">
-            <p class="monthly-amount">$20/month</p>
-            <p class="monthly-label">Hosting & Maintenance</p>
-          </div>
-          <a href="index.html#contact" class="btn btn-secondary">Get Started</a>
-        </div>
-        
-        <div class="pricing-card featured">
-          <div class="featured-badge">Popular</div>
-          <h3>Advanced</h3>
-          <div class="price">$300</div>
-          <p class="price-period">Build Fee</p>
-          <ul class="pricing-features">
-            <li>10-15 Pages</li>
-            <li>Enhanced Design</li>
-            <li>1 Integration</li>
-            <li>Advanced SEO</li>
-            <li>Google Analytics</li>
-            <li>3 Edits per Month</li>
-            <li>Advanced Support</li>
-          </ul>
-          <div class="monthly-fee">
-            <p class="monthly-amount">$30/month</p>
-            <p class="monthly-label">Hosting & Maintenance</p>
-          </div>
-          <a href="index.html#contact" class="btn btn-primary">Get Started</a>
-        </div>
-        
-        <div class="pricing-card">
-          <h3>Pro</h3>
-          <div class="price">$400</div>
-          <p class="price-period">Build Fee</p>
-          <ul class="pricing-features">
-            <li>20+ Pages</li>
-            <li>AI Chat Bot</li>
-            <li>Free Integrations</li>
-            <li>Premium SEO</li>
-            <li>E-commerce Ready</li>
-            <li>Infinite Edits per Month</li>
-            <li>Priority Support</li>
-          </ul>
-          <div class="monthly-fee">
-            <p class="monthly-amount">$40/month</p>
-            <p class="monthly-label">Hosting & Maintenance</p>
-          </div>
-          <a href="index.html#contact" class="btn btn-secondary">Get Started</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="testimonials-section reveal">
-    <div class="container">
-      <h2 class="section-title">What Our Clients Say</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p>"Morobo created an amazing website for my business. Professional, responsive, and exactly what I needed!"</p>
-          <div class="testimonial-author">
-            <strong>Morgan Miller</strong>
-            <span>UGC Content Creator</span>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p>"Working with Morobo was a pleasure from start to finish. They delivered on time and exceeded expectations."</p>
-          <div class="testimonial-author">
-            <strong>Michael Anthony</strong>
-            <span>Merivilla</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section reveal">
+  <section class="cta-section">
     <div class="container">
       <div class="cta-content">
-        <h2>Ready to Launch Your Website?</h2>
-        <p>Let's create something amazing together. Get in touch to discuss your project.</p>
+        <h2>Want us to build yours?</h2>
+        <p>Tell us about your project. We'll get back to you with a plan and a quote — no pressure.</p>
         <div class="cta-buttons">
-          <a href="index.html#contact" class="btn btn-primary">Request a Quote</a>
-          <a href="index.html#contact" class="btn btn-secondary">Request Changes</a>
+          <a href="index.html#contact" class="btn btn-primary">Start a conversation</a>
+          <a href="pricing.html" class="btn btn-secondary">Learn how it works</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Track Project Banner -->
-  <section class="section" style="padding: 20px 0 60px;">
+  <div style="padding: 0 0 4rem; position:relative; z-index:1;">
     <div class="container">
-      <div style="background: var(--card-bg); border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 16px; padding: 36px; text-align: center;">
-        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">Already Have an Active Project?</h3>
-        <p style="color: var(--text-muted); margin-bottom: 16px;">Track the status and progress of your project in real time.</p>
-        <a href="track.html" class="btn btn-secondary">Track Your Project</a>
+      <div class="track-banner">
+        <div class="track-banner-text">
+          <h4>Already working with us?</h4>
+          <p>Track the progress of your project in real time.</p>
+        </div>
+        <a href="track.html" class="btn btn-secondary">Track your project</a>
       </div>
     </div>
-  </section>
+  </div>
 
   <footer class="footer">
     <div class="container footer-content">
@@ -348,7 +208,7 @@
         <a href="index.html#contact">Contact</a>
       </div>
       <div style="display:flex; align-items:center; gap:0.75rem;">
-        <p class="footer-copy">&copy; <span id="year"></span> Morobo LLC</p>
+        <p class="footer-copy">© <span id="year"></span> Morobo LLC</p>
         <ul class="social-links">
           <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
           <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
@@ -358,10 +218,10 @@
     </div>
   </footer>
 
-  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
