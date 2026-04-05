@@ -19,13 +19,16 @@
         <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
         Morobo
       </a>
-      <nav class="nav-tabs">
+            <nav class="nav-tabs" id="navTabs">
         <a href="apps.html" class="nav-tab active">Apps</a>
         <a href="websites.html" class="nav-tab">Websites</a>
-        <a href="ai.html" class="nav-tab">Agents</a>
         <a href="about.html" class="nav-tab">About</a>
+        <a href="pricing.html" class="nav-tab">Work With Us</a>
         <a href="index.html#contact" class="nav-tab">Contact</a>
       </nav>
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -235,24 +238,35 @@
   </section>
 
   <footer class="footer">
-    <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
     <div class="container footer-content">
+      <a href="index.html" class="footer-logo-link">
+        <img src="images/MoroboIconFinal.png" alt="Morobo">
+        Morobo
+      </a>
       <div class="footer-links">
         <a href="apps.html">Apps</a>
         <a href="websites.html">Websites</a>
-        <a href="index.html#about">About</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Work With Us</a>
+        <a href="legal.html">Legal</a>
+        <a href="track.html">Track Project</a>
         <a href="index.html#contact">Contact</a>
       </div>
-      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
-      <ul class="social-links">
-        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fab fa-github"></i></a></li>
-        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-      </ul>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <p class="footer-copy">&copy; <span id="year"></span> Morobo LLC</p>
+        <ul class="social-links">
+          <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+          <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
   <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -3,470 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing - Morobo | Websites, Apps & AI Automation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Work With Us — Morobo</title>
+  <meta name="description" content="Have an idea? Tell us about it. We build custom websites, apps, and software. No price lists — just a conversation.">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Transparent pricing for professional websites, custom mobile apps, and AI automation solutions. Get started with Morobo today.">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
+
   <canvas id="backgroundCanvas"></canvas>
 
   <header class="navbar">
     <div class="container nav-content">
       <a href="index.html" class="logo">
-        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        <img src="images/MoroboIconFinal.png" alt="Morobo" class="logo-icon">
         Morobo
       </a>
-      <nav class="nav-tabs">
+      <nav class="nav-tabs" id="navTabs">
         <a href="apps.html" class="nav-tab">Apps</a>
         <a href="websites.html" class="nav-tab">Websites</a>
-        <a href="ai.html" class="nav-tab">Agents</a>
-        <a href="index.html#contact" class="nav-tab">Contact</a>
+        <a href="about.html" class="nav-tab">About</a>
+        <a href="index.html#contact" class="nav-tab active">Contact</a>
       </nav>
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="pricing-hero">
+  <!-- ─── HERO ─── -->
+  <section class="work-hero">
     <div class="container">
-      <h1>Simple, Transparent Pricing</h1>
-      <p class="hero-subtitle">Choose the perfect plan for your business. No hidden fees, no surprises.</p>
+      <p class="section-eyebrow">Work With Us</p>
+      <h1>Let's build<br>something<br><span style="-webkit-text-stroke:1px rgba(255,255,255,0.18); color:transparent;">great.</span></h1>
+      <p>Tell us your idea. We'll tell you how we can make it real. No price lists, no packages — just a honest conversation about what you need.</p>
     </div>
   </section>
 
-  <!-- Website Pricing Section -->
-  <section class="pricing-section reveal">
+  <!-- ─── PROCESS ─── -->
+  <section class="process-section">
     <div class="container">
-      <h2 class="section-title">Website Pricing</h2>
-      <p class="section-description">Professional websites tailored to your business needs</p>
-      
-      <div class="pricing-grid">
-        <!-- Basic Tier -->
-        <div class="pricing-card">
-          <div class="pricing-badge">BASIC</div>
-          <div class="pricing-header">
-            <h3>Basic</h3>
-            <div class="pricing-amount">
-              <span class="currency">$</span>
-              <span class="price">200</span>
-              <span class="period">Build Fee</span>
-            </div>
-          </div>
-          <ul class="pricing-features">
-            <li>3-5 Pages</li>
-            <li>Fast & Clean Design</li>
-            <li>1 Edit per Month</li>
-            <li>Basic Support</li>
-            <li>Mobile Responsive</li>
-            <li>SEO Basics</li>
-          </ul>
-          <div class="pricing-monthly">
-            <p class="monthly-price">$20<span>/month</span></p>
-            <p class="monthly-note">Hosting & Maintenance</p>
-          </div>
-          <a href="index.html#contact" class="btn btn-secondary">Get Started</a>
-        </div>
+      <p class="section-eyebrow">How it works</p>
+      <h2 class="section-title">Simple process,<br>real results.</h2>
 
-        <!-- Advanced Tier -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge popular">ADVANCED</div>
-          <div class="pricing-header">
-            <h3>Advanced</h3>
-            <div class="pricing-amount">
-              <span class="currency">$</span>
-              <span class="price">300</span>
-              <span class="period">Build Fee</span>
-            </div>
-          </div>
-          <ul class="pricing-features">
-            <li>10-15 Pages</li>
-            <li>Enhanced Design</li>
-            <li>1 Integration</li>
-            <li>3 Edits per Month</li>
-            <li>Advanced Support</li>
-            <li>Mobile Responsive</li>
-            <li>Advanced SEO</li>
-            <li>Contact Forms</li>
-            <li>Google Analytics</li>
-          </ul>
-          <div class="pricing-monthly">
-            <p class="monthly-price">$30<span>/month</span></p>
-            <p class="monthly-note">Hosting & Maintenance</p>
-          </div>
-          <a href="index.html#contact" class="btn btn-primary">Get Started</a>
+      <div class="process-grid">
+        <div class="process-step gsap-fade-up">
+          <p class="process-step-num">Step 01</p>
+          <h3>Tell us your idea</h3>
+          <p>Send us a message describing what you want to build — a website, a mobile app, something custom. No detail is too small.</p>
         </div>
-
-        <!-- Pro Tier -->
-        <div class="pricing-card">
-          <div class="pricing-badge">PRO</div>
-          <div class="pricing-header">
-            <h3>Pro</h3>
-            <div class="pricing-amount">
-              <span class="currency">$</span>
-              <span class="price">400</span>
-              <span class="period">Build Fee</span>
-            </div>
-          </div>
-          <ul class="pricing-features">
-            <li>20+ Pages</li>
-            <li>AI Chat Bot</li>
-            <li>Free Integrations</li>
-            <li>Infinite Edits per Month</li>
-            <li>Priority Support</li>
-            <li>Mobile Responsive</li>
-            <li>Premium SEO</li>
-            <li>E-commerce Ready</li>
-            <li>Custom Features</li>
-            <li>Performance Optimization</li>
-          </ul>
-          <div class="pricing-monthly">
-            <p class="monthly-price">$40<span>/month</span></p>
-            <p class="monthly-note">Hosting & Maintenance</p>
-          </div>
-          <a href="index.html#contact" class="btn btn-secondary">Get Started</a>
+        <div class="process-step gsap-fade-up">
+          <p class="process-step-num">Step 02</p>
+          <h3>We scope it out</h3>
+          <p>We'll review your idea, ask clarifying questions, and come back with a clear plan, timeline, and honest estimate.</p>
         </div>
-      </div>
-
-      <!-- Website Features Info -->
-      <div class="pricing-info">
-        <h3>More Info</h3>
-        <ul class="info-list">
-          <li>✓ Beautiful UI design</li>
-          <li>✓ Uptime Monitoring</li>
-          <li>✓ Custom Domains</li>
-          <li>✓ SSL Encryption</li>
-          <li>✓ Multi-Device Compatibility</li>
-        </ul>
+        <div class="process-step gsap-fade-up">
+          <p class="process-step-num">Step 03</p>
+          <h3>We build it</h3>
+          <p>Once we're aligned, we get to work. You'll have full visibility into progress through our project tracking system.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- App Development Pricing Section -->
-  <section class="pricing-section reveal app-pricing">
+  <!-- ─── RECENT WORK ─── -->
+  <section class="work-portfolio">
     <div class="container">
-      <h2 class="section-title">App Development Pricing</h2>
-      <p class="section-description">Custom mobile applications for iOS and Android</p>
-      
-      <div class="custom-pricing-card">
-        <div class="custom-pricing-content">
-          <h3>Custom Mobile Apps</h3>
-          <p class="custom-price">Starting at $5,000</p>
-          <p class="custom-description">
-            We build custom mobile applications tailored to your exact specifications. 
-            Pricing varies based on complexity, features, and platform requirements.
+      <p class="section-eyebrow">Recent Work</p>
+      <h2 class="section-title">What we've<br>built before.</h2>
+
+      <div class="portfolio-grid" style="margin-top:3rem;">
+        <div class="portfolio-card large gsap-fade-up">
+          <img src="images/MerivillaSS.png" alt="Merivilla" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">Merivilla</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Luxury real estate development in Mérida, Mexico</p>
+            <a href="https://morobollc.github.io/MerivillaWebsite/" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card gsap-fade-up">
+          <img src="images/MorganBlakeSS.png" alt="Morgan Blake Photography" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">Morgan Blake</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Model photography studio</p>
+            <a href="https://morganblakestudio.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card gsap-fade-up">
+          <img src="images/RLPhotographySS.png" alt="RL Photography" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">RL Photography</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Wedding & couple photography</p>
+            <a href="https://rlphotography.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; text-align:right;">
+        <a href="websites.html" class="hero-link">See all work <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section class="work-contact">
+    <div class="container">
+      <p class="section-eyebrow">Get in touch</p>
+      <div class="contact-grid">
+        <div class="contact-info gsap-fade-up">
+          <h2 class="contact-info-title">Ready to start?<br>Send us a message.</h2>
+          <p class="contact-info-text" style="margin-top:1.5rem;">
+            Email: <a href="mailto:contact@morobo.org">contact@morobo.org</a>
           </p>
-          
-          <div class="app-features-grid">
-            <div class="app-feature">
-              <h4>📱 Platform Support</h4>
-              <p>iOS, Android, or Cross-platform development</p>
-            </div>
-            <div class="app-feature">
-              <h4>🎨 Custom Design</h4>
-              <p>Beautiful UI/UX tailored to your brand</p>
-            </div>
-            <div class="app-feature">
-              <h4>🔗 API Integration</h4>
-              <p>Connect to your existing systems</p>
-            </div>
-            <div class="app-feature">
-              <h4>🚀 App Store Deployment</h4>
-              <p>Full submission and publishing support</p>
-            </div>
-            <div class="app-feature">
-              <h4>📊 Analytics & Tracking</h4>
-              <p>User behavior and performance monitoring</p>
-            </div>
-            <div class="app-feature">
-              <h4>🔧 Ongoing Support</h4>
-              <p>Updates, maintenance, and bug fixes</p>
-            </div>
-          </div>
-
-          <div class="pricing-cta">
-            <a href="index.html#contact" class="btn btn-primary">Discuss Your App Idea</a>
-            <p class="cta-note">Schedule a free consultation to get a custom quote</p>
-          </div>
+          <p class="contact-info-text">Based in Fort Worth, Texas.</p>
+          <p class="contact-info-text" style="margin-top:1.5rem; font-size:0.8rem; color:var(--text-muted);">
+            We typically respond within 24 hours. We work on websites, mobile apps, and custom software.
+          </p>
         </div>
+
+        <form class="contact-form gsap-fade-up" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="f94f9d09-33e6-4c2b-8516-bb3cf7e06fe4">
+          <input type="hidden" name="subject" value="New Project Inquiry from Morobo.org">
+          <input type="hidden" name="redirect" value="https://morobo.org/thank-you.html">
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="project-type">What are you looking to build?</label>
+            <input type="text" id="project-type" name="project_type" placeholder="Website, mobile app, something else...">
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us more</label>
+            <textarea id="message" name="message" rows="5" placeholder="Describe your idea, timeline, any context..." required></textarea>
+          </div>
+          <input type="checkbox" name="botcheck" style="display:none">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- AI Automation & Agents Pricing Section -->
-  <section class="pricing-section reveal ai-pricing">
-    <div class="container">
-      <h2 class="section-title">AI Automation & Agents Pricing</h2>
-      <p class="section-description">Simple monthly pricing with no setup fees or hidden charges</p>
-      
-      <div class="automation-types-grid" style="margin-top: 3rem; margin-bottom: 3rem;">
-        <!-- Chatbots -->
-        <div class="automation-type-card">
-          <div class="automation-icon">💬</div>
-          <h4>Chatbots</h4>
-          <p>Conversational AI for customer engagement and basic automation</p>
-          <div class="automation-price">$50<span>/month</span></div>
-          <ul class="automation-features">
-            <li>Basic conversational AI</li>
-            <li>Multi-language support</li>
-            <li>Website integration</li>
-            <li>Simple analytics</li>
-          </ul>
-          <a href="index.html#contact" class="btn btn-secondary btn-full">Get Started</a>
-        </div>
-
-        <!-- Basic Agents -->
-        <div class="automation-type-card automation-type-featured">
-          <div class="automation-icon">🤖</div>
-          <h4>Basic Agents</h4>
-          <p>Autonomous agents for lead gathering and simple processes</p>
-          <div class="automation-price">$250<span>/month</span></div>
-          <ul class="automation-features">
-            <li>Lead gathering & qualification</li>
-            <li>Google Sheets integration</li>
-            <li>Email automation</li>
-            <li>Basic reporting</li>
-            <li>Email support</li>
-          </ul>
-          <a href="index.html#contact" class="btn btn-primary btn-full">Get Started</a>
-        </div>
-
-        <!-- Advanced Agents -->
-        <div class="automation-type-card automation-type-featured">
-          <div class="automation-icon">⭐</div>
-          <h4>Advanced Agents</h4>
-          <p>Full-featured agents with complex interactions & adaptive learning</p>
-          <div class="automation-price">$500<span>/month</span></div>
-          <ul class="automation-features">
-            <li>Everything in Basic, plus:</li>
-            <li>Full-featured dashboard</li>
-            <li>Complex integrations</li>
-            <li>Advanced data tracking</li>
-            <li>Adaptive learning</li>
-            <li>Custom workflows</li>
-            <li>Priority support</li>
-          </ul>
-          <a href="index.html#contact" class="btn btn-primary btn-full">Get Started</a>
-        </div>
-      </div>
-
-      <!-- Featured Agents -->
-      <div style="margin-top: 4rem;">
-        <h3 class="subsection-title">Popular AI Agents</h3>
-        <div class="ai-services-grid">
-          <div class="card ai-service-card">
-            <div class="service-icon">📞</div>
-            <h3>AI Receptionist</h3>
-            <p>24/7 call handling with smart routing and appointment scheduling</p>
-            <ul class="service-features">
-              <li>All calls answered 24/7</li>
-              <li>Smart routing & transfers</li>
-              <li>Auto appointment scheduling</li>
-              <li>Call transcription included</li>
-            </ul>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <p style="font-size: 1.5rem; color: var(--primary); font-weight: 700;">$250-500/mo</p>
-              <small style="color: var(--text-light);">Basic or Advanced tier</small>
-            </div>
-          </div>
-
-          <div class="card ai-service-card">
-            <div class="service-icon">✍️</div>
-            <h3>AI Content Creator</h3>
-            <p>Generate marketing content, social media, and email campaigns</p>
-            <ul class="service-features">
-              <li>Daily social media posts</li>
-              <li>Email campaign generation</li>
-              <li>Blog articles written</li>
-              <li>Brand voice consistency</li>
-            </ul>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <p style="font-size: 1.5rem; color: var(--primary); font-weight: 700;">$250-500/mo</p>
-              <small style="color: var(--text-light);">Basic or Advanced tier</small>
-            </div>
-          </div>
-
-          <div class="card ai-service-card">
-            <div class="service-icon">💰</div>
-            <h3>AI Accountant</h3>
-            <p>Automate bookkeeping, invoicing, and expense management</p>
-            <ul class="service-features">
-              <li>Invoice automation</li>
-              <li>Expense categorization</li>
-              <li>Financial reports generated</li>
-              <li>Tax compliance assistance</li>
-            </ul>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <p style="font-size: 1.5rem; color: var(--primary); font-weight: 700;">$250-500/mo</p>
-              <small style="color: var(--text-light);">Basic or Advanced tier</small>
-            </div>
-          </div>
-
-          <div class="card ai-service-card">
-            <div class="service-icon">💬</div>
-            <h3>AI Customer Support</h3>
-            <p>Multi-channel support with instant issue resolution</p>
-            <ul class="service-features">
-              <li>Chat, email, phone support</li>
-              <li>Ticket automation</li>
-              <li>Knowledge base integration</li>
-              <li>Sentiment analysis</li>
-            </ul>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <p style="font-size: 1.5rem; color: var(--primary); font-weight: 700;">$250-500/mo</p>
-              <small style="color: var(--text-light);">Basic or Advanced tier</small>
-            </div>
-          </div>
-
-          <div class="card ai-service-card">
-            <div class="service-icon">🎯</div>
-            <h3>AI Sales Agent</h3>
-            <p>Lead qualification and automated sales follow-ups</p>
-            <ul class="service-features">
-              <li>Lead qualification</li>
-              <li>Automated follow-ups</li>
-              <li>Demo scheduling</li>
-              <li>Pipeline management</li>
-            </ul>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <p style="font-size: 1.5rem; color: var(--primary); font-weight: 700;">$250-500/mo</p>
-              <small style="color: var(--text-light);">Basic or Advanced tier</small>
-            </div>
-          </div>
-
-          <div class="card ai-service-card">
-            <div class="service-icon">⚙️</div>
-            <h3>Custom AI Agent</h3>
-            <p>Build your own AI agent for specific business processes</p>
-            <ul class="service-features">
-              <li>Custom requirements analysis</li>
-              <li>Integration with your tools</li>
-              <li>Continuous optimization</li>
-              <li>Dedicated support team</li>
-            </ul>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <p style="font-size: 1.5rem; color: var(--primary); font-weight: 700;">$250-500/mo</p>
-              <small style="color: var(--text-light);">Basic or Advanced tier</small>
-            </div>
-          </div>
-        </div>
-      </div>
-        </div>
-      </div>
-
-      <!-- AI Services Info -->
-      <div class="ai-services-info">
-        <h3>AI Automation Services Include:</h3>
-        <div class="services-list-grid">
-          <div class="service-item">
-            <span class="service-icon">🤖</span>
-            <p>Custom AI Chatbots</p>
-          </div>
-          <div class="service-item">
-            <span class="service-icon">⚡</span>
-            <p>Workflow Automation</p>
-          </div>
-          <div class="service-item">
-            <span class="service-icon">💬</span>
-            <p>AI Customer Service</p>
-          </div>
-          <div class="service-item">
-            <span class="service-icon">📊</span>
-            <p>Data Processing & Analysis</p>
-          </div>
-          <div class="service-item">
-            <span class="service-icon">🔗</span>
-            <p>System Integration</p>
-          </div>
-          <div class="service-item">
-            <span class="service-icon">🎯</span>
-            <p>Custom AI Solutions</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="faq-section reveal">
-    <div class="container">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h3>What's included in the monthly fee?</h3>
-          <p>Monthly fees cover hosting, security updates, technical support, regular backups, and minor content updates. For websites, this ensures your site stays fast, secure, and up-to-date.</p>
-        </div>
-        
-        <div class="faq-item">
-          <h3>Can I upgrade my plan later?</h3>
-          <p>Absolutely! You can upgrade to a higher tier at any time. We'll work with you to migrate your existing setup and add the new features you need.</p>
-        </div>
-        
-        <div class="faq-item">
-          <h3>How long does development take?</h3>
-          <p>Websites typically take 2-4 weeks, mobile apps take 8-16 weeks, and AI automation projects vary based on complexity. We'll provide a detailed timeline during consultation.</p>
-        </div>
-        
-        <div class="faq-item">
-          <h3>Do you offer custom solutions?</h3>
-          <p>Yes! If our standard packages don't fit your needs, we can create a custom solution tailored to your specific requirements and budget.</p>
-        </div>
-        
-        <div class="faq-item">
-          <h3>What payment methods do you accept?</h3>
-          <p>We accept credit cards, bank transfers, and can set up payment plans for larger projects. Contact us to discuss payment options.</p>
-        </div>
-        
-        <div class="faq-item">
-          <h3>Do you provide training?</h3>
-          <p>Yes! All packages include training on how to use and manage your website, app, or AI system. We provide documentation and ongoing support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section reveal">
-    <div class="container">
-      <div class="cta-content">
-        <h2>Ready to Get Started?</h2>
-        <p>Let's discuss your project and find the perfect solution for your needs.</p>
-        <div class="cta-buttons">
-          <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
-          <a href="index.html#about" class="btn btn-secondary">Learn More</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
+  <!-- ─── FOOTER ─── -->
   <footer class="footer">
-    <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
     <div class="container footer-content">
+      <a href="index.html" class="footer-logo-link">
+        <img src="images/MoroboIconFinal.png" alt="Morobo">
+        Morobo
+      </a>
       <div class="footer-links">
         <a href="apps.html">Apps</a>
         <a href="websites.html">Websites</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
         <a href="legal.html">Legal</a>
-        <a href="index.html#about">About</a>
+        <a href="track.html">Track Project</a>
         <a href="index.html#contact">Contact</a>
       </div>
-      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
-      <ul class="social-links">
-        <li><a href="#"><span class="sr-only">Twitter</span><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><span class="sr-only">GitHub</span><i class="fab fa-github"></i></a></li>
-        <li><a href="#"><span class="sr-only">LinkedIn</span><i class="fab fa-linkedin-in"></i></a></li>
-      </ul>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <p class="footer-copy">© <span id="year"></span> Morobo LLC</p>
+        <ul class="social-links">
+          <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+          <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
-  <!-- Font Awesome icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
-  <!-- Local JS -->
   <script src="script.js"></script>
 </body>
 </html>

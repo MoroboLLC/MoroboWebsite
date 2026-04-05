@@ -3,12 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morobo – Modern Software &amp; AI Agents</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Swiper CSS for carousels -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-  <!-- Local styles -->
+  <title>Morobo — Software Studio</title>
+  <meta name="description" content="Morobo is a Fort Worth-based software studio building apps, websites, and digital tools with obsessive attention to detail.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -16,310 +12,281 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-  <!-- Animated Background Canvas -->
+
+  <!-- Three.js / Particle Canvas -->
   <canvas id="backgroundCanvas"></canvas>
-  <!-- Navigation Bar -->
-  <header class="navbar">    <div class="container nav-content">
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-content">
       <a href="index.html" class="logo">
-        <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        <img src="images/MoroboIconFinal.png" alt="Morobo" class="logo-icon">
         Morobo
       </a>
-      <nav class="nav-tabs">
+      <nav class="nav-tabs" id="navTabs">
         <a href="apps.html" class="nav-tab">Apps</a>
         <a href="websites.html" class="nav-tab">Websites</a>
-        <a href="ai.html" class="nav-tab">Agents</a>
         <a href="about.html" class="nav-tab">About</a>
+        <a href="pricing.html" class="nav-tab">Work With Us</a>
         <a href="#contact" class="nav-tab">Contact</a>
       </nav>
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content container">
-      <h1>Building the Future of Software</h1>
-      <p>At Morobo, we build intelligent solutions—custom websites, powerful apps, and AI agents that automate workflows, drive growth, and transform how businesses operate.</p>
-      <a href="#contact" class="btn btn-primary">Work With Us</a>
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <p class="hero-label">Fort Worth, Texas</p>
+      <h1 class="hero-headline">
+        We build<br>
+        <span class="accent-word">software</span><br>
+        that matters.
+      </h1>
+      <p class="hero-sub">Apps, websites, and digital tools crafted with obsessive attention to detail.</p>
+      <div class="hero-actions">
+        <a href="#apps" class="hero-link">See our work <span class="arrow">→</span></a>
+        <a href="#contact" class="hero-link secondary">Get in touch <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
     </div>
   </section>
-  <!-- Apps Section -->
-  <section id="apps" class="section reveal">
+
+  <!-- ─── APPS ─── -->
+  <section id="apps" class="section">
+    <span class="section-number">01</span>
     <div class="container">
-      <h2 class="section-title">Our Apps</h2>
-      <p class="section-description">Our applications are designed with a focus on performance, usability and elegance.</p>
-      <!-- Swiper slider for apps -->
-      <div class="swiper apps-swiper">
-        <div class="swiper-wrapper">          <!-- App slide for Indecision -->          <div class="swiper-slide">            <div class="card">
-              <img src="images/IndecisionAppIcon.png" alt="Indecision app icon" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>Indecision</h3>              <p>AI-powered decision making app that helps you make better choices. Available on Apple, coming soon to Android.</p>
-              <a href="apps/indecision/" class="card-link">Learn more</a>
-            </div>
+      <p class="section-eyebrow">Our Apps</p>
+      <h2 class="section-title">Built to last.<br>Designed to delight.</h2>
+      <p class="section-description">Four apps, each focused on doing one thing exceptionally well.</p>
+
+      <div class="apps-grid">
+        <div class="card app-card gsap-fade-up">
+          <img src="images/IndecisionAppIcon.png" alt="Indecision" class="app-card-icon" onerror="this.src='placeholder_app.png'">
+          <div>
+            <p class="app-card-name">Indecision</p>
+            <p class="app-card-desc">AI-powered decision making. Stop overthinking — let intelligent analysis guide your choices.</p>
           </div>
-          <!-- App slide for Motonia -->          <div class="swiper-slide">            <div class="card">
-              <img src="images/motonia_app.png" alt="Motonia app screenshot" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>Motonia</h3>              <p>Motorcycle GPS app with advanced navigation features for riders. Track routes, find scenic roads, and ride safely.</p>
-              <a href="apps/motonia/" class="card-link">Learn more</a>
-            </div>
-          </div>
-          <!-- App slide for AgentBoard -->
-          <div class="swiper-slide">
-            <div class="card">
-              <img src="images/AgentBoardIcon.png" alt="AgentBoard app icon" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>AgentBoard</h3>
-              <p>Universal dashboard for AI voice agents. Now live on iOS to track performance, analyze metrics, and share insights with clients.</p>
-              <a href="apps/agentboard/" class="card-link">Learn more</a>
-            </div>
-          </div>
-          <!-- App slide for Thriftaholic -->
-          <div class="swiper-slide">
-            <div class="card">
-              <img src="placeholder_app.png" alt="Thriftaholic app icon" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>Thriftaholic</h3>
-              <p>Discover thrift store items near you. Find what's available at stores nearby and never miss a great deal.</p>
-              <a href="apps.html#thriftaholic" class="card-link">Learn more</a>
-            </div>
-          </div>
+          <a href="apps/indecision/" class="app-card-link">Learn more →</a>
         </div>
-        <!-- Add pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add navigation buttons -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+
+        <div class="card app-card gsap-fade-up">
+          <img src="images/motonia_app.png" alt="Motonia" class="app-card-icon" onerror="this.src='placeholder_app.png'">
+          <div>
+            <p class="app-card-name">Motonia</p>
+            <p class="app-card-desc">GPS navigation built for motorcycle riders. Find scenic routes, track rides, ride safely.</p>
+          </div>
+          <a href="apps/motonia/" class="app-card-link">Learn more →</a>
+        </div>
+
+        <div class="card app-card gsap-fade-up">
+          <img src="images/AgentBoardIcon.png" alt="AgentBoard" class="app-card-icon" onerror="this.src='placeholder_app.png'">
+          <div>
+            <p class="app-card-name">AgentBoard</p>
+            <p class="app-card-desc">Universal dashboard for AI voice agents. Track performance, analyze metrics, share insights.</p>
+          </div>
+          <a href="apps/agentboard/" class="app-card-link">Learn more →</a>
+        </div>
+
+        <div class="card app-card gsap-fade-up">
+          <img src="placeholder_app.png" alt="Thriftaholic" class="app-card-icon">
+          <div>
+            <p class="app-card-name">Thriftaholic</p>
+            <p class="app-card-desc">Discover thrift store gems near you. Never miss a great deal at stores in your area.</p>
+          </div>
+          <a href="apps.html" class="app-card-link">Coming soon →</a>
+        </div>
       </div>
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="apps.html" class="btn btn-secondary">View All Apps</a>
+
+      <div style="margin-top: 2rem; text-align: right;">
+        <a href="apps.html" class="hero-link">View all apps <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
-  <!-- Websites Section -->
-  <section id="websites" class="section reveal">
+
+  <!-- ─── WEBSITES ─── -->
+  <section id="websites" class="section">
+    <span class="section-number">02</span>
     <div class="container">
-      <h2 class="section-title">Websites We've Created</h2>
-      <p class="section-description">From simple landing pages to full-fledged platforms, we create experiences that captivate.</p>      <div class="swiper websites-swiper">
-        <div class="swiper-wrapper">          <div class="swiper-slide">            <div class="card">
-              <img src="images/MorganMillerIcon.png" alt="Morgan Miller website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>Morgan Miller</h3>
-              <p>UGC Content Creator portfolio website. Modern, responsive design showcasing creative work.</p>
-              <a href="https://morganmiller.site" target="_blank" class="card-link">Visit Website</a>
-            </div>
-          </div>
-          <div class="swiper-slide">            <div class="card">
-              <img src="images/MerivillaSS.png" alt="Merivilla website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>Merivilla</h3>
-              <p>Real estate development company based in Mérida, Mexico. Elegant showcase of luxury properties.</p>
-              <a href="https://morobollc.github.io/MerivillaWebsite/" target="_blank" class="card-link">Visit Website</a>
-            </div>
-          </div>
-          <div class="swiper-slide">            <div class="card">
-              <img src="images/MorganBlakeSS.png" alt="Morgan Blake Photography website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>Morgan Blake Photography</h3>
-              <p>Professional photography website specializing in model photography. Showcasing stunning portfolio work with elegant design.</p>
-              <a href="https://morganblakestudio.lovable.app" target="_blank" class="card-link">Visit Website</a>
-            </div>
-          </div>
-          <div class="swiper-slide">            <div class="card">
-              <img src="images/RLPhotographySS.png" alt="RL Photography website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>RL Photography</h3>
-              <p>Wedding and couple photography services. Beautiful, timeless captures of life's most precious moments.</p>
-              <a href="https://rlphotography.lovable.app" target="_blank" class="card-link">Visit Website</a>
-            </div>
-          </div>
-          <div class="swiper-slide">            <div class="card">
-              <img src="images/LensCraftSS.png" alt="Lenscraft website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>Lenscraft</h3>
-              <p>Family and senior portrait photography. Capturing life's beautiful moments with professional expertise.</p>
-              <a href="https://lenscraft.lovable.app" target="_blank" class="card-link">Visit Website</a>
-            </div>
-          </div>
-          <div class="swiper-slide">            <div class="card">
-              <img src="images/LaReinaDelDisfrazSS.png" alt="La Reina Del Disfraz website" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='placeholder_app.png';}">
-              <h3>La Reina Del Disfraz</h3>
-              <p>Costume and party supply website. Modern e-commerce platform for all your celebration needs.</p>
-              <a href="https://lareinadeldisfraz.lovable.app" target="_blank" class="card-link">Visit Website</a>
-            </div>
+      <p class="section-eyebrow">Client Work</p>
+      <h2 class="section-title">Websites that<br>stand out.</h2>
+      <p class="section-description">From portfolios to platforms — we build digital presences that captivate.</p>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card large gsap-fade-up">
+          <img src="images/MerivillaSS.png" alt="Merivilla" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">Merivilla</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Luxury real estate development in Mérida, Mexico</p>
+            <a href="https://morobollc.github.io/MerivillaWebsite/" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+
+        <div class="portfolio-card gsap-fade-up">
+          <img src="images/MorganMillerIcon.png" alt="Morgan Miller" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">Morgan Miller</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">UGC content creator portfolio</p>
+            <a href="https://morganmiller.site" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card gsap-fade-up">
+          <img src="images/MorganBlakeSS.png" alt="Morgan Blake Photography" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">Morgan Blake</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Model photography studio</p>
+            <a href="https://morganblakestudio.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card gsap-fade-up">
+          <img src="images/RLPhotographySS.png" alt="RL Photography" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">RL Photography</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Wedding & couple photography</p>
+            <a href="https://rlphotography.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card gsap-fade-up">
+          <img src="images/LensCraftSS.png" alt="Lenscraft" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">Lenscraft</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Family & senior portrait photography</p>
+            <a href="https://lenscraft.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card gsap-fade-up">
+          <img src="images/LaReinaDelDisfrazSS.png" alt="La Reina Del Disfraz" onerror="this.style.background='#141414'">
+          <span class="portfolio-card-name">La Reina Del Disfraz</span>
+          <div class="portfolio-card-overlay">
+            <p class="portfolio-card-desc">Costume & party supply e-commerce</p>
+            <a href="https://lareinadeldisfraz.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
+          </div>
+        </div>
       </div>
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="websites.html" class="btn btn-secondary">View All Websites</a>
+
+      <div style="margin-top: 2rem; text-align: right;">
+        <a href="websites.html" class="hero-link">View all work <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- Partners Marquee -->
-  <section class="partners-section">
+  <!-- ─── STATEMENT ─── -->
+  <section class="statement-section">
     <div class="container">
-      <h3 class="partners-title">Companies We Work With</h3>
-      <div class="marquee">
-        <div class="marquee-content">
-          <span class="partner-logo">Merivilla</span>
-          <span class="partner-logo">TechStart Solutions</span>
-          <span class="partner-logo">Digital Innovations Co</span>
-          <span class="partner-logo">CloudFirst Systems</span>
-          <!-- Duplicate for seamless loop -->
-          <span class="partner-logo">Merivilla</span>
-          <span class="partner-logo">TechStart Solutions</span>
-          <span class="partner-logo">Digital Innovations Co</span>
-          <span class="partner-logo">CloudFirst Systems</span>
-        </div>
-      </div>
+      <p class="statement-text gsap-fade-up">
+        Morobo is a<br>
+        <span class="dim">Fort Worth–based</span><br>
+        software <span class="highlight">studio.</span>
+      </p>
+      <a href="about.html" class="statement-link gsap-fade-up">About us <span>→</span></a>
     </div>
   </section>
 
-  <!-- Work With Us CTA Section -->
-  <section class="cta-section reveal">
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">Merivilla</span>
+      <span class="marquee-item">Morgan Miller</span>
+      <span class="marquee-item">Morgan Blake Photography</span>
+      <span class="marquee-item">RL Photography</span>
+      <span class="marquee-item">Lenscraft</span>
+      <span class="marquee-item">La Reina Del Disfraz</span>
+      <span class="marquee-item">Merivilla</span>
+      <span class="marquee-item">Morgan Miller</span>
+      <span class="marquee-item">Morgan Blake Photography</span>
+      <span class="marquee-item">RL Photography</span>
+      <span class="marquee-item">Lenscraft</span>
+      <span class="marquee-item">La Reina Del Disfraz</span>
+    </div>
+  </div>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact" class="section">
+    <span class="section-number">03</span>
     <div class="container">
-      <div class="cta-content">
-        <h2>Have Us Create a Website or App For You</h2>
-        <p>Transform your ideas into reality with our expert development team. We specialize in custom websites, mobile applications, and AI agents tailored to your needs.</p>
-        <div class="cta-buttons">
-          <a href="pricing.html" class="btn btn-primary">View Pricing & Services</a>
-          <a href="websites.html" class="btn btn-secondary">View Our Work</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AI Automation & Agents Section -->
-  <section id="ai-automation" class="section reveal">
-    <div class="container">
-      <h2 class="section-title">AI Agents & Automation</h2>
-      <p class="section-description">Deploy powerful AI agents for specific business functions. Automate your operations with intelligent solutions.</p>
-      
-      <!-- Agent Types Section -->
-      <h3 class="subsection-title">Featured AI Agents</h3>
-      <div class="ai-services-grid">
-        <div class="card ai-service-card">
-          <div class="service-icon">📞</div>
-          <h3>AI Receptionist</h3>
-          <p>Intelligent phone and email management system that answers calls, schedules appointments, and handles inquiries automatically.</p>
-          <ul class="service-features">
-            <li>24/7 call handling</li>
-            <li>Smart call routing</li>
-            <li>Appointment scheduling</li>
-            <li>Call transcription & summaries</li>
-          </ul>
-        </div>
-
-        <div class="card ai-service-card">
-          <div class="service-icon">✍️</div>
-          <h3>AI Content Creator</h3>
-          <p>Generate engaging marketing content, social media posts, email campaigns, and blog articles powered by AI.</p>
-          <ul class="service-features">
-            <li>Social media posting</li>
-            <li>Email campaign generation</li>
-            <li>Blog article writing</li>
-            <li>Brand voice consistency</li>
-          </ul>
-        </div>
-
-        <div class="card ai-service-card">
-          <div class="service-icon">💬</div>
-          <h3>AI Customer Support</h3>
-          <p>Provide instant customer support across channels with AI agents that resolve issues efficiently and professionally.</p>
-          <ul class="service-features">
-            <li>Multi-channel support</li>
-            <li>Ticket automation</li>
-            <li>Knowledge base integration</li>
-            <li>Sentiment analysis</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="ai.html" class="btn btn-primary">Explore All Agents</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section reveal">
-    <div class="container about-container">
-      <h2 class="section-title">About Us</h2>
-      <div class="about-content">
-        <p>Morobo is a Fort Worth–based technology company dedicated to crafting digital experiences that stand out. Our team specializes in building high‑quality applications, websites and software solutions that combine aesthetics with engineering excellence. We believe in innovation, collaboration and integrity, working closely with our clients to transform ideas into tangible products that make a difference.</p>
-        <p>Our mission is to empower entrepreneurs and businesses by delivering tools that are both functional and delightful. Whether you need a custom application, a fully responsive website or a digital product tailored to your brand, Morobo is here to help.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section reveal">
-    <div class="container contact-container">
-      <h2 class="section-title">Work With Us</h2>
-      <p class="section-description">Ready to start your next project or collaborate with us? Let’s talk!</p>
+      <p class="section-eyebrow">Contact</p>
       <div class="contact-grid">
-        <!-- Contact Info -->
-        <div class="contact-info">
-          <h3>Get in touch</h3>
-          <p>Email us at <a href="mailto:contact@morobo.org">contact@morobo.org</a> and we'll get back to you as soon as possible.</p>
-          <p>Located in Fort Worth, Texas (US Central Time).</p>
+        <div class="contact-info gsap-fade-up">
+          <h2 class="contact-info-title">Have an idea?<br>Let's talk.</h2>
+          <p class="contact-info-text">Email us at <a href="mailto:contact@morobo.org">contact@morobo.org</a></p>
+          <p class="contact-info-text">Based in Fort Worth, Texas.</p>
         </div>
-        <!-- Contact Form -->
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <form class="contact-form gsap-fade-up" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="f94f9d09-33e6-4c2b-8516-bb3cf7e06fe4">
           <input type="hidden" name="subject" value="New Contact Form Submission from Morobo.org">
           <input type="hidden" name="redirect" value="https://morobo.org/thank-you.html">
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your@example.com" required>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project" required></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
           </div>
-          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+          <input type="checkbox" name="botcheck" style="display:none">
           <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- Track Project Banner -->
-  <section class="section" style="padding: 20px 0 60px;">
+  <!-- ─── TRACK BANNER ─── -->
+  <div style="padding: 0 0 4rem; position: relative; z-index: 1;">
     <div class="container">
-      <div style="background: var(--card-bg); border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 16px; padding: 36px; text-align: center;">
-        <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">Already Have an Active Project?</h3>
-        <p style="color: var(--text-muted); margin-bottom: 16px;">Track the status and progress of your project in real time.</p>
-        <a href="track.html" class="btn btn-secondary">Track Your Project</a>
+      <div class="track-banner">
+        <div class="track-banner-text">
+          <h4>Already working with us?</h4>
+          <p>Track the progress of your project in real time.</p>
+        </div>
+        <a href="track.html" class="btn btn-secondary">Track your project</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
+  <!-- ─── FOOTER ─── -->
   <footer class="footer">
-    <img src="images/MoroboIconFinal.png" alt="Morobo" class="footer-logo">
     <div class="container footer-content">
+      <a href="index.html" class="footer-logo-link">
+        <img src="images/MoroboIconFinal.png" alt="Morobo">
+        Morobo
+      </a>
       <div class="footer-links">
         <a href="apps.html">Apps</a>
         <a href="websites.html">Websites</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="legal.html">Legal</a>
         <a href="about.html">About</a>
+        <a href="legal.html">Legal</a>
+        <a href="track.html">Track Project</a>
         <a href="#contact">Contact</a>
       </div>
-      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
-      <ul class="social-links">
-        <li><a href="#"><span class="sr-only">Twitter</span><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><span class="sr-only">GitHub</span><i class="fab fa-github"></i></a></li>
-        <li><a href="#"><span class="sr-only">LinkedIn</span><i class="fab fa-linkedin-in"></i></a></li>
-      </ul>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <p class="footer-copy">© <span id="year"></span> Morobo LLC</p>
+        <ul class="social-links">
+          <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+          <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  <!-- Font Awesome icons -->
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
-  <!-- Local JS -->
   <script src="script.js"></script>
 </body>
 </html>
