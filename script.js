@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create three floating wireframe shapes
     const shapes = [
-      { geo: new THREE.IcosahedronGeometry(2.2, 1), color: 0xa855f7, opacity: 0.22, pos: [-4, 0.5, -2] },
-      { geo: new THREE.OctahedronGeometry(1.4, 0),  color: 0xaaaaaa, opacity: 0.13, pos: [ 4, -1,  -1] },
+      { geo: new THREE.IcosahedronGeometry(2.2, 1), color: 0xa855f7, opacity: 0.10, pos: [-4, 0.5, -2] },
+      { geo: new THREE.OctahedronGeometry(1.4, 0),  color: 0xaaaaaa, opacity: 0.10, pos: [ 4, -1,  -1] },
       { geo: new THREE.TorusGeometry(2.4, 0.35, 9, 28), color: 0xaaaaaa, opacity: 0.10, pos: [0.5, 1.5, -3] },
     ];
 
