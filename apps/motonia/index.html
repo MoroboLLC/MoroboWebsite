@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Motonia – Motorcycle GPS Navigation App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="The ultimate GPS app for motorcycle enthusiasts. Turn-by-turn navigation, scenic route discovery, and rider safety features.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -14,141 +16,155 @@
 <body>
   <canvas id="backgroundCanvas"></canvas>
 
-  <header class="navbar">    <div class="container nav-content">
+  <header class="navbar">
+    <div class="container nav-content">
       <a href="../../index.html" class="logo">
-        <img src="../../images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
+        <img src="../../images/MoroboIconFinal.png" alt="Morobo" class="logo-icon">
         Morobo
       </a>
-      <nav class="nav-tabs">
-        <a href="../../apps.html" class="nav-tab">Apps</a>
+      <nav class="nav-tabs" id="navTabs">
+        <a href="../../apps.html" class="nav-tab active">Apps</a>
         <a href="../../websites.html" class="nav-tab">Websites</a>
-        <a href="../../index.html#about" class="nav-tab">About</a>
+        <a href="../../about.html" class="nav-tab">About</a>
         <a href="../../index.html#contact" class="nav-tab">Contact</a>
       </nav>
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <section class="app-hero">
+  <!-- Hero -->
+  <section class="app-page-hero">
     <div class="container">
-      <div class="app-hero-content">
-        <div class="app-hero-text">
+      <div class="app-page-hero-inner gsap-fade-up">
+        <div class="app-page-content">
+          <p class="app-page-eyebrow">Morobo App — Coming Soon</p>
           <h1>Motonia</h1>
-          <p class="app-subtitle">Motorcycle GPS Navigation</p>
-          <p class="app-hero-description">
-            The ultimate navigation app built by riders, for riders. Discover scenic routes, track your journeys, 
-            and ride with confidence using GPS navigation designed specifically for motorcycles.
-          </p>
-          <div class="app-badges">
-            <span class="coming-soon-badge">Coming Soon to iOS & Android</span>
+          <p class="app-page-tagline">The ultimate navigation app built by riders, for riders. Discover scenic routes, track your journeys, and ride with confidence using GPS designed specifically for motorcycles.</p>
+          <div class="app-page-badges">
+            <span class="coming-soon">Coming Soon to iOS & Android</span>
           </div>
-          <div class="notify-form">
-            <input type="email" placeholder="Enter your email for updates" class="notify-input">
-            <button class="btn btn-primary">Notify Me</button>
+          <div class="app-page-actions">
+            <form class="notify-form" onsubmit="return false;">
+              <input type="email" class="notify-input" placeholder="Enter your email for updates">
+              <button type="submit" class="btn btn-primary">Notify Me</button>
+            </form>
           </div>
-        </div>        <div class="app-hero-image">
-          <img src="../../images/motonia_app.png" alt="Motonia App Screenshot" onerror="if(!this.dataset.errorHandled){this.dataset.errorHandled='true';this.src='../../placeholder_app.png';}">
         </div>
+        <img src="../../images/motonia_app.png" alt="Motonia App" class="app-page-icon" style="border-radius:24px;" onerror="this.style.display='none'">
       </div>
     </div>
   </section>
 
-  <section class="app-features-section reveal">
+  <!-- Features -->
+  <section class="app-features-section">
     <div class="container">
-      <h2 class="section-title">Features</h2>
+      <div class="app-features-header">
+        <p class="section-eyebrow">What's coming</p>
+        <h2 class="section-title">Built for<br>the open road.</h2>
+      </div>
       <div class="features-grid">
         <div class="feature-item">
-          <div class="feature-icon">🏍️</div>
+          <span class="feature-emoji">🏍️</span>
           <h3>Motorcycle-Optimized Routes</h3>
-          <p>Navigation designed for two wheels, avoiding highways when you want curves and twisties.</p>
+          <p>Navigation designed for two wheels — prioritizing curves, scenic roads, and avoiding unnecessary highways.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🗺️</div>
+          <span class="feature-emoji">🗺️</span>
           <h3>Offline Maps</h3>
-          <p>Download maps for offline use so you're never lost, even without cell service.</p>
+          <p>Download maps before you ride so you're never lost, even without cell service in remote areas.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🌄</div>
+          <span class="feature-emoji">🌄</span>
           <h3>Scenic Route Discovery</h3>
-          <p>Find the most beautiful and enjoyable roads in your area or while traveling.</p>
+          <p>Find the most beautiful and enjoyable roads in your area or while traveling to new places.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">⚠️</div>
+          <span class="feature-emoji">⚠️</span>
           <h3>Safety Alerts</h3>
-          <p>Real-time alerts for road hazards, weather conditions, and construction zones.</p>
+          <p>Real-time alerts for road hazards, sharp turns, weather conditions, and construction zones.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">📍</div>
+          <span class="feature-emoji">📍</span>
           <h3>Route Sharing</h3>
-          <p>Share your favorite routes with friends and the riding community.</p>
+          <p>Share your favorite rides with friends and the Motonia riding community.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🌤️</div>
+          <span class="feature-emoji">🌤️</span>
           <h3>Weather Integration</h3>
-          <p>Check weather conditions along your route before you ride.</p>
+          <p>Check conditions along your entire route before you even put on your helmet.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">📊</div>
+          <span class="feature-emoji">📊</span>
           <h3>Ride Statistics</h3>
-          <p>Track your miles, routes, and riding achievements over time.</p>
+          <p>Track your miles, favorite routes, and riding achievements over time.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">👥</div>
-          <h3>Planned: Group Rides</h3>
-          <p>Group ride coordination is planned for a future release and is not active yet.</p>
+          <span class="feature-emoji">👥</span>
+          <h3>Group Rides</h3>
+          <p>Group ride coordination — planned for a future release. Great things take time.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="app-screenshots-section reveal">
-    <div class="container">
-      <h2 class="section-title">Coming Soon</h2>
-      <p class="section-description">We're working hard to bring you the best motorcycle navigation experience. Sign up above to be notified when we launch!</p>
-    </div>
-  </section>
-
-  <section class="app-cta-section reveal">
+  <!-- CTA -->
+  <section class="cta-section">
     <div class="container">
       <div class="cta-content">
-        <h2>Built by Riders, For Riders</h2>
-        <p>Join our community and help shape the future of Motonia. We're looking for beta testers!</p>        <div class="cta-buttons">
-          <a href="../../#contact" class="btn btn-primary">Join Beta Program</a>
-          <a href="support/" class="btn btn-secondary">Learn More</a>
+        <h2>Built by riders, for riders.</h2>
+        <p>Sign up to be notified when Motonia launches. We're looking for beta testers too.</p>
+        <div class="cta-buttons">
+          <a href="../../index.html#contact" class="btn btn-primary">Join Beta Program</a>
+          <a href="support/" class="btn btn-secondary">Get Support</a>
         </div>
       </div>
     </div>
   </section>
-  <section class="app-links-section">
+
+  <!-- Legal links -->
+  <div class="app-legal-bar">
     <div class="container">
-      <div class="app-footer-links">
+      <div class="app-legal-bar-inner">
         <a href="support/">Support</a>
         <a href="privacypolicy/">Privacy Policy</a>
         <a href="termsofservice/">Terms of Service</a>
         <a href="community-guidelines/">Community Guidelines</a>
-        <a href="safety/">Safety</a>
-        <a href="../../index.html#contact">Contact Us</a>
+        <a href="../../index.html#contact">Contact</a>
       </div>
     </div>
-  </section>
+  </div>
 
   <footer class="footer">
     <div class="container footer-content">
+      <a href="../../index.html" class="footer-logo-link">
+        <img src="../../images/MoroboIconFinal.png" alt="Morobo">
+        Morobo
+      </a>
       <div class="footer-links">
         <a href="../../apps.html">Apps</a>
         <a href="../../websites.html">Websites</a>
-        <a href="../../index.html#about">About</a>
+        <a href="../../about.html">About</a>
+        <a href="../../pricing.html">Work With Us</a>
+        <a href="../../legal.html">Legal</a>
         <a href="../../index.html#contact">Contact</a>
       </div>
-      <p>&copy; <span id="year"></span> Morobo LLC. All rights reserved.</p>
-      <ul class="social-links">
-        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fab fa-github"></i></a></li>
-        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-      </ul>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <p class="footer-copy">&copy; <span id="year"></span> Morobo LLC</p>
+        <ul class="social-links">
+          <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+          <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
   <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="../../script.js"></script>
 </body>
 </html>
