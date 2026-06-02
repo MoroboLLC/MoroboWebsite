@@ -47,8 +47,18 @@
             <span class="available">Available on Android</span>
           </div>
           <div class="app-page-actions">
-            <a href="#" class="btn btn-primary">Download on App Store</a>
-            <a href="#" class="btn btn-secondary">Get on Google Play</a>
+            <a href="https://apps.apple.com/us/app/motonia/id6760694800" id="ios-cta" class="btn btn-primary">Download on App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.morobo.motonia" id="android-cta" class="btn btn-secondary">Get on Google Play</a>
+          </div>
+
+          <!-- Referral invite-code banner — hidden until JS finds ?ref= -->
+          <div id="referral-banner" style="display:none; margin-top:20px; padding:16px 20px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:14px; max-width:480px;">
+            <p style="margin:0 0 4px; font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#5b8aff;">Your Invite Code</p>
+            <p style="margin:0 0 10px; font-size:14px; color:rgba(255,255,255,0.75);">Paste this on the signup screen — you and your friend both get a free month of Premium.</p>
+            <div style="display:flex; align-items:center; gap:8px; padding:10px 12px; background:rgba(0,0,0,0.30); border:1px dashed rgba(255,255,255,0.18); border-radius:10px;">
+              <span id="ref-code-display" style="flex:1; font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13px; color:#fff; word-break:break-all; user-select:all;"></span>
+              <button id="copy-ref-btn" onclick="copyRefCode()" type="button" style="flex-shrink:0; padding:7px 12px; background:rgba(91,138,255,0.18); border:1px solid rgba(91,138,255,0.40); color:#5b8aff; font-size:11px; font-weight:700; letter-spacing:0.4px; border-radius:8px; cursor:pointer;">COPY</button>
+            </div>
           </div>
         </div>
         <img src="../../images/motonia_app.png" alt="Motonia App" class="app-page-icon" style="border-radius:24px;" onerror="this.style.display='none'">
@@ -115,7 +125,7 @@
         <h2>Built by riders, for riders.</h2>
         <p>Motonia is live on iOS and Android. Download and start planning your next ride.</p>
         <div class="cta-buttons">
-          <a href="#" class="btn btn-primary">Download on App Store</a>
+          <a href="https://apps.apple.com/us/app/motonia/id6760694800" id="ios-cta-bottom" class="btn btn-primary">Download on App Store</a>
           <a href="support/" class="btn btn-secondary">Get Support</a>
         </div>
       </div>
@@ -165,5 +175,72 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="../../script.js"></script>
+  <script>
+    // ── Motonia referral handler ──────────────────────────────────────────────
+    (function () {
+      var APP_STORE_URL   = "https://apps.apple.com/us/app/motonia/id6760694800";
+      var PLAY_PACKAGE    = "com.morobo.motonia";
+      var PLAY_BASE       = "https://play.google.com/store/apps/details?id=" + PLAY_PACKAGE;
+
+      var params  = new URLSearchParams(window.location.search);
+      var ref     = (params.get("ref") || "").trim();
+      var ua      = navigator.userAgent;
+      var isAndroid = /Android/.test(ua);
+      var isIOS     = /iPhone|iPad|iPod/.test(ua);
+
+      // Build the correct Play Store URL (with referrer when we have a ref code)
+      var playUrl = ref
+        ? PLAY_BASE + "&referrer=" + encodeURIComponent("ref=" + ref)
+        : PLAY_BASE;
+
+      // Wire up all the store buttons on the page
+      var iosBtns     = [document.getElementById("ios-cta"), document.getElementById("ios-cta-bottom")];
+      var androidBtns = [document.getElementById("android-cta")];
+
+      iosBtns.forEach(function (el) { if (el) el.href = APP_STORE_URL; });
+      androidBtns.forEach(function (el) { if (el) el.href = playUrl; });
+
+      // If a ref code is present, show the invite-code banner
+      if (ref) {
+        var banner = document.getElementById("referral-banner");
+        var display = document.getElementById("ref-code-display");
+        if (banner && display) {
+          display.textContent = ref;
+          banner.style.display = "block";
+        }
+
+        // On Android, deep-link attempt first, then fall back to Play Store
+        // On iOS, Universal Links handle it; banner is shown for fallback case only
+      }
+    })();
+
+    // Copy-button handler (called from inline onclick)
+    function copyRefCode() {
+      var code = document.getElementById("ref-code-display");
+      var btn  = document.getElementById("copy-ref-btn");
+      if (!code || !btn) return;
+      var text = code.textContent;
+      try {
+        navigator.clipboard.writeText(text);
+      } catch (_) {
+        var range = document.createRange();
+        range.selectNode(code);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        try { document.execCommand("copy"); } catch (_) {}
+        window.getSelection().removeAllRanges();
+      }
+      btn.textContent = "COPIED ✓";
+      btn.style.background = "rgba(60,200,130,0.18)";
+      btn.style.borderColor = "rgba(60,200,130,0.40)";
+      btn.style.color = "#3cc882";
+      setTimeout(function () {
+        btn.textContent = "COPY";
+        btn.style.background = "";
+        btn.style.borderColor = "";
+        btn.style.color = "";
+      }, 2500);
+    }
+  </script>
 </body>
 </html>

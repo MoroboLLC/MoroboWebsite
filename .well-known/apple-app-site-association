@@ -1,10 +1,20 @@
 {
   "applinks": {
-    "apps": [],
     "details": [
       {
-        "appID": "92RVQNVG5F.com.agentboard.app",
-        "paths": ["/apps/agentboard/invite/*"]
+        "appIDs": ["1009231849.com.morobo.motoniaIOS"],
+        "components": [
+          {
+            "/": "/apps/motonia/",
+            "?": { "ref": "?*" },
+            "comment": "Motonia referral link"
+          },
+          {
+            "/": "/apps/motonia",
+            "?": { "ref": "?*" },
+            "comment": "Same path without trailing slash"
+          }
+        ]
       }
     ]
   }
