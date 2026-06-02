@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["1009231849.com.morobo.motoniaIOS"],
+        "appIDs": ["92RVQNVG5F.com.morobo.motoniaIOS"],
         "components": [
           {
             "/": "/apps/motonia/",
@@ -17,7 +17,7 @@
         ]
       },
       {
-        "appIDs": ["1009231849.com.agentboard.app"],
+        "appIDs": ["92RVQNVG5F.com.agentboard.app"],
         "components": [
           {
             "/": "/apps/agentboard/invite/*",
