@@ -15,6 +15,15 @@
             "comment": "Same path without trailing slash"
           }
         ]
+      },
+      {
+        "appIDs": ["92RVQNVG5F.com.agentboard.app"],
+        "components": [
+          {
+            "/": "/apps/agentboard/invite/*",
+            "comment": "AgentBoard invite links"
+          }
+        ]
       }
     ]
   }
