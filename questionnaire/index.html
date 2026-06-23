@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Start Your App Project – Morobo</title>
+  <meta name="description" content="Tell us about your app idea. A few quick questions and the Morobo team will be in touch with a tailored proposal.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- Apply saved theme before paint to avoid flash (matches main site key) -->
+  <script>try{if(localStorage.getItem('morobo-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
+  <style>
+    /* ============================================================
+       QUESTIONNAIRE — inherits design tokens from ../style.css
+       ============================================================ */
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(900px 600px at 85% -8%, var(--accent-dim), transparent 60%),
+        radial-gradient(700px 520px at 5% 108%, var(--accent-dim), transparent 60%),
+        var(--bg);
+    }
+
+    .q-shell {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 8rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top bar ── */
+    .q-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .q-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .q-logo img { width: 24px; height: 24px; object-fit: contain; }
+    .q-step-count {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── Progress bar ── */
+    .q-progress {
+      height: 4px;
+      width: 100%;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 2.75rem;
+    }
+    .q-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #c084fc);
+      border-radius: 99px;
+      transition: width 0.55s var(--ease);
+    }
+
+    /* ── Steps ── */
+    .q-stage { position: relative; flex: 1; }
+    .q-step { display: none; }
+    .q-step.is-active {
+      display: block;
+      animation: qStepIn 0.5s var(--ease);
+    }
+    @keyframes qStepIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .q-step.is-leaving { animation: qStepOut 0.28s var(--ease) forwards; }
+    @keyframes qStepOut {
+      from { opacity: 1; transform: translateY(0); }
+      to   { opacity: 0; transform: translateY(-10px); }
+    }
+
+    .q-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+    .q-title {
+      font-size: clamp(1.6rem, 5.5vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .q-sub {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Fields ── */
+    .q-field { margin-bottom: 1.9rem; }
+    .q-field:last-child { margin-bottom: 0; }
+    .q-flabel {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+    .q-fhelp {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
+    }
+    .q-req { color: var(--accent); }
+
+    .q-input, .q-textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.9rem 1rem;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 16px; /* keeps iOS from auto-zooming on focus */
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .q-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+    .q-input::placeholder, .q-textarea::placeholder { color: var(--text-muted); }
+    .q-input:focus, .q-textarea:focus {
+      outline: none;
+      border-color: var(--border-accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .q-input.q-invalid, .q-textarea.q-invalid {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+    }
+
+    /* ── Choice options ── */
+    .q-options { display: grid; gap: 0.6rem; }
+    .q-options.q-grid-2 { grid-template-columns: 1fr 1fr; }
+    .q-opt { position: relative; display: block; cursor: pointer; }
+    .q-opt input {
+      position: absolute; opacity: 0; pointer-events: none;
+    }
+    .q-opt-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem;
+      min-height: 56px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+      transition: border-color 0.2s, background 0.2s, transform 0.12s var(--ease);
+    }
+    .q-opt-box::before {
+      content: '';
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      border: 1.5px solid var(--text-muted);
+      border-radius: 50%;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .q-opt[data-multi="true"] .q-opt-box::before { border-radius: 6px; }
+    .q-opt:hover .q-opt-box { border-color: var(--border-accent); }
+    .q-opt:active .q-opt-box { transform: scale(0.99); }
+    .q-opt input:focus-visible + .q-opt-box {
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .q-opt input:checked + .q-opt-box {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      color: var(--text);
+    }
+    .q-opt input:checked + .q-opt-box::before {
+      border-color: var(--accent);
+      background:
+        var(--accent)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")
+        center / 13px no-repeat;
+    }
+
+    /* ── Bottom nav (sticky) ── */
+    .q-nav {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: var(--nav-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      padding: 0.9rem 1.25rem calc(0.9rem + env(safe-area-inset-bottom));
+      z-index: 50;
+    }
+    .q-nav-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .q-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.5rem;
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.12s var(--ease), background 0.2s, opacity 0.2s;
+    }
+    .q-btn:active { transform: scale(0.98); }
+    .q-btn-primary { background: var(--accent); color: #fff; flex: 1; }
+    .q-btn-primary:hover { background: #9333ea; }
+    .q-btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 0.95rem 1.25rem;
+    }
+    .q-btn-ghost:hover { color: var(--text); border-color: var(--border-accent); }
+    .q-btn[hidden] { display: none; }
+    .q-btn:disabled { opacity: 0.6; cursor: progress; }
+
+    /* ── Intro ── */
+    .q-intro-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin: 2rem 0 0.5rem;
+    }
+    .q-meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); }
+    .q-meta-item svg { width: 18px; height: 18px; color: var(--accent); }
+
+    /* ── Review ── */
+    .q-review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .q-review-row { padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+    .q-review-row:last-child { border-bottom: none; }
+    .q-review-q { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+    .q-review-a { font-size: 0.92rem; color: var(--text); line-height: 1.5; }
+    .q-form-error {
+      display: none;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      color: #ef4444;
+      font-size: 0.85rem;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Success ── */
+    .q-success { display: none; text-align: center; padding: 3rem 0; }
+    .q-success.is-active { display: block; animation: qStepIn 0.55s var(--ease); }
+    .q-check {
+      width: 84px; height: 84px;
+      margin: 0 auto 1.75rem;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .q-check svg { width: 42px; height: 42px; stroke: var(--accent); }
+    .q-check svg path {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: qDraw 0.6s 0.2s var(--ease) forwards;
+    }
+    @keyframes qDraw { to { stroke-dashoffset: 0; } }
+    .q-success h2 { font-size: clamp(1.7rem, 6vw, 2.3rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; color: var(--text); }
+    .q-success p { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.65; max-width: 420px; margin: 0 auto 2rem; }
+
+    @media (max-width: 480px) {
+      .q-shell { padding: 1rem 1.05rem 7rem; }
+      .q-options.q-grid-2 { grid-template-columns: 1fr; }
+      .q-progress { margin-bottom: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="q-shell">
+    <div class="q-top">
+      <a href="../index.html" class="q-logo">
+        <img src="../images/MoroboIconFinal.png" alt="Morobo">
+        Morobo
+      </a>
+      <span class="q-step-count" id="qStepCount"></span>
+    </div>
+
+    <div class="q-progress"><div class="q-progress-fill" id="qProgress"></div></div>
+
+    <form class="q-stage" id="qForm" novalidate>
+      <div id="qStage"></div>
+
+      <!-- Success screen -->
+      <div class="q-success" id="qSuccess">
+        <div class="q-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h2>Thank you — we've got it!</h2>
+        <p>Your project details are on their way to the Morobo team. We'll review everything and get back to you shortly with the next steps and a tailored proposal.</p>
+        <a href="../index.html" class="q-btn q-btn-primary" style="display:inline-flex; flex:none; text-decoration:none;">Back to home</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Sticky nav -->
+  <div class="q-nav" id="qNavBar">
+    <div class="q-nav-inner">
+      <button type="button" class="q-btn q-btn-ghost" id="qBack" hidden>← Back</button>
+      <div class="q-form-error" id="qError" style="flex:1; margin:0;"></div>
+      <button type="button" class="q-btn q-btn-primary" id="qNext">Continue</button>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var ACCESS_KEY = "f94f9d09-33e6-4c2b-8516-bb3cf7e06fe4"; // same Web3Forms inbox as the contact form
+
+    // ── Questionnaire definition ─────────────────────────────────────────────
+    // Pricing metadata (price = one-time $, monthly = recurring $) is read only
+    // to build the internal estimate emailed to Morobo. Clients never see it.
+    var STEPS = [
+      { type: "intro" },
+
+      {
+        title: "First, the basics",
+        sub: "So we know who we're building for and how to reach you.",
+        fields: [
+          { key: "name", type: "text", label: "Your name", required: true, placeholder: "Jane Smith" },
+          { key: "email", type: "email", label: "Email", required: true, placeholder: "you@email.com" },
+          { key: "business", type: "text", label: "Business or project name", placeholder: "Acme Co." },
+          { key: "industry", type: "single", label: "What kind of business is this?", options: [
+            { value: "Restaurant / food" }, { value: "Retail / e-commerce" }, { value: "Health / fitness" },
+            { value: "Services / booking" }, { value: "Events / community" }, { value: "Personal / creator" },
+            { value: "Something else" }
+          ] }
+        ]
+      },
+
+      {
+        title: "Your app at a glance",
+        sub: "The big picture — we'll get into specifics next.",
+        fields: [
+          { key: "purpose", type: "textarea", label: "In a sentence or two, what should the app do?", required: true, placeholder: "e.g. Let customers order ahead and earn loyalty points." },
+          { key: "platforms", type: "single", label: "Which platforms do you need?", options: [
+            { value: "iPhone (iOS)", price: 0 },
+            { value: "Android", price: 0 },
+            { value: "Both iOS & Android", price: 800 },
+            { value: "Not sure yet", price: 400 }
+          ] },
+          { key: "projectType", type: "single", label: "Is this a new app or existing?", options: [
+            { value: "Brand-new app", price: 0 },
+            { value: "Redesign of an existing app", price: 0 },
+            { value: "Add features to an existing app", price: -200 }
+          ] }
+        ]
+      },
+
+      {
+        title: "Core features",
+        sub: "Pick everything you'd like — don't worry about cost or feasibility, we'll guide you. You can change these anytime.",
+        fields: [
+          { key: "features", type: "multi", label: "What should the app include?", options: [
+            { value: "User accounts & login", price: 400 },
+            { value: "Push notifications", price: 200, monthly: 10 },
+            { value: "In-app payments / e-commerce", price: 800, monthly: 25 },
+            { value: "Booking & scheduling", price: 600 },
+            { value: "Maps & location", price: 400 },
+            { value: "Chat / messaging", price: 700, monthly: 15 },
+            { value: "Social feed & profiles", price: 700, monthly: 15 },
+            { value: "Reviews & ratings", price: 250 },
+            { value: "Loyalty / rewards", price: 400 },
+            { value: "Ordering (food, products, etc.)", price: 700, monthly: 15 },
+            { value: "News / blog / content", price: 300 },
+            { value: "Photo & video upload", price: 400, monthly: 10 },
+            { value: "Search", price: 250 },
+            { value: "Analytics dashboard", price: 300 },
+            { value: "Offline mode", price: 400 },
+            { value: "Multiple languages", price: 400 },
+            { value: "AI-powered features", price: 900, monthly: 25 }
+          ] }
+        ]
+      },
+
+      {
+        title: "Connections",
+        sub: "Any outside tools or services the app should plug into? Optional — skip if you're unsure.",
+        fields: [
+          { key: "integrations", type: "multi", label: "Third-party integrations", options: [
+            { value: "Stripe / card payments", price: 200 },
+            { value: "Apple Pay / Google Pay", price: 150 },
+            { value: "Social login (Google, Apple, Facebook)", price: 150 },
+            { value: "Email marketing (Mailchimp, etc.)", price: 150 },
+            { value: "CRM (HubSpot, Salesforce, etc.)", price: 200 },
+            { value: "Calendar sync", price: 150 },
+            { value: "Custom / other API", price: 250 },
+            { value: "None / not sure", price: 0 }
+          ] }
+        ]
+      },
+
+      {
+        title: "Look & feel",
+        sub: "The vibe you're going for. We'll turn this into a polished design.",
+        fields: [
+          { key: "designStyle", type: "single", label: "Which style fits your vision?", options: [
+            { value: "Minimal & clean", price: 0 },
+            { value: "Bold & colorful", price: 0 },
+            { value: "Elegant & premium", price: 500 },
+            { value: "Playful & fun", price: 0 },
+            { value: "Corporate & professional", price: 0 },
+            { value: "Not sure — guide me", price: 0 }
+          ] },
+          { key: "branding", type: "single", label: "Do you have branding ready?", options: [
+            { value: "Full brand kit (logo, colors, fonts)", price: 0 },
+            { value: "Just a logo", price: 200 },
+            { value: "Nothing yet — design from scratch", price: 400 }
+          ] },
+          { key: "theme", type: "single", label: "Light or dark theme?", options: [
+            { value: "Light", price: 0 }, { value: "Dark", price: 0 },
+            { value: "Both (user can switch)", price: 200 }, { value: "No preference", price: 0 }
+          ] },
+          { key: "references", type: "text", label: "Apps whose look you love? (optional)", placeholder: "e.g. Airbnb, Notion, Duolingo" }
+        ]
+      },
+
+      {
+        title: "Size & content",
+        sub: "A rough sense of scope. Best guesses are totally fine.",
+        fields: [
+          { key: "screens", type: "single", label: "How big is the app, roughly?", options: [
+            { value: "Small (1–5 screens)", price: 0 },
+            { value: "Medium (6–12 screens)", price: 600 },
+            { value: "Large (13+ screens)", price: 1500 },
+            { value: "Not sure", price: 400 }
+          ] },
+          { key: "backend", type: "single", label: "Will it need accounts, a database, or live data?", options: [
+            { value: "Yes", price: 700, monthly: 25 },
+            { value: "No — standalone app", price: 0 },
+            { value: "Not sure", price: 350, monthly: 10 }
+          ] },
+          { key: "admin", type: "single", label: "Need an admin panel to manage content?", options: [
+            { value: "Yes", price: 600 },
+            { value: "No", price: 0 },
+            { value: "Not sure", price: 200 }
+          ] },
+          { key: "content", type: "single", label: "Who provides the content (text, images)?", options: [
+            { value: "I'll provide everything", price: 0 },
+            { value: "A mix — some help needed", price: 200 },
+            { value: "I need help creating it", price: 400 }
+          ] }
+        ]
+      },
+
+      {
+        title: "Timeline & upkeep",
+        sub: "When you want it, and what happens after launch.",
+        fields: [
+          { key: "timeline", type: "single", label: "When would you like to launch?", options: [
+            { value: "ASAP / under 1 month", rush: 0.2 },
+            { value: "1–2 months", rush: 0.1 },
+            { value: "3–6 months", rush: 0 },
+            { value: "Flexible / no rush", rush: 0 }
+          ] },
+          { key: "maintenance", type: "single", label: "After launch, do you want ongoing support?", options: [
+            { value: "Yes — regular updates & new features", monthly: 75 },
+            { value: "Occasional updates only", monthly: 25 },
+            { value: "No — just build it and hand off", monthly: 0, handoff: true }
+          ] },
+          { key: "budget", type: "single", label: "Do you have a budget in mind? (optional)", help: "Just helps us tailor the proposal — no wrong answer.", options: [
+            { value: "Under $2,000" }, { value: "$2,000 – $4,000" }, { value: "$4,000 – $7,000" },
+            { value: "$7,000+" }, { value: "Not sure yet" }
+          ] }
+        ]
+      },
+
+      {
+        title: "Publishing",
+        sub: "How you'd like the finished app delivered. Not sure? Pick the last option and we'll walk you through it.",
+        fields: [
+          { key: "publishing", type: "single", label: "How would you like the app published?", options: [
+            { value: "Under my own developer account (I own it)" },
+            { value: "Under Morobo's account" },
+            { value: "Just hand me the app files" },
+            { value: "Not sure — advise me" }
+          ] }
+        ]
+      },
+
+      {
+        title: "Anything else?",
+        sub: "Your vision, must-haves, competitors, questions — anything that helps us understand the project.",
+        fields: [
+          { key: "notes", type: "textarea", label: "Extra details (optional)", placeholder: "Tell us more…" }
+        ]
+      },
+
+      { type: "review" }
+    ];
+
+    // ── State ────────────────────────────────────────────────────────────────
+    var answers = {};
+    var current = 0;
+    var stageEl = document.getElementById("qStage");
+    var progressEl = document.getElementById("qProgress");
+    var stepCountEl = document.getElementById("qStepCount");
+    var backBtn = document.getElementById("qBack");
+    var nextBtn = document.getElementById("qNext");
+    var errorEl = document.getElementById("qError");
+    var successEl = document.getElementById("qSuccess");
+    var navBar = document.getElementById("qNavBar");
+
+    var questionSteps = STEPS.filter(function (s) { return s.fields; }).length;
+
+    // ── Helpers ────────────────────────────────────────────────────────────
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c];
+      });
+    }
+
+    function fieldHTML(f) {
+      var saved = answers[f.key];
+      var labelReq = f.required ? ' <span class="q-req">*</span>' : "";
+      var help = f.help ? '<p class="q-fhelp">' + esc(f.help) + "</p>" : "";
+      var html = '<div class="q-field" data-key="' + f.key + '" data-type="' + f.type + '">';
+
+      if (f.type === "text" || f.type === "email") {
+        html += '<label class="q-flabel" for="f_' + f.key + '">' + esc(f.label) + labelReq + "</label>" + help;
+        html += '<input class="q-input" id="f_' + f.key + '" type="' + (f.type === "email" ? "email" : "text") +
+                '" inputmode="' + (f.type === "email" ? "email" : "text") + '" placeholder="' + esc(f.placeholder || "") +
+                '" value="' + esc(saved || "") + '">';
+      } else if (f.type === "textarea") {
+        html += '<label class="q-flabel" for="f_' + f.key + '">' + esc(f.label) + labelReq + "</label>" + help;
+        html += '<textarea class="q-textarea" id="f_' + f.key + '" placeholder="' + esc(f.placeholder || "") + '">' + esc(saved || "") + "</textarea>";
+      } else if (f.type === "single" || f.type === "multi") {
+        var multi = f.type === "multi";
+        html += '<p class="q-flabel">' + esc(f.label) + labelReq + "</p>" + help;
+        var gridClass = f.options.length > 5 && !multi ? "" : (f.options.length >= 6 ? " q-grid-2" : "");
+        html += '<div class="q-options' + gridClass + '">';
+        f.options.forEach(function (o, i) {
+          var checked = multi ? (Array.isArray(saved) && saved.indexOf(o.value) > -1) : (saved === o.value);
+          html += '<label class="q-opt" data-multi="' + multi + '">' +
+            '<input type="' + (multi ? "checkbox" : "radio") + '" name="' + f.key + '" value="' + esc(o.value) + '"' + (checked ? " checked" : "") + ">" +
+            '<span class="q-opt-box">' + esc(o.value) + "</span></label>";
+        });
+        html += "</div>";
+      }
+      html += "</div>";
+      return html;
+    }
+
+    function renderStep(idx) {
+      var step = STEPS[idx];
+      var html = "";
+
+      if (step.type === "intro") {
+        html =
+          '<div class="q-step is-active">' +
+            '<p class="q-eyebrow">App Project Questionnaire</p>' +
+            '<h1 class="q-title">Let\'s build your app.</h1>' +
+            '<p class="q-sub">Answer a few quick questions about your idea — features, design, timeline — and the Morobo team will follow up with a tailored plan and proposal. Most people finish in about 3 minutes.</p>' +
+            '<div class="q-intro-meta">' +
+              '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> ~3 minutes</span>' +
+              '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No commitment</span>' +
+              '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Your info stays private</span>' +
+            "</div>" +
+          "</div>";
+      } else if (step.type === "review") {
+        html =
+          '<div class="q-step is-active">' +
+            '<p class="q-eyebrow">Last step</p>' +
+            '<h1 class="q-title">Quick review</h1>' +
+            '<p class="q-sub">Here\'s what we\'ve got. Tap Back to change anything, or send it our way.</p>' +
+            '<div class="q-review-card" id="qReview">' + buildReview() + "</div>" +
+          "</div>";
+      } else {
+        html = '<div class="q-step is-active">' +
+          '<p class="q-eyebrow">' + esc(step.title) + "</p>" +
+          (step.sub ? '<p class="q-sub" style="margin-top:-0.2rem">' + esc(step.sub) + "</p>" : "") +
+          step.fields.map(fieldHTML).join("") +
+        "</div>";
+      }
+
+      stageEl.innerHTML = html;
+      bindStep();
+      updateChrome();
+    }
+
+    function bindStep() {
+      // Enter advances on single-line inputs
+      stageEl.querySelectorAll('input.q-input').forEach(function (inp) {
+        inp.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") { e.preventDefault(); nextBtn.click(); }
+        });
+        inp.addEventListener("input", function () { inp.classList.remove("q-invalid"); errorEl.style.display = "none"; });
+      });
+    }
+
+    function readStep() {
+      var step = STEPS[current];
+      if (!step.fields) return;
+      step.fields.forEach(function (f) {
+        var wrap = stageEl.querySelector('[data-key="' + f.key + '"]');
+        if (!wrap) return;
+        if (f.type === "text" || f.type === "email" || f.type === "textarea") {
+          answers[f.key] = wrap.querySelector("input, textarea").value.trim();
+        } else if (f.type === "single") {
+          var sel = wrap.querySelector("input:checked");
+          answers[f.key] = sel ? sel.value : undefined;
+        } else if (f.type === "multi") {
+          answers[f.key] = Array.prototype.map.call(wrap.querySelectorAll("input:checked"), function (i) { return i.value; });
+        }
+      });
+    }
+
+    function validateStep() {
+      var step = STEPS[current];
+      if (!step.fields) return true;
+      for (var i = 0; i < step.fields.length; i++) {
+        var f = step.fields[i];
+        if (!f.required) continue;
+        var val = answers[f.key];
+        var empty = val == null || val === "" || (Array.isArray(val) && val.length === 0);
+        if (empty) { showError("Please fill in “" + f.label.replace(/\s*\*$/, "") + "” to continue.", f.key); return false; }
+        if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          showError("That email doesn't look right — mind double-checking?", f.key); return false;
+        }
+      }
+      return true;
+    }
+
+    function showError(msg, key) {
+      errorEl.textContent = msg;
+      errorEl.style.display = "block";
+      if (key) {
+        var el = stageEl.querySelector('[data-key="' + key + '"] input, [data-key="' + key + '"] textarea');
+        if (el && el.classList) { el.classList.add("q-invalid"); el.focus(); }
+      }
+    }
+
+    function updateChrome() {
+      var step = STEPS[current];
+      backBtn.hidden = current === 0;
+      if (step.type === "intro") nextBtn.textContent = "Start →";
+      else if (step.type === "review") nextBtn.textContent = "Send it →";
+      else nextBtn.textContent = "Continue";
+
+      // progress + count over question steps only
+      var qIndex = STEPS.slice(0, current).filter(function (s) { return s.fields; }).length;
+      if (step.fields) {
+        stepCountEl.textContent = "Step " + (qIndex + 1) + " of " + questionSteps;
+        progressEl.style.width = ((qIndex + 1) / (questionSteps + 1) * 100) + "%";
+      } else if (step.type === "review") {
+        stepCountEl.textContent = "Review";
+        progressEl.style.width = "100%";
+      } else {
+        stepCountEl.textContent = "";
+        progressEl.style.width = "0%";
+      }
+    }
+
+    function go(dir) {
+      errorEl.style.display = "none";
+      if (dir > 0) {
+        readStep();
+        if (!validateStep()) return;
+      } else {
+        readStep();
+      }
+      var nextIdx = current + dir;
+      if (nextIdx < 0 || nextIdx >= STEPS.length) return;
+
+      var leaving = stageEl.querySelector(".q-step");
+      if (leaving) {
+        leaving.classList.add("is-leaving");
+        current = nextIdx;
+        setTimeout(function () { renderStep(current); window.scrollTo({ top: 0, behavior: "smooth" }); }, 200);
+      } else {
+        current = nextIdx;
+        renderStep(current);
+      }
+    }
+
+    // ── Review + estimate ────────────────────────────────────────────────────
+    function buildReview() {
+      var rows = "";
+      STEPS.forEach(function (s) {
+        if (!s.fields) return;
+        s.fields.forEach(function (f) {
+          var v = answers[f.key];
+          if (v == null || v === "" || (Array.isArray(v) && v.length === 0)) return;
+          rows += '<div class="q-review-row"><div class="q-review-q">' + esc(f.label.replace(/\s*\*$/, "")) +
+                  '</div><div class="q-review-a">' + esc(Array.isArray(v) ? v.join(", ") : v) + "</div></div>";
+        });
+      });
+      return rows || '<div class="q-review-a">No answers yet.</div>';
+    }
+
+    function computeEstimate() {
+      var oneTime = 1500, monthly = 0, rush = 0, handoff = false;
+      STEPS.forEach(function (s) {
+        (s.fields || []).forEach(function (f) {
+          var v = answers[f.key];
+          if (v == null) return;
+          if (f.type === "multi") {
+            (v || []).forEach(function (val) {
+              var o = f.options.find(function (x) { return x.value === val; });
+              if (o) { oneTime += o.price || 0; monthly += o.monthly || 0; }
+            });
+          } else if (f.type === "single") {
+            var o = f.options.find(function (x) { return x.value === v; });
+            if (o) {
+              oneTime += o.price || 0;
+              monthly += o.monthly || 0;
+              if (o.rush) rush = o.rush;
+              if (o.handoff) handoff = true;
+            }
+          }
+        });
+      });
+      oneTime = Math.max(1500, oneTime);
+      oneTime = Math.round(oneTime * (1 + rush) / 50) * 50;
+      monthly = handoff ? 0 : Math.max(25, Math.round(monthly / 5) * 5);
+      return { oneTime: oneTime, monthly: monthly, rush: rush, handoff: handoff };
+    }
+
+    function buildSummary(est) {
+      var L = [];
+      L.push("=== MOROBO APP QUESTIONNAIRE ===", "");
+      L.push("INTERNAL ESTIMATE (not shown to client):");
+      L.push("  One-time build:  $" + est.oneTime.toLocaleString());
+      L.push("  Monthly:         " + (est.monthly ? "$" + est.monthly + "/mo" : "none (hand-off)"));
+      if (est.rush) L.push("  (includes " + Math.round(est.rush * 100) + "% rush surcharge)");
+      L.push("");
+      STEPS.forEach(function (s) {
+        if (!s.fields) return;
+        if (s.title) L.push("— " + s.title + " —");
+        s.fields.forEach(function (f) {
+          var v = answers[f.key];
+          var disp = Array.isArray(v) ? (v.length ? v.join(", ") : "(none)") : (v || "(not answered)");
+          L.push("  " + f.label.replace(/\s*\*$/, "") + ": " + disp);
+        });
+        L.push("");
+      });
+      return L.join("\n");
+    }
+
+    // ── Submit ──────────────────────────────────────────────────────────────
+    function submit() {
+      var est = computeEstimate();
+      var payload = {
+        access_key: ACCESS_KEY,
+        subject: "New App Questionnaire — " + (answers.business || answers.name || "Client"),
+        from_name: "Morobo Questionnaire",
+        replyto: answers.email || "",
+        name: answers.name || "",
+        email: answers.email || "",
+        business: answers.business || "",
+        estimate_one_time: "$" + est.oneTime.toLocaleString(),
+        estimate_monthly: est.monthly ? "$" + est.monthly + "/mo" : "none",
+        message: buildSummary(est),
+        botcheck: ""
+      };
+
+      nextBtn.disabled = true;
+      nextBtn.textContent = "Sending…";
+      errorEl.style.display = "none";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.success) { showSuccess(); }
+        else { throw new Error(data.message || "Submission failed"); }
+      })
+      .catch(function () {
+        nextBtn.disabled = false;
+        nextBtn.textContent = "Send it →";
+        showError("Something went wrong sending your answers. Please try again, or email contact@morobo.org.");
+      });
+    }
+
+    function showSuccess() {
+      stageEl.style.display = "none";
+      navBar.style.display = "none";
+      progressEl.style.width = "100%";
+      stepCountEl.textContent = "Done";
+      successEl.classList.add("is-active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // ── Events ────────────────────────────────────────────────────────────
+    nextBtn.addEventListener("click", function () {
+      if (STEPS[current].type === "review") { readStep(); submit(); }
+      else { go(1); }
+    });
+    backBtn.addEventListener("click", function () { go(-1); });
+    document.getElementById("qForm").addEventListener("submit", function (e) { e.preventDefault(); });
+
+    renderStep(0);
+  })();
+  </script>
+</body>
+</html>
