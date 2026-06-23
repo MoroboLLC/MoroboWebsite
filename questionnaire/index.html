@@ -208,6 +208,34 @@
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")
         center / 13px no-repeat;
     }
+    /* option text + sub-note (used by publishing) */
+    .q-opt-text { display: flex; flex-direction: column; gap: 2px; }
+    .q-opt-note {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .q-opt input:checked + .q-opt-box .q-opt-note { color: var(--text-secondary); }
+
+    /* subtle inline text box for "Other" choices */
+    .q-custom {
+      width: 100%;
+      margin-top: 0.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.7rem 0.9rem;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 16px;
+      -webkit-appearance: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .q-custom::placeholder { color: var(--text-muted); }
+    .q-custom:focus { outline: none; border-color: var(--border-accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .q-custom[hidden] { display: none; }
+    .q-custom.q-invalid { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.12); }
 
     /* ── Bottom nav (sticky) ── */
     .q-nav {
@@ -359,6 +387,7 @@
     // ── Questionnaire definition ─────────────────────────────────────────────
     // Pricing metadata (price = one-time $, monthly = recurring $) is read only
     // to build the internal estimate emailed to Morobo. Clients never see it.
+    // Every question is required except those explicitly marked optional.
     var STEPS = [
       { type: "intro" },
 
@@ -368,8 +397,8 @@
         fields: [
           { key: "name", type: "text", label: "Your name", required: true, placeholder: "Jane Smith" },
           { key: "email", type: "email", label: "Email", required: true, placeholder: "you@email.com" },
-          { key: "business", type: "text", label: "Business or project name", placeholder: "Acme Co." },
-          { key: "industry", type: "single", label: "What kind of business is this?", options: [
+          { key: "business", type: "text", label: "Business or project name (optional)", placeholder: "Acme Co." },
+          { key: "industry", type: "single", required: true, label: "What kind of business is this?", options: [
             { value: "Restaurant / food" }, { value: "Retail / e-commerce" }, { value: "Health / fitness" },
             { value: "Services / booking" }, { value: "Events / community" }, { value: "Personal / creator" },
             { value: "Something else" }
@@ -381,14 +410,14 @@
         title: "Your app at a glance",
         sub: "The big picture — we'll get into specifics next.",
         fields: [
-          { key: "purpose", type: "textarea", label: "In a sentence or two, what should the app do?", required: true, placeholder: "e.g. Let customers order ahead and earn loyalty points." },
-          { key: "platforms", type: "single", label: "Which platforms do you need?", options: [
+          { key: "purpose", type: "textarea", required: true, label: "In a sentence or two, what should the app do?", placeholder: "e.g. Let customers order ahead and earn loyalty points." },
+          { key: "platforms", type: "single", required: true, label: "Which platforms do you need?", options: [
             { value: "iPhone (iOS)", price: 0 },
             { value: "Android", price: 0 },
-            { value: "Both iOS & Android", price: 800 },
-            { value: "Not sure yet", price: 400 }
+            { value: "Both iOS & Android", price: 500 },
+            { value: "Not sure yet", price: 250 }
           ] },
-          { key: "projectType", type: "single", label: "Is this a new app or existing?", options: [
+          { key: "projectType", type: "single", required: true, label: "Is this a new app or existing?", options: [
             { value: "Brand-new app", price: 0 },
             { value: "Redesign of an existing app", price: 0 },
             { value: "Add features to an existing app", price: -200 }
@@ -400,40 +429,41 @@
         title: "Core features",
         sub: "Pick everything you'd like — don't worry about cost or feasibility, we'll guide you. You can change these anytime.",
         fields: [
-          { key: "features", type: "multi", label: "What should the app include?", options: [
-            { value: "User accounts & login", price: 400 },
-            { value: "Push notifications", price: 200, monthly: 10 },
-            { value: "In-app payments / e-commerce", price: 800, monthly: 25 },
-            { value: "Booking & scheduling", price: 600 },
-            { value: "Maps & location", price: 400 },
-            { value: "Chat / messaging", price: 700, monthly: 15 },
-            { value: "Social feed & profiles", price: 700, monthly: 15 },
-            { value: "Reviews & ratings", price: 250 },
-            { value: "Loyalty / rewards", price: 400 },
-            { value: "Ordering (food, products, etc.)", price: 700, monthly: 15 },
-            { value: "News / blog / content", price: 300 },
-            { value: "Photo & video upload", price: 400, monthly: 10 },
-            { value: "Search", price: 250 },
-            { value: "Analytics dashboard", price: 300 },
-            { value: "Offline mode", price: 400 },
-            { value: "Multiple languages", price: 400 },
-            { value: "AI-powered features", price: 900, monthly: 25 }
+          { key: "features", type: "multi", required: true, label: "What should the app include?", customPlaceholder: "Tell us what else you'd like…", options: [
+            { value: "User accounts & login", price: 250 },
+            { value: "Push notifications", price: 100, monthly: 10 },
+            { value: "In-app payments / e-commerce", price: 400, monthly: 10 },
+            { value: "Booking & scheduling", price: 300 },
+            { value: "Maps & location", price: 200 },
+            { value: "Chat / messaging", price: 350, monthly: 10 },
+            { value: "Social feed & profiles", price: 350, monthly: 10 },
+            { value: "Reviews & ratings", price: 150 },
+            { value: "Loyalty / rewards", price: 200 },
+            { value: "Ordering (food, products, etc.)", price: 350, monthly: 10 },
+            { value: "News / blog / content", price: 150 },
+            { value: "Photo & video upload", price: 200 },
+            { value: "Search", price: 100 },
+            { value: "Analytics dashboard", price: 150 },
+            { value: "Offline mode", price: 200 },
+            { value: "Multiple languages", price: 200 },
+            { value: "AI-powered features", price: 450, monthly: 15 },
+            { value: "Other (custom)", price: 200, custom: true }
           ] }
         ]
       },
 
       {
         title: "Connections",
-        sub: "Any outside tools or services the app should plug into? Optional — skip if you're unsure.",
+        sub: "Any outside tools or services the app should plug into? Pick “None / not sure” if you're unsure.",
         fields: [
-          { key: "integrations", type: "multi", label: "Third-party integrations", options: [
-            { value: "Stripe / card payments", price: 200 },
-            { value: "Apple Pay / Google Pay", price: 150 },
-            { value: "Social login (Google, Apple, Facebook)", price: 150 },
-            { value: "Email marketing (Mailchimp, etc.)", price: 150 },
-            { value: "CRM (HubSpot, Salesforce, etc.)", price: 200 },
-            { value: "Calendar sync", price: 150 },
-            { value: "Custom / other API", price: 250 },
+          { key: "integrations", type: "multi", required: true, label: "Third-party integrations", customPlaceholder: "Which service or API?", options: [
+            { value: "Stripe / card payments", price: 150 },
+            { value: "Apple Pay / Google Pay", price: 100 },
+            { value: "Social login (Google, Apple, Facebook)", price: 100 },
+            { value: "Email marketing (Mailchimp, etc.)", price: 100 },
+            { value: "CRM (HubSpot, Salesforce, etc.)", price: 150 },
+            { value: "Calendar sync", price: 100 },
+            { value: "Other (custom)", price: 150, custom: true },
             { value: "None / not sure", price: 0 }
           ] }
         ]
@@ -443,22 +473,22 @@
         title: "Look & feel",
         sub: "The vibe you're going for. We'll turn this into a polished design.",
         fields: [
-          { key: "designStyle", type: "single", label: "Which style fits your vision?", options: [
+          { key: "designStyle", type: "single", required: true, label: "Which style fits your vision?", options: [
             { value: "Minimal & clean", price: 0 },
             { value: "Bold & colorful", price: 0 },
-            { value: "Elegant & premium", price: 500 },
+            { value: "Elegant & premium", price: 300 },
             { value: "Playful & fun", price: 0 },
             { value: "Corporate & professional", price: 0 },
             { value: "Not sure — guide me", price: 0 }
           ] },
-          { key: "branding", type: "single", label: "Do you have branding ready?", options: [
+          { key: "branding", type: "single", required: true, label: "Do you have branding ready?", options: [
             { value: "Full brand kit (logo, colors, fonts)", price: 0 },
-            { value: "Just a logo", price: 200 },
-            { value: "Nothing yet — design from scratch", price: 400 }
+            { value: "Just a logo", price: 100 },
+            { value: "Nothing yet — design from scratch", price: 250 }
           ] },
-          { key: "theme", type: "single", label: "Light or dark theme?", options: [
+          { key: "theme", type: "single", required: true, label: "Light or dark theme?", options: [
             { value: "Light", price: 0 }, { value: "Dark", price: 0 },
-            { value: "Both (user can switch)", price: 200 }, { value: "No preference", price: 0 }
+            { value: "Both (user can switch)", price: 100 }, { value: "No preference", price: 0 }
           ] },
           { key: "references", type: "text", label: "Apps whose look you love? (optional)", placeholder: "e.g. Airbnb, Notion, Duolingo" }
         ]
@@ -468,26 +498,42 @@
         title: "Size & content",
         sub: "A rough sense of scope. Best guesses are totally fine.",
         fields: [
-          { key: "screens", type: "single", label: "How big is the app, roughly?", options: [
+          { key: "screens", type: "single", required: true, label: "How big is the app, roughly?", options: [
             { value: "Small (1–5 screens)", price: 0 },
-            { value: "Medium (6–12 screens)", price: 600 },
-            { value: "Large (13+ screens)", price: 1500 },
-            { value: "Not sure", price: 400 }
+            { value: "Medium (6–12 screens)", price: 400 },
+            { value: "Large (13+ screens)", price: 900 },
+            { value: "Not sure", price: 250 }
           ] },
-          { key: "backend", type: "single", label: "Will it need accounts, a database, or live data?", options: [
-            { value: "Yes", price: 700, monthly: 25 },
+          { key: "backend", type: "single", required: true, label: "Will it need accounts, a database, or live data?", options: [
+            { value: "Yes", price: 400, monthly: 15 },
             { value: "No — standalone app", price: 0 },
-            { value: "Not sure", price: 350, monthly: 10 }
+            { value: "Not sure", price: 200, monthly: 10 }
           ] },
-          { key: "admin", type: "single", label: "Need an admin panel to manage content?", options: [
-            { value: "Yes", price: 600 },
+          { key: "admin", type: "single", required: true, label: "Need an admin panel to manage content?", options: [
+            { value: "Yes", price: 350 },
             { value: "No", price: 0 },
-            { value: "Not sure", price: 200 }
+            { value: "Not sure", price: 150 }
           ] },
-          { key: "content", type: "single", label: "Who provides the content (text, images)?", options: [
+          { key: "content", type: "single", required: true, label: "Who provides the content (text, images)?", options: [
             { value: "I'll provide everything", price: 0 },
-            { value: "A mix — some help needed", price: 200 },
-            { value: "I need help creating it", price: 400 }
+            { value: "A mix — some help needed", price: 150 },
+            { value: "I need help creating it", price: 300 }
+          ] }
+        ]
+      },
+
+      {
+        title: "Extras & add-ons",
+        sub: "Anything you'd like alongside the app. Pick “Just the app” if you only need the app itself.",
+        fields: [
+          { key: "addons", type: "multi", required: true, label: "Want anything beyond the app?", customPlaceholder: "What else do you need?", options: [
+            { value: "Just the app", price: 0 },
+            { value: "Landing page with a smart /get link (auto-sends visitors to the right app store)", price: 350 },
+            { value: "Full marketing website", price: 800, monthly: 10 },
+            { value: "Redesign of my existing website", price: 700 },
+            { value: "Logo & brand design", price: 300 },
+            { value: "App Store listing setup & optimization", price: 200 },
+            { value: "Other (custom)", price: 150, custom: true }
           ] }
         ]
       },
@@ -496,33 +542,29 @@
         title: "Timeline & upkeep",
         sub: "When you want it, and what happens after launch.",
         fields: [
-          { key: "timeline", type: "single", label: "When would you like to launch?", options: [
-            { value: "ASAP / under 1 month", rush: 0.2 },
-            { value: "1–2 months", rush: 0.1 },
-            { value: "3–6 months", rush: 0 },
+          { key: "timeline", type: "single", required: true, label: "When would you like to launch?", options: [
+            { value: "2 weeks (expedited)", rush: 0.15 },
+            { value: "Under a month", rush: 0.05 },
+            { value: "1–2 months", rush: 0 },
             { value: "Flexible / no rush", rush: 0 }
           ] },
-          { key: "maintenance", type: "single", label: "After launch, do you want ongoing support?", options: [
+          { key: "maintenance", type: "single", required: true, label: "After launch, do you want ongoing support?", options: [
             { value: "Yes — regular updates & new features", monthly: 75 },
             { value: "Occasional updates only", monthly: 25 },
             { value: "No — just build it and hand off", monthly: 0, handoff: true }
-          ] },
-          { key: "budget", type: "single", label: "Do you have a budget in mind? (optional)", help: "Just helps us tailor the proposal — no wrong answer.", options: [
-            { value: "Under $2,000" }, { value: "$2,000 – $4,000" }, { value: "$4,000 – $7,000" },
-            { value: "$7,000+" }, { value: "Not sure yet" }
           ] }
         ]
       },
 
       {
         title: "Publishing",
-        sub: "How you'd like the finished app delivered. Not sure? Pick the last option and we'll walk you through it.",
+        sub: "How you'd like the finished app delivered. This affects who owns it and how you get paid — not sure? Pick the last option.",
         fields: [
-          { key: "publishing", type: "single", label: "How would you like the app published?", options: [
-            { value: "Under my own developer account (I own it)" },
-            { value: "Under Morobo's account" },
-            { value: "Just hand me the app files" },
-            { value: "Not sure — advise me" }
+          { key: "publishing", type: "single", required: true, label: "How would you like the app published?", options: [
+            { value: "Under my own developer account", note: "You own the app 100%. We set the account up for you, so your business is the “developer” name shown on the App Store, and store payouts go straight to you automatically." },
+            { value: "Under Morobo's account", note: "Quickest to launch. “Morobo” shows as the developer, and any store payouts come to us and are forwarded to you manually." },
+            { value: "Just hand me the finished files", note: "We build it and hand over the files; you publish it yourself under your own account." },
+            { value: "Not sure — advise me", note: "We'll explain the trade-offs and recommend the best fit for you." }
           ] }
         ]
       },
@@ -558,6 +600,19 @@
         return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c];
       });
     }
+    function customOptionOf(f) {
+      if (!f.options) return null;
+      for (var i = 0; i < f.options.length; i++) if (f.options[i].custom) return f.options[i];
+      return null;
+    }
+    function cleanLabel(s) { return s.replace(/\s*\*$/, "").replace(/\s*\(optional\)\s*$/i, ""); }
+    function answerDisplay(f) {
+      var v = answers[f.key];
+      var disp = Array.isArray(v) ? (v.length ? v.join(", ") : "") : (v || "");
+      var other = answers[f.key + "_other"];
+      if (other) disp += (disp ? " — " : "") + "Other: " + other;
+      return disp;
+    }
 
     function fieldHTML(f) {
       var saved = answers[f.key];
@@ -578,13 +633,25 @@
         html += '<p class="q-flabel">' + esc(f.label) + labelReq + "</p>" + help;
         var gridClass = f.options.length > 5 && !multi ? "" : (f.options.length >= 6 ? " q-grid-2" : "");
         html += '<div class="q-options' + gridClass + '">';
-        f.options.forEach(function (o, i) {
+        f.options.forEach(function (o) {
           var checked = multi ? (Array.isArray(saved) && saved.indexOf(o.value) > -1) : (saved === o.value);
+          var noteHTML = o.note ? '<span class="q-opt-note">' + esc(o.note) + "</span>" : "";
           html += '<label class="q-opt" data-multi="' + multi + '">' +
-            '<input type="' + (multi ? "checkbox" : "radio") + '" name="' + f.key + '" value="' + esc(o.value) + '"' + (checked ? " checked" : "") + ">" +
-            '<span class="q-opt-box">' + esc(o.value) + "</span></label>";
+            '<input type="' + (multi ? "checkbox" : "radio") + '" name="' + f.key + '" value="' + esc(o.value) + '"' +
+              (checked ? " checked" : "") + (o.custom ? ' data-custom="1"' : "") + ">" +
+            '<span class="q-opt-box"><span class="q-opt-text">' + esc(o.value) + noteHTML + "</span></span></label>";
         });
         html += "</div>";
+
+        // "Other" text box rendered full-width below the grid so it never sits in a cell
+        var co = customOptionOf(f);
+        if (co) {
+          var cval = answers[f.key + "_other"] || "";
+          var coChecked = multi ? (Array.isArray(saved) && saved.indexOf(co.value) > -1) : (saved === co.value);
+          html += '<input type="text" class="q-custom" data-for="' + f.key + '" id="qc_' + f.key +
+                  '" placeholder="' + esc(f.customPlaceholder || "Tell us more…") + '" value="' + esc(cval) + '"' +
+                  (coChecked ? "" : " hidden") + ">";
+        }
       }
       html += "</div>";
       return html;
@@ -599,9 +666,9 @@
           '<div class="q-step is-active">' +
             '<p class="q-eyebrow">App Project Questionnaire</p>' +
             '<h1 class="q-title">Let\'s build your app.</h1>' +
-            '<p class="q-sub">Answer a few quick questions about your idea — features, design, timeline — and the Morobo team will follow up with a tailored plan and proposal. Most people finish in about 3 minutes.</p>' +
+            '<p class="q-sub">Answer a few quick questions about your idea — features, design, timeline — and the Morobo team will follow up with a tailored plan and proposal. Takes just a few minutes.</p>' +
             '<div class="q-intro-meta">' +
-              '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> ~3 minutes</span>' +
+              '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> A few minutes</span>' +
               '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No commitment</span>' +
               '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Your info stays private</span>' +
             "</div>" +
@@ -629,11 +696,25 @@
 
     function bindStep() {
       // Enter advances on single-line inputs
-      stageEl.querySelectorAll('input.q-input').forEach(function (inp) {
+      stageEl.querySelectorAll("input.q-input").forEach(function (inp) {
         inp.addEventListener("keydown", function (e) {
           if (e.key === "Enter") { e.preventDefault(); nextBtn.click(); }
         });
         inp.addEventListener("input", function () { inp.classList.remove("q-invalid"); errorEl.style.display = "none"; });
+      });
+      // Selecting any option clears the error
+      stageEl.querySelectorAll(".q-opt input").forEach(function (inp) {
+        inp.addEventListener("change", function () { errorEl.style.display = "none"; });
+      });
+      // "Other" checkbox/radio toggles its text box
+      stageEl.querySelectorAll('input[data-custom="1"]').forEach(function (cb) {
+        cb.addEventListener("change", function () {
+          var box = stageEl.querySelector('.q-custom[data-for="' + cb.name + '"]');
+          if (box) { box.hidden = !cb.checked; if (cb.checked) box.focus(); }
+        });
+      });
+      stageEl.querySelectorAll(".q-custom").forEach(function (box) {
+        box.addEventListener("input", function () { box.classList.remove("q-invalid"); errorEl.style.display = "none"; });
       });
     }
 
@@ -646,10 +727,16 @@
         if (f.type === "text" || f.type === "email" || f.type === "textarea") {
           answers[f.key] = wrap.querySelector("input, textarea").value.trim();
         } else if (f.type === "single") {
-          var sel = wrap.querySelector("input:checked");
+          var sel = wrap.querySelector(".q-opt input:checked");
           answers[f.key] = sel ? sel.value : undefined;
         } else if (f.type === "multi") {
-          answers[f.key] = Array.prototype.map.call(wrap.querySelectorAll("input:checked"), function (i) { return i.value; });
+          answers[f.key] = Array.prototype.map.call(wrap.querySelectorAll(".q-opt input:checked"), function (i) { return i.value; });
+        }
+        // capture the "Other" free-text when its option is selected
+        if (customOptionOf(f)) {
+          var custCb = wrap.querySelector('input[data-custom="1"]');
+          var custBox = wrap.querySelector(".q-custom");
+          answers[f.key + "_other"] = (custCb && custCb.checked && custBox) ? custBox.value.trim() : "";
         }
       });
     }
@@ -659,12 +746,26 @@
       if (!step.fields) return true;
       for (var i = 0; i < step.fields.length; i++) {
         var f = step.fields[i];
-        if (!f.required) continue;
-        var val = answers[f.key];
-        var empty = val == null || val === "" || (Array.isArray(val) && val.length === 0);
-        if (empty) { showError("Please fill in “" + f.label.replace(/\s*\*$/, "") + "” to continue.", f.key); return false; }
-        if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-          showError("That email doesn't look right — mind double-checking?", f.key); return false;
+        // required check
+        if (f.required) {
+          var val = answers[f.key];
+          var empty = val == null || val === "" || (Array.isArray(val) && val.length === 0);
+          if (empty) { showError("Please answer “" + cleanLabel(f.label) + "” to continue.", f.key); return false; }
+          if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+            showError("That email doesn't look right — mind double-checking?", f.key); return false;
+          }
+        }
+        // if an "Other" option is chosen, its text box must be filled
+        var co = customOptionOf(f);
+        if (co) {
+          var picked = Array.isArray(answers[f.key]) ? answers[f.key].indexOf(co.value) > -1 : answers[f.key] === co.value;
+          if (picked && !answers[f.key + "_other"]) {
+            errorEl.textContent = "Please describe your “Other” choice, or unselect it.";
+            errorEl.style.display = "block";
+            var box = stageEl.querySelector('[data-key="' + f.key + '"] .q-custom');
+            if (box) { box.classList.add("q-invalid"); box.focus(); }
+            return false;
+          }
         }
       }
       return true;
@@ -675,7 +776,7 @@
       errorEl.style.display = "block";
       if (key) {
         var el = stageEl.querySelector('[data-key="' + key + '"] input, [data-key="' + key + '"] textarea');
-        if (el && el.classList) { el.classList.add("q-invalid"); el.focus(); }
+        if (el && el.classList) { el.classList.add("q-invalid"); if (el.type !== "radio" && el.type !== "checkbox") el.focus(); }
       }
     }
 
@@ -702,12 +803,8 @@
 
     function go(dir) {
       errorEl.style.display = "none";
-      if (dir > 0) {
-        readStep();
-        if (!validateStep()) return;
-      } else {
-        readStep();
-      }
+      readStep();
+      if (dir > 0 && !validateStep()) return;
       var nextIdx = current + dir;
       if (nextIdx < 0 || nextIdx >= STEPS.length) return;
 
@@ -728,10 +825,10 @@
       STEPS.forEach(function (s) {
         if (!s.fields) return;
         s.fields.forEach(function (f) {
-          var v = answers[f.key];
-          if (v == null || v === "" || (Array.isArray(v) && v.length === 0)) return;
-          rows += '<div class="q-review-row"><div class="q-review-q">' + esc(f.label.replace(/\s*\*$/, "")) +
-                  '</div><div class="q-review-a">' + esc(Array.isArray(v) ? v.join(", ") : v) + "</div></div>";
+          var disp = answerDisplay(f);
+          if (!disp) return;
+          rows += '<div class="q-review-row"><div class="q-review-q">' + esc(cleanLabel(f.label)) +
+                  '</div><div class="q-review-a">' + esc(disp) + "</div></div>";
         });
       });
       return rows || '<div class="q-review-a">No answers yet.</div>';
@@ -777,9 +874,7 @@
         if (!s.fields) return;
         if (s.title) L.push("— " + s.title + " —");
         s.fields.forEach(function (f) {
-          var v = answers[f.key];
-          var disp = Array.isArray(v) ? (v.length ? v.join(", ") : "(none)") : (v || "(not answered)");
-          L.push("  " + f.label.replace(/\s*\*$/, "") + ": " + disp);
+          L.push("  " + cleanLabel(f.label) + ": " + (answerDisplay(f) || "(not answered)"));
         });
         L.push("");
       });
