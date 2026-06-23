@@ -28,7 +28,7 @@
     .q-shell {
       max-width: 640px;
       margin: 0 auto;
-      padding: 1.25rem 1.25rem 8rem;
+      padding: 1.25rem 1.25rem 9rem;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -130,7 +130,7 @@
     }
     .q-fhelp {
       font-size: 0.83rem;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       margin-bottom: 0.9rem;
       line-height: 1.5;
     }
@@ -213,10 +213,13 @@
     .q-opt-note {
       font-size: 0.78rem;
       font-weight: 400;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       line-height: 1.45;
     }
     .q-opt input:checked + .q-opt-box .q-opt-note { color: var(--text-secondary); }
+    /* lift informational text to AA contrast in dark mode (--text-secondary is too dim on #111) */
+    [data-theme="dark"] .q-opt-note,
+    [data-theme="dark"] .q-fhelp { color: #9a9a9a; }
 
     /* subtle inline text box for "Other" choices */
     .q-custom {
@@ -306,13 +309,15 @@
     .q-review-a { font-size: 0.92rem; color: var(--text); line-height: 1.5; }
     .q-form-error {
       display: none;
+      max-width: 640px;
+      margin: 0 auto 0.6rem;
       background: rgba(239,68,68,0.1);
       border: 1px solid rgba(239,68,68,0.3);
       color: #ef4444;
       font-size: 0.85rem;
-      padding: 0.8rem 1rem;
+      padding: 0.7rem 1rem;
       border-radius: var(--radius);
-      margin-bottom: 1rem;
+      line-height: 1.45;
     }
 
     /* ── Success ── */
@@ -335,9 +340,12 @@
     .q-success h2 { font-size: clamp(1.7rem, 6vw, 2.3rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; color: var(--text); }
     .q-success p { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.65; max-width: 420px; margin: 0 auto 2rem; }
 
-    @media (max-width: 480px) {
-      .q-shell { padding: 1rem 1.05rem 7rem; }
+    /* Single-column options across all phone widths (not just <=480) */
+    @media (max-width: 640px) {
       .q-options.q-grid-2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .q-shell { padding: 1rem 1.05rem 8rem; }
       .q-progress { margin-bottom: 2rem; }
     }
   </style>
@@ -371,9 +379,9 @@
 
   <!-- Sticky nav -->
   <div class="q-nav" id="qNavBar">
+    <div class="q-form-error" id="qError"></div>
     <div class="q-nav-inner">
       <button type="button" class="q-btn q-btn-ghost" id="qBack" hidden>← Back</button>
-      <div class="q-form-error" id="qError" style="flex:1; margin:0;"></div>
       <button type="button" class="q-btn q-btn-primary" id="qNext">Continue</button>
     </div>
   </div>
@@ -464,7 +472,7 @@
             { value: "CRM (HubSpot, Salesforce, etc.)", price: 150 },
             { value: "Calendar sync", price: 100 },
             { value: "Other (custom)", price: 150, custom: true },
-            { value: "None / not sure", price: 0 }
+            { value: "None / not sure", price: 0, exclusive: true }
           ] }
         ]
       },
@@ -527,7 +535,7 @@
         sub: "Anything you'd like alongside the app. Pick “Just the app” if you only need the app itself.",
         fields: [
           { key: "addons", type: "multi", required: true, label: "Want anything beyond the app?", customPlaceholder: "What else do you need?", options: [
-            { value: "Just the app", price: 0 },
+            { value: "Just the app", price: 0, exclusive: true },
             { value: "Landing page with a smart /get link (auto-sends visitors to the right app store)", price: 350 },
             { value: "Full marketing website", price: 800, monthly: 10 },
             { value: "Redesign of my existing website", price: 700 },
@@ -583,6 +591,7 @@
     // ── State ────────────────────────────────────────────────────────────────
     var answers = {};
     var current = 0;
+    var transitioning = false;
     var stageEl = document.getElementById("qStage");
     var progressEl = document.getElementById("qProgress");
     var stepCountEl = document.getElementById("qStepCount");
@@ -638,7 +647,7 @@
           var noteHTML = o.note ? '<span class="q-opt-note">' + esc(o.note) + "</span>" : "";
           html += '<label class="q-opt" data-multi="' + multi + '">' +
             '<input type="' + (multi ? "checkbox" : "radio") + '" name="' + f.key + '" value="' + esc(o.value) + '"' +
-              (checked ? " checked" : "") + (o.custom ? ' data-custom="1"' : "") + ">" +
+              (checked ? " checked" : "") + (o.custom ? ' data-custom="1"' : "") + (o.exclusive ? ' data-exclusive="1"' : "") + ">" +
             '<span class="q-opt-box"><span class="q-opt-text">' + esc(o.value) + noteHTML + "</span></span></label>";
         });
         html += "</div>";
@@ -702,9 +711,25 @@
         });
         inp.addEventListener("input", function () { inp.classList.remove("q-invalid"); errorEl.style.display = "none"; });
       });
-      // Selecting any option clears the error
+      // Selecting any option clears the error; enforce exclusive ("None" / "Just the app") choices
       stageEl.querySelectorAll(".q-opt input").forEach(function (inp) {
-        inp.addEventListener("change", function () { errorEl.style.display = "none"; });
+        inp.addEventListener("change", function () {
+          errorEl.style.display = "none";
+          if (inp.type === "checkbox" && inp.checked) {
+            var isExclusive = inp.getAttribute("data-exclusive") === "1";
+            stageEl.querySelectorAll('.q-opt input[name="' + inp.name + '"]').forEach(function (other) {
+              if (other === inp) return;
+              var clash = isExclusive || other.getAttribute("data-exclusive") === "1";
+              if (clash && other.checked) {
+                other.checked = false;
+                if (other.getAttribute("data-custom") === "1") {
+                  var box = stageEl.querySelector('.q-custom[data-for="' + other.name + '"]');
+                  if (box) box.hidden = true;
+                }
+              }
+            });
+          }
+        });
       });
       // "Other" checkbox/radio toggles its text box
       stageEl.querySelectorAll('input[data-custom="1"]').forEach(function (cb) {
@@ -763,7 +788,7 @@
             errorEl.textContent = "Please describe your “Other” choice, or unselect it.";
             errorEl.style.display = "block";
             var box = stageEl.querySelector('[data-key="' + f.key + '"] .q-custom');
-            if (box) { box.classList.add("q-invalid"); box.focus(); }
+            if (box) { box.classList.add("q-invalid"); try { box.focus({ preventScroll: true }); } catch (e) { box.focus(); } if (box.scrollIntoView) box.scrollIntoView({ block: "center", behavior: "smooth" }); }
             return false;
           }
         }
@@ -775,8 +800,13 @@
       errorEl.textContent = msg;
       errorEl.style.display = "block";
       if (key) {
-        var el = stageEl.querySelector('[data-key="' + key + '"] input, [data-key="' + key + '"] textarea');
-        if (el && el.classList) { el.classList.add("q-invalid"); if (el.type !== "radio" && el.type !== "checkbox") el.focus(); }
+        var wrap = stageEl.querySelector('[data-key="' + key + '"]');
+        var el = wrap ? wrap.querySelector("input, textarea") : null;
+        if (el && el.classList) {
+          el.classList.add("q-invalid");
+          if (el.type !== "radio" && el.type !== "checkbox") { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } }
+        }
+        if (wrap && wrap.scrollIntoView) wrap.scrollIntoView({ block: "center", behavior: "smooth" });
       }
     }
 
@@ -802,6 +832,7 @@
     }
 
     function go(dir) {
+      if (transitioning) return;
       errorEl.style.display = "none";
       readStep();
       if (dir > 0 && !validateStep()) return;
@@ -810,9 +841,14 @@
 
       var leaving = stageEl.querySelector(".q-step");
       if (leaving) {
+        transitioning = true;
         leaving.classList.add("is-leaving");
         current = nextIdx;
-        setTimeout(function () { renderStep(current); window.scrollTo({ top: 0, behavior: "smooth" }); }, 200);
+        setTimeout(function () {
+          renderStep(current);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          transitioning = false;
+        }, 200);
       } else {
         current = nextIdx;
         renderStep(current);
@@ -858,6 +894,7 @@
       });
       oneTime = Math.max(1500, oneTime);
       oneTime = Math.round(oneTime * (1 + rush) / 50) * 50;
+      oneTime = Math.min(7500, oneTime); // keep the internal estimate in a believable small-business band
       monthly = handoff ? 0 : Math.max(25, Math.round(monthly / 5) * 5);
       return { oneTime: oneTime, monthly: monthly, rush: rush, handoff: handoff };
     }
@@ -930,6 +967,7 @@
 
     // ── Events ────────────────────────────────────────────────────────────
     nextBtn.addEventListener("click", function () {
+      if (transitioning) return;
       if (STEPS[current].type === "review") { readStep(); submit(); }
       else { go(1); }
     });
