@@ -36,6 +36,8 @@ jobs:
             --exclude='.github' \
             --exclude='_site' \
             --exclude='_config.yml' \
+            --exclude='client-docs' \
+            --exclude='.claude' \
             . _site/
       
       - name: Create Pages artifact
