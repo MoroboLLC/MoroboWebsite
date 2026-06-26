@@ -2,91 +2,66 @@
 
 **Custom Mobile App — {{CLIENT_BUSINESS}}**
 Prepared for: {{CLIENT_CONTACT}}, {{CLIENT_TITLE}}
-Prepared by: Morobo LLC · {{DATE}}
+Morobo LLC · {{DATE}}
 
----
+> **Review copy — not for signature.** This sets out the scope and pricing for your review. A signable version is issued once the details are finalized.
 
 ## 1. Project Overview
 
-Morobo LLC ("Morobo") will design and build a custom branded mobile app for {{CLIENT_BUSINESS}} ("Client") on both iPhone (iOS) and Android. {{PROJECT_SUMMARY}}
+{{PROJECT_SUMMARY}}
 
-*In your words:* "{{CLIENT_GOAL_QUOTE}}"
+## 2. What's Included — Version 1 (Launch)
 
-## 2. Scope of Work — Version 1 (Launch)
-
-The following is included in your launch build. Each module is priced at standard value; your rate is applied in the summary below.
-
-| Module | What's included | Value |
-|---|---|---|
-{{SCOPE_ROWS}}
-
-## 3. Investment Summary
-
-| | |
+| Feature | What it does |
 |---|---|
-| Standard build value | {{STANDARD_VALUE}} |
-| Discount | {{DISCOUNT}} |
-| **Total one-time build** | **{{TOTAL_ONE_TIME}}** |
-| **Monthly plan (begins at launch)** | **{{MONTHLY}}** |
+{{FEATURE_ROWS}}
 
-**Note:** Apple Developer ($99/year) and Google Play ($25 one-time) account fees are paid by Client directly, since the app is published under Client's own accounts (see the Agreement). All prices exclude any applicable taxes.
+## 3. Investment
 
-## 4. Monthly Plan — {{MONTHLY}}
+- **One-time build:** {{TOTAL_ONE_TIME}}
+- **Monthly plan:** {{MONTHLY}} — begins at launch; cancel anytime with 30 days' notice
+- **Payment — your choice:** {{DEPOSIT}} + {{BALANCE}} (50 / 50), or {{TOTAL_ONE_TIME}} paid in full
 
-Begins at launch and keeps the app running smoothly. Includes:
+Founding-client rate, offered in exchange for a testimonial and referrals once you're happy with the result. Developer-account fees are covered within your monthly plan. Prices exclude any applicable taxes.
 
-- Cloud hosting, database, and secure backend for the app's features
-- Uptime monitoring and routine maintenance
-- Occasional updates and light content help
-- Bug fixes and email support
-- Guidance keeping app-store accounts in good standing
+## 4. Order Types
 
-Cancel anytime with 30 days' written notice.
+{{ORDER_TYPES}}
 
-## 5. Not Included — Phase 2 (Future)
+## 5. Monthly Plan — {{MONTHLY}}
 
-Saved for later and quoted separately when you're ready: {{PHASE_2_LIST}}.
+Keeps the app running and supported. Includes cloud hosting, the secure backend that powers the app, uptime monitoring, routine maintenance, occasional updates and light content help, bug fixes, and email support. Cancel anytime with 30 days' notice.
 
-## 6. Timeline
+## 6. Publishing & Ownership — Two Options
 
-Timeline is flexible. A focused V1 typically takes a few weeks of build once content and store accounts are ready. Milestones:
+You receive **all of your sales** (through your own Stripe account) and you **own the underlying app code** either way. The only difference is what stays live if you ever stop your monthly plan:
 
-1. Kickoff — confirm details, collect materials, set up accounts
-2. Design — Client reviews and approves the look
-3. Build — core features come together
-4. Review & test — tested together
-5. Launch — live on the App Store & Google Play under Client's accounts
+| | Option 1 — Self-Publish (you own it) | Option 2 — Morobo-Managed (simplest) |
+|---|---|---|
+| App is published under | Your own Apple & Google accounts (we set them up for you) | Morobo's developer accounts |
+| Setup effort for you | Minimal — we handle it | None |
+| You receive all sales | Yes — via your Stripe | Yes — via your Stripe |
+| You own | The app code, the store listings, and the developer accounts | The app code (the build itself) |
+| If you cancel the monthly plan | Your app stays in the stores under your own accounts; hosting stops, so you arrange to keep it running | Your app is removed from the App Store & Google Play and hosting stops; you keep the app code and a full export of your data |
 
-## 7. Assumptions & Dependencies
+We'll record your chosen option in the Agreement before signing.
 
-- Client provides menu/content, photos, logo, and brand details; Morobo can assist where noted.
-- {{KEY_DEPENDENCY}} <!-- e.g., POS integration may adjust scope/price; confirmed at kickoff -->
-- Client authorizes and owns the Apple and Google developer accounts; Morobo will help set them up.
+## 7. Not Included — Phase 2 (Future)
+
+Quoted separately when you're ready: {{PHASE_2_LIST}}.
+
+## 8. Timeline
+
+{{TIMELINE}}
+
+## 9. Assumptions & Dependencies
+
+- Client provides menu (items, prices, options), food photos, logo, and brand details; Morobo can assist where noted.
+- Point-of-sale integration, if required, is Phase 2 and may affect scope/price — confirmed at kickoff.
 - Timely feedback and content delivery keep the timeline on track.
 
-## 8. Payment Schedule
-
-Client selects one option on signing:
-
-- **Option A — 50 / 50:** {{DEPOSIT}} deposit to begin work + {{BALANCE}} balance due at launch.
-- **Option B — Paid in full:** {{TOTAL_ONE_TIME}} at start.
-
-{{MONTHLY}} begins at launch (via invoice); cancel with 30 days' notice.
-
-> Review copies sent before signing omit the signature block below; the signable version is issued once scope is finalized.
-
-This Statement of Work is governed by and incorporates the App Development & Services Agreement between the parties.
+This Statement of Work is governed by and incorporates the App Development & Services Agreement (State of {{GOVERNING_STATE}}; venue {{VENUE}}).
 
 ---
 
-**Accepted and agreed:**
-
-**MOROBO LLC**
-Signature: ______________________  Name: {{SIGNATORY_NAME}}  Title: {{SIGNATORY_TITLE}}  Date: __________
-
-**CLIENT — {{CLIENT_BUSINESS}}**
-Signature: ______________________  Name: {{CLIENT_CONTACT}}  Title: {{CLIENT_TITLE}}  Date: __________
-
----
-
-*Draft prepared by Morobo LLC for review. Not legal advice; review with counsel before signing.*
+*Review copy — not for signature. {{SIGNATORY_NAME}} · {{SIGNATORY_TITLE}}, Morobo LLC · {{EMAIL}} · morobo.org*

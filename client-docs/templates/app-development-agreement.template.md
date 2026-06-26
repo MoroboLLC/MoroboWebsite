@@ -2,74 +2,78 @@
 
 Between **Morobo LLC** and **{{CLIENT_BUSINESS}}**
 Effective Date: {{EFFECTIVE_DATE}} (date of last signature)
-Prepared by: Morobo LLC · {{DATE}}
+Morobo LLC · {{DATE}}
 
 ---
 
 This App Development & Services Agreement ("Agreement") is entered into between **Morobo LLC** ("Morobo"), {{MOROBO_ADDRESS}}, and **{{CLIENT_BUSINESS}}** ("Client"). It governs the services described in the accompanying Statement of Work ("SOW"), which is incorporated by reference.
 
 ## 1. Services
-Morobo will design, develop, and deliver the mobile application and related services described in the SOW. Changes to scope will be agreed in writing and may adjust fees and timeline.
+Morobo will design, develop, and deliver the app and services described in the SOW. Scope changes are agreed in writing and may adjust fees and timeline.
 
 ## 2. Fees & Payment
-- Fees, the payment schedule, and the monthly plan are set out in the SOW.
-- Payments are billed by invoice. The monthly plan auto-renews until cancelled with 30 days' written notice.
+- Fees, payment options (50/50 or paid in full), and the monthly plan are set out in the SOW.
+- Payments are billed by invoice; the monthly plan auto-renews until cancelled with 30 days' written notice.
 - Fees are non-refundable once work has commenced; the deposit is non-refundable if Client cancels.
-- All amounts exclude applicable taxes, which are Client's responsibility.
+- Amounts exclude applicable taxes.
 
 ## 3. Intellectual Property & Ownership
-- **Client ownership.** Upon receipt of final payment for the build, Morobo assigns to Client all right, title, and interest in the custom application built for Client — including its source code, designs, and brand-specific assets created under the SOW. The app is Client's to keep.
-- **Morobo materials.** Morobo retains ownership of its pre-existing and reusable components, frameworks, tools, and general know-how, and grants Client a perpetual, royalty-free license to use those materials as incorporated into the delivered app.
-- **Client content & data.** Client owns all content it provides and all customer data generated through the app.
+- **App code.** Upon final payment, Morobo assigns to Client all right, title, and interest in the custom application built for Client — its source code, designs, and brand-specific assets. **Client owns the app code regardless of the publishing option chosen in Section 4.**
+- **Morobo materials.** Morobo retains its pre-existing/reusable components and grants Client a perpetual license to use them as incorporated in the app.
+- **Client content & data.** Client owns its content and all customer data generated through the app, and may request a full export at any time.
 
-## 4. App Store Accounts & Publishing
-- The app is published under Client's own Apple Developer and Google Play accounts. Client owns these accounts and the store listings.
-- Morobo will assist Client in creating and configuring the accounts.
-- Client is responsible for the Apple ($99/year) and Google Play ($25 one-time) fees and for keeping the accounts in good standing.
-- Customer payments flow through Client's own payment processor directly to Client; Morobo does not hold Client funds.
+## 4. Publishing Options
+Client selects one option (recorded in the SOW). Under **both**, Client receives all of its sales through Client's own Stripe account.
 
-## 5. Client Responsibilities
-- Provide content, menu/materials, photos, branding, and any access Morobo reasonably needs.
-- Warrant that Client owns or has the rights to all content it provides.
+- **Option 1 — Self-Publish.** The app is published under Client's own Apple Developer and Google Play accounts (Morobo assists with setup). Client owns the accounts and listings.
+- **Option 2 — Morobo-Managed.** The app is published under Morobo's developer accounts. Client does not own the store listings; Client still owns the app code (Section 3).
+
+**Developer-account fees** are covered within Client's monthly plan while it is active.
+
+## 5. Hosting & Cancellation
+- The monthly plan covers hosting and the backend that makes the app function. It continues until cancelled by either party with 30 days' written notice; outstanding fees remain due.
+- **On cancellation, hosting and the backend stop, so the live app ceases to function.** In addition:
+  - **Option 1:** the app remains in the stores under Client's own accounts; Client is responsible for arranging hosting to keep it running. Morobo will provide a full data export and reasonable handover assistance.
+  - **Option 2:** the app is removed from the App Store and Google Play. Client keeps the app code (Section 3) and a full data export.
+- Either party may terminate for material breach not cured within 30 days.
+
+## 6. Client Responsibilities
+- Provide content, menu, photos, branding, and access as reasonably needed.
+- Warrant that Client owns or has rights to all content provided.
 - Provide timely feedback and approvals.
 
-## 6. Confidentiality & Publicity
-Each party will protect the other's confidential information. Client agrees Morobo may reference Client as a portfolio client and use a Client testimonial and the project name/type in its marketing.
+## 7. Confidentiality & Publicity
+Each party protects the other's confidential information. Client agrees Morobo may reference Client as a portfolio client and use a testimonial and the project name/type in its marketing.
 
-## 7. Warranty & Disclaimer
-Morobo will correct reproducible defects reported within 30 days after launch at no charge. Otherwise the services are provided "as is," and Morobo disclaims all other warranties, express or implied, including merchantability and fitness for a particular purpose.
+## 8. Warranty & Disclaimer
+Morobo will correct reproducible defects reported within 30 days after launch at no charge. Otherwise services are provided "as is," and Morobo disclaims all other warranties, express or implied.
 
-## 8. Limitation of Liability
-To the maximum extent permitted by law, Morobo's total liability for any claim is limited to the greater of the fees Client paid in the 12 months before the claim or $100. Morobo is not liable for indirect, incidental, or consequential damages, for third-party service outages (e.g., payment processors, Apple, Google), or for data loss caused by Client.
+## 9. Limitation of Liability
+Morobo's total liability for any claim is limited to the greater of the fees Client paid in the prior 12 months or $100. Morobo is not liable for indirect or consequential damages, third-party outages (Stripe, Apple, Google), or data loss caused by Client.
 
-## 9. Indemnification
-Morobo will indemnify Client against third-party claims that the custom work infringes their intellectual property. Client will indemnify Morobo against claims arising from Client-provided content or Client's use of the app in violation of law.
-
-## 10. Term & Termination
-- The monthly plan continues until cancelled by either party with 30 days' written notice; outstanding fees remain due.
-- Either party may terminate for material breach not cured within 30 days.
-- Ownership already assigned to Client under Section 3 remains with Client. On cancellation of the monthly plan, Client is responsible for ongoing hosting/maintenance going forward (Morobo will reasonably assist a handover).
+## 10. Indemnification
+Morobo indemnifies Client against third-party claims that the custom work infringes their intellectual property. Client indemnifies Morobo against claims arising from Client-provided content or unlawful use of the app.
 
 ## 11. Governing Law & Disputes
-This Agreement is governed by the laws of the State of {{GOVERNING_STATE}}, without regard to conflict-of-law principles. The parties will first attempt to resolve disputes informally, then by mediation, and finally by binding arbitration under the AAA Commercial Arbitration Rules in {{VENUE}}. Each party waives participation in class actions. Either party may seek injunctive relief in court for intellectual-property or confidentiality matters.
+Governed by the laws of the State of {{GOVERNING_STATE}}. Disputes are resolved first informally, then by mediation, then by binding arbitration under the AAA Commercial Arbitration Rules in {{VENUE}}. Class actions are waived. Either party may seek injunctive relief for IP or confidentiality matters.
 
 ## 12. General
 - This Agreement and the SOW are the entire agreement and supersede prior discussions.
 - Amendments must be in writing and signed by both parties.
-- Neither party may assign without consent; Morobo may use subcontractors and remains responsible for the work.
+- No assignment without consent; Morobo may use subcontractors and remains responsible.
 - If any provision is unenforceable, the rest remains in effect.
-- Neither party is liable for delays beyond its reasonable control (force majeure).
-- Notices may be sent by email to the addresses the parties use for the project.
+- Force majeure applies to delays beyond reasonable control.
+- Notices may be sent by email to the project addresses.
 
 ---
 
 **Accepted and agreed:**
 
-**MOROBO LLC**
-Signature: ______________________  Name: {{SIGNATORY_NAME}}  Title: {{SIGNATORY_TITLE}}  Date: __________
+**MOROBO LLC** — Signature: __________________  Name: {{SIGNATORY_NAME}}  Title: {{SIGNATORY_TITLE}}  Date: __________
 
-**CLIENT — {{CLIENT_BUSINESS}}**
-Signature: ______________________  Name: {{CLIENT_CONTACT}}  Title: {{CLIENT_TITLE}}  Date: __________
+**CLIENT — {{CLIENT_BUSINESS}}** — Signature: __________________  Name: {{CLIENT_CONTACT}}  Title: {{CLIENT_TITLE}}  Date: __________
+
+> Review copies sent before signing omit the signature block above; the signable version includes it once scope is finalized.
 
 ---
 
