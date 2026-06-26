@@ -4,13 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Track Your Project – Morobo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    .track-wrap { max-width: 780px; margin: 0 auto; }
+    .id-card {
+      max-width: 480px; margin: 0 auto;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-card);
+    }
+    .dash { display: none; }
+    .dash-head { margin-bottom: 1.75rem; }
+    .dash-title { font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--text); line-height: 1.1; }
+    .dash-sub { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.2rem; }
+    .pid-badge { display: inline-block; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.78rem; color: var(--accent); background: var(--accent-dim); padding: 0.35rem 0.6rem; border-radius: 8px; margin-top: 0.8rem; }
+
+    .stepper { display: flex; justify-content: space-between; gap: 0.4rem; margin: 2.25rem 0; }
+    .step { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.55rem; text-align: center; }
+    .step::before { content: ''; position: absolute; top: 19px; left: -50%; width: 100%; height: 2px; background: var(--border); z-index: 0; }
+    .step:first-child::before { display: none; }
+    .step.done::before, .step.current::before { background: var(--accent); }
+    .step-dot {
+      position: relative; z-index: 1; width: 40px; height: 40px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; color: var(--text-muted); transition: all 0.3s var(--ease);
+    }
+    .step.done .step-dot { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .step.current .step-dot { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 0 5px var(--accent-dim); }
+    .step-label { font-size: 0.74rem; font-weight: 600; color: var(--text-muted); }
+    .step.done .step-label, .step.current .step-label { color: var(--text); }
+
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .dash-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; box-shadow: var(--shadow-card); }
+    .dash-card .label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.13em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.55rem; }
+    .big-num { font-size: 2rem; font-weight: 800; color: var(--text); line-height: 1; }
+    .bar { height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; margin-top: 0.8rem; }
+    .bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #c084fc); border-radius: 99px; transition: width 0.7s var(--ease); }
+    .focus-text { font-size: 1.05rem; color: var(--text); line-height: 1.5; font-weight: 500; }
+
+    .feed { margin-top: 0.5rem; }
+    .feed-item { display: flex; gap: 1.1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .feed-item:last-child { border-bottom: none; }
+    .feed-date { flex-shrink: 0; width: 96px; font-size: 0.76rem; color: var(--text-muted); font-weight: 600; padding-top: 0.1rem; }
+    .feed-note { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.55; }
+    .dash-updated { text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 1.5rem; }
+    .dash-back { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 0.85rem; font-family: inherit; padding: 0; margin-bottom: 1rem; }
+    .dash-back:hover { color: var(--text); }
+    @media (max-width: 560px) {
+      .dash-grid { grid-template-columns: 1fr; }
+      .step-label { font-size: 0.6rem; }
+      .step-dot { width: 32px; height: 32px; font-size: 0.78rem; }
+      .step::before { top: 15px; }
+      .feed-date { width: 74px; font-size: 0.7rem; }
+    }
+  </style>
 </head>
 <body>
   <canvas id="backgroundCanvas"></canvas>
@@ -21,7 +74,7 @@
         <img src="images/MoroboIconFinal.png" alt="Morobo Logo" class="logo-icon">
         Morobo
       </a>
-            <nav class="nav-tabs" id="navTabs">
+      <nav class="nav-tabs" id="navTabs">
         <a href="apps.html" class="nav-tab">Apps</a>
         <a href="websites.html" class="nav-tab">Websites</a>
         <a href="about.html" class="nav-tab">About</a>
@@ -36,75 +89,68 @@
   <section class="page-header">
     <div class="container">
       <h1>Track Your Project</h1>
-      <p>Enter your project ID to view the current progress of your app or website</p>
+      <p>Enter your Project ID to see exactly where things stand — in real time.</p>
     </div>
   </section>
 
-  <section class="section reveal">
+  <section class="section">
     <div class="container">
-      <div class="contact-container" style="max-width: 600px;">
-        <div class="contact-form" style="margin: 0 auto;">
+      <div class="track-wrap">
+
+        <!-- ID entry -->
+        <div class="id-card" id="entryCard">
           <form id="trackForm">
             <div class="form-group">
               <label for="projectId">Project ID</label>
-              <input 
-                type="text" 
-                id="projectId" 
-                name="projectId" 
-                placeholder="Enter your project ID (e.g., PROJ-12345)" 
-                required
-                autocomplete="off"
-              >
-              <small style="color: var(--text-muted); margin-top: 0.5rem; display: block;">
-                Your project ID was provided when we started your project
-              </small>
+              <input type="text" id="projectId" name="projectId" placeholder="e.g. YOGI-8FK3QX" required autocomplete="off" style="text-transform:uppercase;">
+              <small style="color: var(--text-muted); margin-top: 0.5rem; display: block;">Your Project ID was sent to you when your project started.</small>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Track Project</button>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">View progress</button>
           </form>
-        </div>
-
-        <!-- Project Status Display -->
-        <div id="projectStatus" style="display: none; margin-top: 3rem;">
-          <div class="card" style="max-width: 600px; margin: 0 auto;">
-            <h3 id="projectName" style="color: var(--primary); margin-bottom: 1rem;"></h3>
-            <p id="projectType" style="color: var(--text-muted); margin-bottom: 2rem;"></p>
-            
-            <!-- Progress Bar -->
-            <div style="margin-bottom: 2rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span style="color: var(--text-light); font-weight: 600;">Progress</span>
-                <span id="progressPercent" style="color: var(--primary); font-weight: 600;"></span>
-              </div>
-              <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; overflow: hidden;">
-                <div id="progressBar" style="background: var(--primary); height: 100%; border-radius: 10px; transition: width 0.5s ease;"></div>
-              </div>
-            </div>
-
-            <!-- Status Message -->
-            <div id="statusMessage" style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
-              <p id="statusText" style="color: var(--text-light); margin: 0; line-height: 1.6;"></p>
-            </div>
-
-            <!-- Last Updated -->
-            <p id="lastUpdated" style="color: var(--text-muted); font-size: 0.875rem; text-align: center; margin: 0;"></p>
+          <div id="errorMessage" style="display:none; margin-top:1rem; color:#ef4444; text-align:center; font-size:0.9rem;">
+            <i class="fas fa-exclamation-circle"></i> We couldn't find that Project ID. Double-check it and try again.
           </div>
         </div>
 
-        <!-- Error Message -->
-        <div id="errorMessage" style="display: none; margin-top: 2rem;">
-          <div class="card" style="max-width: 600px; margin: 0 auto; border-color: rgba(239, 68, 68, 0.3);">
-            <p style="color: #ef4444; margin: 0; text-align: center;">
-              <i class="fas fa-exclamation-circle" style="margin-right: 0.5rem;"></i>
-              Project not found. Please check your project ID and try again.
-            </p>
+        <!-- Dashboard -->
+        <div class="dash" id="dashboard">
+          <button class="dash-back" id="dBack">← Look up another ID</button>
+          <div class="dash-head">
+            <div class="dash-title" id="dAppName"></div>
+            <div class="dash-sub" id="dClient"></div>
+            <span class="pid-badge" id="dPid"></span>
           </div>
+
+          <div class="stepper" id="stepper"></div>
+
+          <div class="dash-grid">
+            <div class="dash-card">
+              <div class="label">Progress</div>
+              <div class="big-num" id="dProg">0%</div>
+              <div class="bar"><div class="bar-fill" id="dBar"></div></div>
+            </div>
+            <div class="dash-card">
+              <div class="label">Estimated launch</div>
+              <div class="big-num" id="dEta" style="font-size:1.4rem;">—</div>
+              <div style="color:var(--text-muted); font-size:0.82rem; margin-top:0.5rem;">Current stage: <span id="dStage"></span></div>
+            </div>
+          </div>
+
+          <div class="dash-card" style="margin-bottom:1rem;">
+            <div class="label">What we're working on</div>
+            <div class="focus-text" id="dFocus"></div>
+          </div>
+
+          <div class="dash-card">
+            <div class="label" style="margin-bottom:0.25rem;">Recent updates</div>
+            <div class="feed" id="feed"></div>
+          </div>
+
+          <p class="dash-updated" id="dUpdated"></p>
         </div>
 
-        <!-- Admin Access Link (subtle) -->
-        <div style="text-align: center; margin-top: 3rem;">
-          <a href="admin.html" style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none; opacity: 0.6; transition: opacity 0.3s ease;">
-            Admin Access
-          </a>
+        <div style="text-align:center; margin-top:3rem;">
+          <a href="admin.html" style="color: var(--text-muted); font-size: 0.8rem; text-decoration: none; opacity: 0.6;">Admin</a>
         </div>
       </div>
     </div>
@@ -136,8 +182,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
   <script src="track.js"></script>
