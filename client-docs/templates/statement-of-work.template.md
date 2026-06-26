@@ -66,9 +66,14 @@ Timeline is flexible. A focused V1 typically takes a few weeks of build once con
 
 ## 8. Payment Schedule
 
-- {{DEPOSIT}} deposit to begin work (via invoice).
-- {{BALANCE}} balance due at launch.
-- {{MONTHLY}} begins at launch; cancel with 30 days' notice.
+Client selects one option on signing:
+
+- **Option A — 50 / 50:** {{DEPOSIT}} deposit to begin work + {{BALANCE}} balance due at launch.
+- **Option B — Paid in full:** {{TOTAL_ONE_TIME}} at start.
+
+{{MONTHLY}} begins at launch (via invoice); cancel with 30 days' notice.
+
+> Review copies sent before signing omit the signature block below; the signable version is issued once scope is finalized.
 
 This Statement of Work is governed by and incorporates the App Development & Services Agreement between the parties.
 
