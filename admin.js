@@ -1,10 +1,10 @@
-// Admin — project management (Supabase Auth + DB). Writes are restricted by RLS to ADMIN_EMAIL.
+// Admin — project management. Simple admin password, verified server-side by
+// password-gated Postgres RPCs (the public key alone cannot read/write data).
 (function () {
   "use strict";
 
   var SB_URL = "https://frwhyxwltvvdkmonzezb.supabase.co";
   var SB_KEY = "sb_publishable_3McKgqBPb17EOUyQrdMWqw_1AsHVm3G";
-  var ADMIN_EMAIL = "morobo.llc@gmail.com";
   var STAGES = ["Discovery", "Design", "Build", "Review", "Launch"];
   var sb = window.supabase.createClient(SB_URL, SB_KEY);
 
@@ -13,7 +13,10 @@
   var loginForm = document.getElementById("loginForm");
   var loginMsg = document.getElementById("loginMsg");
   var listEl = document.getElementById("projectsList");
-  var signupMode = false;
+
+  function secret() { try { return sessionStorage.getItem("morobo_admin") || ""; } catch (e) { return window.__adminPw || ""; } }
+  function setSecret(v) { try { sessionStorage.setItem("morobo_admin", v); } catch (e) { window.__adminPw = v; } }
+  function clearSecret() { try { sessionStorage.removeItem("morobo_admin"); } catch (e) {} window.__adminPw = ""; }
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function msg(el, text, ok) { el.textContent = text; el.className = "a-msg " + (ok ? "ok" : "err"); }
@@ -25,86 +28,74 @@
     return base + "-" + r;
   }
 
-  async function boot() {
-    var sess = await sb.auth.getSession();
-    var user = sess.data.session && sess.data.session.user;
-    if (user && user.email === ADMIN_EMAIL) { showPanel(user); }
-    else { if (user) await sb.auth.signOut(); showLogin(); }
-  }
   function showLogin() { loginScreen.style.display = "block"; panel.style.display = "none"; }
-  function showPanel(user) {
-    loginScreen.style.display = "none"; panel.style.display = "block";
-    document.getElementById("adminWho").textContent = "Signed in as " + user.email;
-    loadProjects();
+  function showPanel() { loginScreen.style.display = "none"; panel.style.display = "block"; }
+
+  // Returns {ok, data} — calls the password-gated RPC
+  async function fetchProjects() {
+    var res = await sb.rpc("admin_projects", { p_secret: secret() });
+    if (res.error) return { ok: false, error: res.error };
+    return { ok: true, data: res.data || [] };
   }
 
-  // ── Auth ──
-  document.getElementById("toggleSignup").addEventListener("click", function () {
-    signupMode = !signupMode;
-    document.getElementById("loginBtn").textContent = signupMode ? "Create account" : "Sign in";
-    this.textContent = signupMode ? "Have an account? Sign in" : "First time? Create your admin account";
-    loginMsg.className = "a-msg";
-  });
+  async function boot() {
+    if (secret()) {
+      var r = await fetchProjects();
+      if (r.ok) { showPanel(); renderList(r.data); return; }
+      clearSecret();
+    }
+    showLogin();
+  }
 
   loginForm.addEventListener("submit", async function (e) {
     e.preventDefault();
-    var email = document.getElementById("email").value.trim();
-    var password = document.getElementById("password").value;
+    var pw = document.getElementById("password").value;
     var btn = document.getElementById("loginBtn"); btn.disabled = true;
-    try {
-      if (signupMode) {
-        if (email !== ADMIN_EMAIL) { msg(loginMsg, "Admin access is limited to " + ADMIN_EMAIL + ".", false); return; }
-        var up = await sb.auth.signUp({ email: email, password: password });
-        if (up.error) { msg(loginMsg, up.error.message, false); return; }
-        msg(loginMsg, "Account created. Check " + ADMIN_EMAIL + " for a confirmation link, then sign in.", true);
-        signupMode = false; document.getElementById("loginBtn").textContent = "Sign in";
-      } else {
-        var inr = await sb.auth.signInWithPassword({ email: email, password: password });
-        if (inr.error) { msg(loginMsg, inr.error.message, false); return; }
-        if (inr.data.user.email !== ADMIN_EMAIL) { await sb.auth.signOut(); msg(loginMsg, "That account isn't an admin.", false); return; }
-        showPanel(inr.data.user);
-      }
-    } catch (err) { msg(loginMsg, "Something went wrong. Try again.", false); }
-    finally { btn.disabled = false; }
+    setSecret(pw);
+    var r = await fetchProjects();
+    btn.disabled = false;
+    if (!r.ok) { clearSecret(); msg(loginMsg, "Incorrect password.", false); return; }
+    document.getElementById("password").value = "";
+    showPanel(); renderList(r.data);
   });
 
-  document.getElementById("logoutBtn").addEventListener("click", async function () { await sb.auth.signOut(); showLogin(); });
+  document.getElementById("logoutBtn").addEventListener("click", function () { clearSecret(); showLogin(); });
 
-  // ── Create ──
   document.getElementById("createBtn").addEventListener("click", async function () {
     var client = document.getElementById("npClient").value.trim();
     var app = document.getElementById("npApp").value.trim();
     var cm = document.getElementById("createMsg");
     if (!client && !app) { msg(cm, "Add a client or app name first.", false); return; }
     var id = genId(client, app);
-    var ins = await sb.from("projects").insert({ id: id, client_name: client || app, app_name: app || client, stage: STAGES[0], stage_index: 0, progress: 0 });
-    if (ins.error) { msg(cm, ins.error.message, false); return; }
+    var r = await sb.rpc("admin_save_project", { p_secret: secret(), p_id: id, p_client: client || app, p_app: app || client, p_stage_index: 0, p_progress: 0, p_eta: null, p_focus: null });
+    if (r.error) { msg(cm, r.error.message, false); return; }
     msg(cm, "Created " + id, true);
     document.getElementById("npClient").value = ""; document.getElementById("npApp").value = "";
-    loadProjects();
+    reload();
   });
 
-  // ── List + edit ──
-  async function loadProjects() {
-    listEl.innerHTML = '<p style="color:var(--text-muted);">Loading…</p>';
-    var pr = await sb.from("projects").select("*").order("updated_at", { ascending: false });
-    if (pr.error) { listEl.innerHTML = '<p style="color:#ef4444;">' + esc(pr.error.message) + "</p>"; return; }
-    if (!pr.data.length) { listEl.innerHTML = '<p style="color:var(--text-muted);">No projects yet. Create one above.</p>'; return; }
-    var ups = await sb.from("project_updates").select("*").order("update_date", { ascending: false });
-    var byProj = {};
-    (ups.data || []).forEach(function (u) { (byProj[u.project_id] = byProj[u.project_id] || []).push(u); });
-    listEl.innerHTML = "";
-    pr.data.forEach(function (p) { listEl.appendChild(card(p, byProj[p.id] || [])); });
+  async function reload() {
+    var r = await fetchProjects();
+    if (!r.ok) { clearSecret(); showLogin(); return; }
+    renderList(r.data);
   }
 
-  function card(p, updates) {
+  function renderList(projects) {
+    if (!projects.length) { listEl.innerHTML = '<p style="color:var(--text-muted);">No projects yet. Create one above.</p>'; return; }
+    listEl.innerHTML = "";
+    projects.forEach(function (p) { listEl.appendChild(card(p)); });
+  }
+
+  function card(p) {
     var el = document.createElement("div");
     el.className = "a-card";
     var link = location.origin + location.pathname.replace(/admin\.html$/, "track.html") + "?id=" + encodeURIComponent(p.id);
     var stageOpts = STAGES.map(function (s, i) { return '<option value="' + i + '"' + (i === p.stage_index ? " selected" : "") + ">" + s + "</option>"; }).join("");
+    var updates = p.updates || [];
     var upHtml = updates.length
       ? updates.map(function (u) { return '<div class="a-update"><span class="d">' + fmtDate(u.update_date) + "</span><span>" + esc(u.note) + "</span></div>"; }).join("")
       : '<p style="color:var(--text-muted); font-size:0.82rem;">No updates yet.</p>';
+
     el.innerHTML =
       '<div class="a-proj-head"><div><div class="a-proj-title">' + esc(p.app_name || p.client_name) + "</div>" +
         '<div style="color:var(--text-muted); font-size:0.85rem;">' + esc(p.client_name || "") + "</div></div>" +
@@ -129,41 +120,35 @@
         '<div class="a-field"><label>Note</label><input class="a-input u-note" placeholder="e.g. Finished the ordering screen"></div></div>' +
         '<div class="a-actions"><button class="a-btn a-btn-ghost addUpdate">Post update</button></div></div>';
 
-    // wire actions
     el.querySelector(".save").addEventListener("click", async function () {
       var sm = el.querySelector(".saveMsg");
       var si = parseInt(el.querySelector(".f-stage").value, 10);
-      var patch = {
-        stage_index: si, stage: STAGES[si],
-        progress: Math.max(0, Math.min(100, parseInt(el.querySelector(".f-prog").value, 10) || 0)),
-        eta: el.querySelector(".f-eta").value || null,
-        current_focus: el.querySelector(".f-focus").value.trim() || null,
-        updated_at: new Date().toISOString()
-      };
-      var r = await sb.from("projects").update(patch).eq("id", p.id);
-      if (r.error) { msg(sm, r.error.message, false); } else { msg(sm, "Saved.", true); }
+      var r = await sb.rpc("admin_save_project", {
+        p_secret: secret(), p_id: p.id, p_client: p.client_name || "", p_app: p.app_name || "",
+        p_stage_index: si, p_progress: parseInt(el.querySelector(".f-prog").value, 10) || 0,
+        p_eta: el.querySelector(".f-eta").value || null, p_focus: el.querySelector(".f-focus").value.trim() || null
+      });
+      if (r.error) { msg(sm, r.error.message, false); } else { msg(sm, "Saved.", true); reload(); }
     });
     el.querySelector(".addUpdate").addEventListener("click", async function () {
       var note = el.querySelector(".u-note").value.trim();
       var date = el.querySelector(".u-date").value || new Date().toISOString().slice(0, 10);
       var sm = el.querySelector(".saveMsg");
       if (!note) { msg(sm, "Write a note first.", false); return; }
-      var r = await sb.from("project_updates").insert({ project_id: p.id, update_date: date, note: note });
+      var r = await sb.rpc("admin_add_update", { p_secret: secret(), p_id: p.id, p_date: date, p_note: note });
       if (r.error) { msg(sm, r.error.message, false); return; }
-      await sb.from("projects").update({ updated_at: new Date().toISOString() }).eq("id", p.id);
-      loadProjects();
+      reload();
     });
     el.querySelector(".del").addEventListener("click", async function () {
       if (!confirm("Delete project " + p.id + " and all its updates?")) return;
-      var r = await sb.from("projects").delete().eq("id", p.id);
+      var r = await sb.rpc("admin_delete_project", { p_secret: secret(), p_id: p.id });
       if (r.error) { msg(el.querySelector(".saveMsg"), r.error.message, false); return; }
-      loadProjects();
+      reload();
     });
-    function copyLink(e) {
+    el.querySelector(".copy").addEventListener("click", function (e) {
       var l = e.currentTarget.getAttribute("data-link");
       navigator.clipboard.writeText(l).then(function () { e.currentTarget.textContent = "Copied!"; setTimeout(function () { e.currentTarget.textContent = "Copy client link"; }, 1800); });
-    }
-    el.querySelector(".copy").addEventListener("click", copyLink);
+    });
     el.querySelector(".open").addEventListener("click", function (e) { window.open(e.currentTarget.getAttribute("data-link"), "_blank"); });
     return el;
   }
