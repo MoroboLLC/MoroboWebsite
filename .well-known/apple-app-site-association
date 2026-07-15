@@ -2,21 +2,6 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["92RVQNVG5F.com.morobo.motoniaIOS"],
-        "components": [
-          {
-            "/": "/apps/motonia/",
-            "?": { "ref": "?*" },
-            "comment": "Motonia referral link"
-          },
-          {
-            "/": "/apps/motonia",
-            "?": { "ref": "?*" },
-            "comment": "Same path without trailing slash"
-          }
-        ]
-      },
-      {
         "appIDs": ["92RVQNVG5F.com.agentboard.app"],
         "components": [
           {
