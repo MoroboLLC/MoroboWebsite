@@ -87,35 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(drift);
   }
 
-  // ── THE SCROLL ORB — colour-leaking companion in the gutter ──
-  if (!reducedMotion && !document.querySelector('.scroll-orb')) {
-    const orb = document.createElement('div');
-    orb.className = 'scroll-orb';
-    orb.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(orb);
-
-    let ox = -120, oy = -120, shown = false;
-    const orbLoop = () => {
-      const vw = window.innerWidth, vh = window.innerHeight;
-      const size = vw <= 640 ? 60 : 96;
-      const max = Math.max(1, document.documentElement.scrollHeight - vh);
-      const p = Math.min(1, Math.max(0, window.scrollY / max));
-
-      if (!shown) { orb.style.opacity = '0.9'; shown = true; }
-      // dramatic full-width weave: edge → edge as the reader scrolls,
-      // gliding behind the content layer so it never blocks anything
-      const margin = Math.max(28, vw * 0.04);
-      const tx = vw / 2 + Math.sin(p * Math.PI * 4) * (vw / 2 - margin - size / 2) - size / 2;
-      const ty = 70 + p * (vh - 210) + Math.sin(p * Math.PI * 7) * 46;
-      ox += (tx - ox) * 0.07;
-      oy += (ty - oy) * 0.07;
-      orb.style.transform = `translate(${ox}px, ${oy}px) scale(${0.8 + 0.45 * Math.sin(p * Math.PI)})`;
-      orb.style.filter = `blur(5px) hue-rotate(${p * 360}deg) saturate(${1.1 + 0.5 * Math.sin(p * Math.PI * 2)})`;
-      requestAnimationFrame(orbLoop);
-    };
-    requestAnimationFrame(orbLoop);
-  }
-
   // ── GSAP SCROLL ANIMATIONS ───────────────────────────────────
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);

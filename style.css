@@ -2011,12 +2011,4 @@ body{background:var(--bg);color:var(--text)}
 .bgfx .dg{position:absolute;inset:-30% 0;background-image:radial-gradient(rgba(21,21,23,.07) 1.2px,transparent 1.8px);background-size:26px 26px;will-change:transform}
 .navbar,.footer,main,section,.container{position:relative;z-index:1}
 
-/* the scroll orb — colour-leaking companion that sweeps the whole page,
-   gliding BEHIND the content (z below main) so it never blocks reading */
-.scroll-orb{position:fixed;top:0;left:0;width:96px;height:96px;border-radius:50%;
-  pointer-events:none;z-index:0;opacity:0;filter:blur(5px);
-  background:radial-gradient(circle at 32% 30%,#D8CBFF,#8B5CF6 55%,#5B21B6);
-  box-shadow:0 0 110px 48px rgba(124,58,237,.30);
-  transition:opacity .5s;will-change:transform,filter}
-@media (max-width:640px){.scroll-orb{width:60px;height:60px;box-shadow:0 0 70px 30px rgba(124,58,237,.26)}}
-@media (prefers-reduced-motion:reduce){.scroll-orb{display:none!important}}
+/* (the scroll blob lives only on the homepage — index.html carries its own styles) */
