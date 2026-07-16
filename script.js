@@ -5,32 +5,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── THEME TOGGLE ─────────────────────────────────────────────
-  const THEME_KEY = 'morobo-theme';
-  const root = document.documentElement;
-
-  // Default: light — only switch to dark if user explicitly chose it
-  const savedTheme = localStorage.getItem(THEME_KEY);
-  if (savedTheme === 'dark') root.setAttribute('data-theme', 'dark');
-  // else: stays light (no attribute needed)
-
-  // Inject toggle button into every page
-  const toggleBtn = document.createElement('button');
-  toggleBtn.className = 'theme-toggle';
-  toggleBtn.setAttribute('aria-label', 'Toggle dark/light mode');
-  toggleBtn.innerHTML = '<span class="icon-moon">☽</span><span class="icon-sun">☀</span>';
-  document.body.appendChild(toggleBtn);
-
-  toggleBtn.addEventListener('click', () => {
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-      root.removeAttribute('data-theme');
-      localStorage.setItem(THEME_KEY, 'light');
-    } else {
-      root.setAttribute('data-theme', 'dark');
-      localStorage.setItem(THEME_KEY, 'dark');
-    }
-  });
+  // ── ONE COMMITTED LIGHT THEME (v4) ───────────────────────────
+  document.documentElement.removeAttribute('data-theme');
+  try { localStorage.removeItem('morobo-theme'); } catch (e) {}
 
   // ── FAVICON ──────────────────────────────────────────────────
   const ensureFavicon = () => {
@@ -75,102 +52,73 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll();
   }
 
-  // ── THREE.JS ABSTRACT BACKGROUND ─────────────────────────────
-  const canvas = document.getElementById('backgroundCanvas');
+  // ── v4 AMBIENT BACKGROUND (blobs + dot grid, injected) ───────
+  const oldCanvas = document.getElementById('backgroundCanvas');
+  if (oldCanvas) oldCanvas.style.display = 'none';
 
-  if (canvas && typeof THREE !== 'undefined') {
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const scene  = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 9;
+  if (!document.querySelector('.bgfx')) {
+    const fx = document.createElement('div');
+    fx.className = 'bgfx';
+    fx.setAttribute('aria-hidden', 'true');
+    fx.innerHTML = '<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="dg"></div>';
+    document.body.prepend(fx);
+  }
 
-    // Create three floating wireframe shapes
-    const shapes = [
-      { geo: new THREE.IcosahedronGeometry(2.2, 1), color: 0xa855f7, opacity: 0.10, pos: [-4, 0.5, -2] },
-      { geo: new THREE.OctahedronGeometry(1.4, 0),  color: 0xaaaaaa, opacity: 0.10, pos: [ 4, -1,  -1] },
-      { geo: new THREE.TorusGeometry(2.4, 0.35, 9, 28), color: 0xaaaaaa, opacity: 0.10, pos: [0.5, 1.5, -3] },
-    ];
-
-    const meshes = shapes.map(({ geo, color, opacity, pos }) => {
-      const mat  = new THREE.MeshBasicMaterial({ color, wireframe: true, transparent: true, opacity });
-      const mesh = new THREE.Mesh(geo, mat);
-      mesh.position.set(...pos);
-      scene.add(mesh);
-      return mesh;
-    });
-
-    // Subtle mouse parallax
-    let mx = 0, my = 0;
-    window.addEventListener('mousemove', e => {
-      mx = (e.clientX / window.innerWidth  - 0.5) * 2;
-      my = (e.clientY / window.innerHeight - 0.5) * 2;
-    }, { passive: true });
-
-    const clock = new THREE.Clock();
-
-    (function animate() {
-      requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
-
-      meshes.forEach((mesh, i) => {
-        const dir = i % 2 === 0 ? 1 : -1;
-        mesh.rotation.x = t * 0.07 * dir;
-        mesh.rotation.y = t * 0.11 * dir;
-      });
-
-      camera.position.x += (mx * 1.2 - camera.position.x) * 0.025;
-      camera.position.y += (-my * 0.8 - camera.position.y) * 0.025;
-      camera.lookAt(0, 0, 0);
-
-      renderer.render(scene, camera);
-    })();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-  } else if (canvas) {
-    // Fallback: simple particle field (theme-aware color)
-    const ctx = canvas.getContext('2d');
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-
-    const getParticleColor = () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      return isDark ? 'rgba(168,85,247,' : 'rgba(124,58,237,';
+  // background drift with scroll (matches the homepage feel)
+  if (!reducedMotion) {
+    const b1 = document.querySelector('.bgfx .b1');
+    const b2 = document.querySelector('.bgfx .b2');
+    const b3 = document.querySelector('.bgfx .b3');
+    const dg = document.querySelector('.bgfx .dg');
+    let cur = 0;
+    const drift = () => {
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const target = window.scrollY / max;
+      cur += (target - cur) * 0.08;
+      const p = cur;
+      if (b1) b1.style.transform = `translate(${-160 * p}px, ${720 * p}px) scale(${1 + 0.35 * p})`;
+      if (b2) b2.style.transform = `translate(${-220 * p}px, ${-560 * p}px) scale(${1 + 0.2 * p})`;
+      if (b3) b3.style.transform = `translate(${180 * p}px, ${-700 * p}px) scale(${1 + 0.25 * p})`;
+      if (dg) dg.style.transform = `translateY(${-420 * p}px)`;
+      requestAnimationFrame(drift);
     };
+    requestAnimationFrame(drift);
+  }
 
-    const pts = Array.from({ length: 55 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.2 + 0.3,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25,
-      o: Math.random() * 0.1 + 0.03,
-    }));
+  // ── THE SCROLL ORB — colour-leaking companion in the gutter ──
+  if (!reducedMotion && !document.querySelector('.scroll-orb')) {
+    const orb = document.createElement('div');
+    orb.className = 'scroll-orb';
+    orb.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(orb);
 
-    (function draw() {
-      requestAnimationFrame(draw);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const col = getParticleColor();
-      pts.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `${col}${p.o})`;
-        ctx.fill();
-      });
-    })();
+    let ox = -100, oy = -100, shown = false;
+    const orbLoop = () => {
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const contentW = Math.min(1200, vw * 0.92);      // widest content column on inner pages
+      const gutter = (vw - contentW) / 2;
+      const max = Math.max(1, document.documentElement.scrollHeight - vh);
+      const p = Math.min(1, Math.max(0, window.scrollY / max));
+
+      if (gutter < 96) {                               // no room — stay out of the content
+        if (shown) { orb.style.opacity = '0'; shown = false; }
+      } else {
+        if (!shown) { orb.style.opacity = '0.6'; shown = true; }
+        // ride the right-hand gutter: down the page with the reader,
+        // swaying inside the gutter band, never crossing the content
+        const sway = Math.sin(p * Math.PI * 6) * Math.min(26, gutter * 0.16);
+        const tx = vw - gutter / 2 - 32 + sway;
+        const ty = 90 + p * (vh - 240) + Math.sin(p * Math.PI * 4) * 28;
+        ox += (tx - ox) * 0.07;
+        oy += (ty - oy) * 0.07;
+        orb.style.transform = `translate(${ox}px, ${oy}px) scale(${0.85 + 0.3 * Math.sin(p * Math.PI)})`;
+        orb.style.filter = `blur(6px) hue-rotate(${p * 320}deg)`;   // the colour "leak"
+      }
+      requestAnimationFrame(orbLoop);
+    };
+    requestAnimationFrame(orbLoop);
   }
 
   // ── GSAP SCROLL ANIMATIONS ───────────────────────────────────

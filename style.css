@@ -3,7 +3,7 @@
    Light default · Dark mode toggle
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 /* Reset */
 *, *::before, *::after {
@@ -12,60 +12,35 @@
   box-sizing: border-box;
 }
 
-/* ── LIGHT MODE (default) ── */
+/* ── MOROBO v4 LIGHT SYSTEM (single committed theme) ── */
 :root {
-  --bg:              #f9f9f9;
-  --surface:         #f2f2f2;
-  --card:            #ffffff;
-  --card-hover:      #f8f8f8;
-  --accent:          #7c3aed;
+  --bg:              #F7F7F6;
+  --surface:         #FFFFFF;
+  --card:            #FFFFFF;
+  --card-hover:      #FBFBFA;
+  --accent:          #7C3AED;
   --accent-dim:      rgba(124, 58, 237, 0.07);
-  --accent-glow:     rgba(124, 58, 237, 0.18);
-  --text:            #0f0f0f;
-  --text-secondary:  #555555;
-  --text-muted:      #b0b0b0;
-  --border:          rgba(0, 0, 0, 0.07);
-  --border-accent:   rgba(124, 58, 237, 0.2);
-  --radius-sm:       6px;
+  --accent-glow:     rgba(124, 58, 237, 0.16);
+  --text:            #151517;
+  --text-secondary:  #6F6E77;
+  --text-muted:      #9B9AA3;
+  --border:          #E4E4E0;
+  --border-accent:   rgba(124, 58, 237, 0.28);
+  --radius-sm:       8px;
   --radius:          12px;
   --radius-lg:       20px;
-  --radius-xl:       32px;
-  --ease:            cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-xl:       28px;
+  --ease:            cubic-bezier(0.22, 1, 0.36, 1);
   --border-radius:   12px;
-  --primary-solid:   #7c3aed;
-  --primary:         #7c3aed;
-  --shadow-card:     0 1px 3px rgba(0,0,0,0.07), 0 8px 28px rgba(0,0,0,0.06);
-  --shadow-card-hover: 0 4px 20px rgba(0,0,0,0.1), 0 20px 48px rgba(0,0,0,0.09);
-  --canvas-particle: rgba(124,58,237,0.12);
-  --nav-glass:       rgba(249,249,249,0.9);
-  --hero-stroke:     rgba(0,0,0,0.12);
-  --stmt-dim:        #aaaaaa;
-  --stmt-stroke:     rgba(0,0,0,0.1);
-}
-
-/* ── DARK MODE ── */
-[data-theme="dark"] {
-  --bg:              #030303;
-  --surface:         #0e0e0e;
-  --card:            #111111;
-  --card-hover:      #161616;
-  --accent:          #a855f7;
-  --accent-dim:      rgba(168, 85, 247, 0.08);
-  --accent-glow:     rgba(168, 85, 247, 0.2);
-  --text:            #efefef;
-  --text-secondary:  #777777;
-  --text-muted:      #3a3a3a;
-  --border:          rgba(255, 255, 255, 0.055);
-  --border-accent:   rgba(168, 85, 247, 0.22);
-  --primary-solid:   #a855f7;
-  --primary:         #a855f7;
-  --shadow-card:     0 8px 24px rgba(0,0,0,0.5);
-  --shadow-card-hover: 0 20px 60px rgba(0,0,0,0.65);
-  --canvas-particle: rgba(168,85,247,0.18);
-  --nav-glass:       rgba(3,3,3,0.88);
-  --hero-stroke:     rgba(255,255,255,0.18);
-  --stmt-dim:        #3a3a3a;
-  --stmt-stroke:     rgba(255,255,255,0.1);
+  --primary-solid:   #7C3AED;
+  --primary:         #7C3AED;
+  --shadow-card:     0 1px 2px rgba(20,18,28,0.04), 0 12px 40px rgba(20,18,28,0.07);
+  --shadow-card-hover: 0 2px 6px rgba(20,18,28,0.05), 0 24px 60px rgba(20,18,28,0.13);
+  --canvas-particle: rgba(124,58,237,0.10);
+  --nav-glass:       rgba(255,255,255,0.78);
+  --hero-stroke:     rgba(21,21,23,0.14);
+  --stmt-dim:        #B9B8C0;
+  --stmt-stroke:     rgba(21,21,23,0.12);
 }
 
 /* Base */
@@ -1928,3 +1903,118 @@ body {
   .screenshots-grid { grid-template-columns: 1fr; }
   .notify-form { flex-direction: column; }
 }
+
+/* ============================================================
+   MOROBO v4 REFRESH LAYER — light minimalist reskin
+   (appended last so it wins the cascade; markup untouched)
+   ============================================================ */
+
+/* relics off */
+.theme-toggle{display:none!important}
+#backgroundCanvas{display:none!important}
+.section-number{display:none!important}
+
+/* type */
+h1,h2,h3,h4,.section-title,.page-header h1,.hero-headline,.statement-text,
+.app-page-hero h1,.work-hero h1,.contact-info-title,.auth-form h2,.cta-content h2{
+  font-family:'Inter Tight','Inter',sans-serif;
+  font-weight:700;
+  letter-spacing:-.025em;
+}
+body{background:var(--bg);color:var(--text)}
+.section-title{-webkit-text-fill-color:var(--text)}
+.section-eyebrow{color:var(--accent);letter-spacing:.18em;font-weight:700}
+
+/* navbar → floating glass pill on scroll */
+.navbar{padding:1rem 0;border-bottom:1px solid transparent;background:transparent}
+.navbar .container{transition:max-width .55s var(--ease),margin .55s var(--ease),padding .55s var(--ease),
+  background .45s,border-color .45s,border-radius .55s,box-shadow .55s}
+.navbar.scrolled{background:transparent;border-bottom-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;padding:.4rem 0}
+.navbar.scrolled .container{max-width:660px;background:var(--nav-glass);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:999px;padding:.5rem 1.1rem;
+  box-shadow:0 12px 40px rgba(20,18,28,.12)}
+.nav-tab{border-radius:999px;font-weight:500}
+.nav-tab:hover,.nav-tab.active{background:rgba(21,21,23,.05);color:var(--text)}
+@media (max-width:600px){
+  .navbar.scrolled .container{max-width:94%}
+  .nav-tabs{background:rgba(255,255,255,.97);border:1px solid var(--border);border-radius:16px;
+    box-shadow:var(--shadow-card-hover);left:3vw;right:3vw;top:calc(100% + 8px);padding:.5rem}
+  .nav-tab{text-align:center}
+}
+
+/* buttons */
+.btn{border-radius:var(--radius);font-weight:600}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 26px rgba(124,58,237,.25)}
+.btn-primary:hover{background:#6D28D9;box-shadow:0 14px 34px rgba(124,58,237,.35)}
+.btn-secondary{background:#fff;color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{background:#fff;border-color:#C9C9C1}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow-card)}
+.card:hover{border-color:var(--border-accent);box-shadow:var(--shadow-card-hover)}
+.portfolio-card{border-radius:var(--radius-xl);border:1px solid var(--border)}
+.feature-item{background:#fff;border-radius:0}
+.features-grid{border-radius:var(--radius-lg);border:1px solid var(--border);background:var(--border)}
+.feature-item:hover{background:var(--card-hover)}
+
+/* page headers (legal, support, inner) — centered, airy */
+.page-header{padding:8.5rem 0 3rem;text-align:center}
+.page-header h1{font-size:clamp(2.2rem,5.4vw,3.6rem);line-height:1.05}
+.page-header p{margin:0 auto;max-width:520px}
+
+/* legal & policy pages — content in a clean white card */
+.legal-section{padding-bottom:5rem}
+.legal-content{background:#fff;border:1px solid var(--border);border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-card);padding:clamp(1.6rem,4.5vw,3.2rem);max-width:860px;margin:0 auto}
+.legal-content article h2{font-size:1.15rem;margin:1.9rem 0 .6rem;letter-spacing:-.015em}
+.legal-content article h2:first-child{margin-top:0}
+.legal-content p,.legal-content li{color:var(--text-secondary);font-size:.93rem;line-height:1.75}
+.legal-content ul{padding-left:1.2rem;margin:.4rem 0 .9rem}
+.legal-footer{border-top:1px solid var(--border);margin-top:2.2rem;padding-top:1.4rem}
+.legal-footer a{color:var(--accent);text-decoration:none}
+.legal-footer a:hover{text-decoration:underline}
+
+/* forms */
+.form-group input,.form-group textarea,.notify-input,
+.auth-form input,.auth-form select{
+  background:#fff;border:1px solid var(--border);border-radius:11px;color:var(--text)}
+.form-group input:focus,.form-group textarea:focus,.notify-input:focus{
+  border-color:#C9B4F5;box-shadow:0 0 0 3px rgba(124,58,237,.10)}
+
+/* about page blocks */
+.stats-bar,.founder-card,.service-card,.value-item,.mission-section,.global-section,.process-step{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-card)}
+.service-card .icon{color:var(--accent)}
+
+/* app pages */
+.app-page-hero{padding:8.5rem 0 4rem}
+.app-page-hero h1{font-size:clamp(2.4rem,5.6vw,4rem)}
+.app-page-badges .available{background:rgba(15,163,85,.09);color:#0FA355;border:1px solid rgba(15,163,85,.25);
+  border-radius:999px;padding:.35rem .9rem;font-size:.78rem;font-weight:600}
+.app-legal-bar{border-top:1px solid var(--border)}
+.cta-section{border-top:1px solid var(--border)}
+
+/* footer */
+.footer{background:#FCFCFB;border-top:1px solid var(--border)}
+.footer-links a{border-radius:8px}
+
+/* track banner */
+.track-banner{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-card)}
+
+/* ambient background (blobs + dots are injected by script.js) */
+.bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bgfx .blob{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform}
+.bgfx .b1{width:64vw;height:64vw;background:radial-gradient(circle,rgba(124,58,237,.15),transparent 62%);top:-24vw;left:50%;margin-left:-32vw}
+.bgfx .b2{width:48vw;height:48vw;background:radial-gradient(circle,rgba(56,132,255,.11),transparent 62%);top:38%;right:-16vw}
+.bgfx .b3{width:44vw;height:44vw;background:radial-gradient(circle,rgba(124,58,237,.09),transparent 62%);bottom:-14vw;left:-12vw}
+.bgfx .dg{position:absolute;inset:-30% 0;background-image:radial-gradient(rgba(21,21,23,.07) 1.2px,transparent 1.8px);background-size:26px 26px;will-change:transform}
+.navbar,.footer,main,section,.container{position:relative;z-index:1}
+
+/* the scroll orb — colour-leaking companion, lives in the page gutters */
+.scroll-orb{position:fixed;top:0;left:0;width:64px;height:64px;border-radius:50%;
+  pointer-events:none;z-index:2;opacity:0;filter:blur(6px);
+  background:radial-gradient(circle at 32% 30%,#C4B5FD,#7C3AED 62%,#4C1D95);
+  box-shadow:0 0 70px 26px rgba(124,58,237,.18);
+  transition:opacity .5s;will-change:transform,filter}
+@media (prefers-reduced-motion:reduce){.scroll-orb{display:none!important}}

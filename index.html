@@ -3,291 +3,543 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morobo — Software Studio</title>
-  <meta name="description" content="Morobo is a software studio building apps, websites, and digital tools with obsessive attention to detail.">
-  <link rel="stylesheet" href="style.css">
+  <title>Morobo — We make apps famous.</title>
+  <meta name="description" content="AI video ads, app development, and websites — one team. Paste your App Store link and get scroll-stopping ads in minutes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    :root{
+      --bg:#F7F7F6; --ink:#151517; --mut:#6F6E77; --dim:#9B9AA3;
+      --hair:#E4E4E0; --hair2:#D8D8D2; --card:#FFFFFF;
+      --vio:#7C3AED; --vio-soft:#F1EBFD; --green:#0FA355;
+      --rs:12px; --rl:24px;
+      --shadow:0 1px 2px rgba(20,18,28,.04),0 12px 40px rgba(20,18,28,.07);
+      --shadow-lift:0 2px 6px rgba(20,18,28,.05),0 24px 60px rgba(20,18,28,.13);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    h1,h2,h3{font-family:'Inter Tight','Inter',sans-serif}
+    ::selection{background:var(--vio);color:#fff}
+    a{color:inherit}
+    .col{max-width:1080px;width:92%;margin:0 auto}
+
+    /* ── subtle scroll-reactive background ── */
+    .bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+    .blob{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform}
+    .bl1{width:64vw;height:64vw;background:radial-gradient(circle,rgba(124,58,237,.17),transparent 62%);top:-24vw;left:50%;margin-left:-32vw}
+    .bl2{width:48vw;height:48vw;background:radial-gradient(circle,rgba(56,132,255,.13),transparent 62%);top:36%;right:-16vw}
+    .bl3{width:44vw;height:44vw;background:radial-gradient(circle,rgba(124,58,237,.10),transparent 62%);bottom:-14vw;left:-12vw}
+    .dots{position:absolute;inset:-30% 0;background-image:radial-gradient(rgba(21,21,23,.075) 1.2px,transparent 1.8px);background-size:26px 26px;will-change:transform}
+
+    /* ── floating header: bar → pill ── */
+    header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:center;pointer-events:none}
+    .hd{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+      width:min(1080px,92%);margin-top:0;padding:1.15rem 0;background:rgba(247,247,246,0);border:1px solid transparent;border-radius:0;
+      transition:width .55s cubic-bezier(.32,.9,.3,1),margin .55s cubic-bezier(.32,.9,.3,1),padding .55s cubic-bezier(.32,.9,.3,1),
+        background .45s,border-color .45s,border-radius .55s,box-shadow .55s,backdrop-filter .45s}
+    header.pill .hd{width:min(620px,94%);margin-top:12px;padding:.5rem .55rem .5rem 1rem;
+      background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-color:var(--hair);border-radius:999px;box-shadow:0 12px 40px rgba(20,18,28,.12)}
+    .brand{display:flex;align-items:center;gap:.5rem;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1rem;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+    .brand img{width:24px;height:24px;object-fit:contain}
+    .brand .bt{transition:opacity .3s,max-width .45s;max-width:80px;overflow:hidden;display:inline-block}
+    header.pill .brand .bt{opacity:0;max-width:0}
+    .menu{display:flex;align-items:center;gap:.1rem}
+    .menu a{font-size:.85rem;font-weight:500;color:var(--mut);text-decoration:none;padding:.42rem .72rem;border-radius:999px;transition:color .2s,background .2s;white-space:nowrap}
+    .menu a:hover,.menu a:focus-visible{color:var(--ink);background:rgba(21,21,23,.05);outline:none}
+    .nav-cta{font-size:.82rem;font-weight:600;color:#fff;background:var(--ink);text-decoration:none;padding:.55rem 1.05rem;border-radius:999px;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(21,21,23,.22);background:var(--vio)}
+    .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:4px}
+    .burger span{width:20px;height:2px;background:var(--ink);border-radius:2px;display:block}
+    @media (max-width:720px){
+      .menu{display:none;position:fixed;top:64px;left:4vw;right:4vw;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);
+        flex-direction:column;padding:.5rem;border:1px solid var(--hair);border-radius:16px;box-shadow:var(--shadow-lift);z-index:70}
+      .menu.open{display:flex}
+      .menu a{width:100%;text-align:center;padding:.95rem;font-size:1rem}
+      .burger{display:flex}
+      .nav-cta{display:none}
+      header.pill .hd{width:94%}
+      .brand .bt{max-width:80px!important;opacity:1!important}
+    }
+
+    main{position:relative;z-index:1}
+
+    /* ── hero: minimal + the bar ── */
+    .hero{padding:9.5rem 0 5.5rem;text-align:center}
+    .chip{display:inline-flex;align-items:center;gap:.5rem;font-size:.76rem;font-weight:600;color:var(--mut);border:1px solid var(--hair2);border-radius:999px;padding:.4rem .95rem;background:#fff}
+    .chip i{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2.4s ease-in-out infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(15,163,85,.35)}55%{box-shadow:0 0 0 6px rgba(15,163,85,0)}}
+    .hero h1{font-size:clamp(2.8rem,7.6vw,5.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.03;margin:1.5rem auto 0;max-width:14ch;text-wrap:balance}
+    .hero h1 em{font-style:normal;color:var(--vio)}
+    .hero .sub{margin:1.2rem auto 2.4rem;color:var(--mut);font-size:clamp(.94rem,1.4vw,1.05rem)}
+
+    .bar{max-width:640px;margin:0 auto;position:relative}
+    .bar form{display:flex;gap:.5rem;background:#fff;border:1px solid var(--hair2);border-radius:16px;padding:.5rem;box-shadow:var(--shadow-lift);transition:border-color .2s,box-shadow .2s}
+    .bar form:focus-within{border-color:#C9B4F5;box-shadow:0 2px 6px rgba(20,18,28,.05),0 24px 60px rgba(124,58,237,.16)}
+    .bar input{flex:1;border:none;background:transparent;padding:.8rem .9rem;font-family:inherit;font-size:16px;color:var(--ink);min-width:0}
+    .bar input:focus{outline:none}
+    .bar button{border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:.92rem;color:#fff;background:var(--vio);border-radius:11px;padding:.85rem 1.5rem;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+    .bar button:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(124,58,237,.35)}
+    .bar .ok{display:none;align-items:center;justify-content:center;gap:.6rem;background:#fff;border:1px solid #CBE8D5;border-radius:16px;padding:1.15rem 1rem;box-shadow:var(--shadow);font-weight:600;color:var(--green);font-size:.95rem}
+    .bar .micro{margin-top:.9rem;font-size:.78rem;color:var(--dim)}
+    .bar .micro a{color:var(--mut)}
+    @media (max-width:560px){
+      .bar form{flex-direction:column}
+      .bar button{width:100%;padding:.95rem}
+    }
+
+    /* ── crafts ── */
+    .crafts{padding:6.5rem 0 0}
+    .sec-head{text-align:center;max-width:36rem;margin:0 auto}
+    .kicker{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--vio)}
+    .sec-head h2{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:700;letter-spacing:-.025em;line-height:1.12;margin-top:.85rem;text-wrap:balance}
+    .craft-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:3rem}
+    .craft{background:var(--card);border:1px solid var(--hair);border-radius:var(--rl);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;will-change:transform}
+    .craft:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+    .craft .view{height:280px;position:relative;overflow:hidden;background:linear-gradient(170deg,#FAFAF8,#F0F0EC)}
+    .craft .meta{padding:1.2rem 1.35rem 1.3rem;border-top:1px solid var(--hair)}
+    .craft .meta b{font-family:'Inter Tight',sans-serif;font-size:1.04rem;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+    .craft .meta b span{font-size:.68rem;font-weight:700;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+    .craft .meta p{color:var(--mut);font-size:.85rem;margin-top:.35rem;line-height:1.55}
+    .craft .meta a{display:inline-block;margin-top:.75rem;font-size:.85rem;font-weight:600;color:var(--vio);text-decoration:none}
+    .craft .meta a:hover{text-decoration:underline}
+    @media (max-width:880px){.craft-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
+
+    /* demo: adgen wizard */
+    .v-ads{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:0 1.5rem}
+    .fld{height:42px;border-radius:11px;border:1px solid var(--hair2);background:#fff;display:flex;align-items:center;gap:9px;padding:0 12px;box-shadow:var(--shadow)}
+    .fld .ic{width:17px;height:17px;border-radius:5px;background:var(--vio);flex-shrink:0}
+    .fld code{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:var(--ink);white-space:nowrap;overflow:hidden}
+    .fld code::after{content:'';display:inline-block;width:1.5px;height:11px;background:var(--vio);margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+    @keyframes blink{50%{opacity:0}}
+    .prog{height:4px;border-radius:99px;background:#ECECE6;overflow:hidden}
+    .prog i{display:block;height:100%;width:0;border-radius:99px;background:var(--vio);animation:load 3.2s ease-in-out infinite}
+    @keyframes load{0%{width:0}60%,100%{width:100%}}
+    .outs{display:flex;gap:9px}
+    .out{flex:1;aspect-ratio:9/13;border-radius:11px;background:linear-gradient(165deg,var(--vio-soft),#E9DFFC);border:1px solid #E2D6FA;position:relative;opacity:0;transform:scale(.94) translateY(6px);animation:outin 6.4s ease-in-out infinite}
+    .out:nth-child(2){animation-delay:.22s}.out:nth-child(3){animation-delay:.44s}
+    .out::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-left:11px solid var(--vio);border-top:7px solid transparent;border-bottom:7px solid transparent;opacity:.85}
+    .out .lv{position:absolute;top:7px;right:7px;font-size:.5rem;font-weight:800;color:#fff;background:var(--green);padding:.15rem .4rem;border-radius:99px;letter-spacing:.06em}
+    @keyframes outin{0%,35%{opacity:0;transform:scale(.94) translateY(6px)}48%,88%{opacity:1;transform:scale(1) translateY(0)}97%,100%{opacity:0}}
+
+    /* demo: app ui (no video) */
+    .v-phone{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
+    .ph{width:168px;height:250px;border-radius:24px 24px 0 0;border:6px solid #1B1A21;border-bottom:none;background:#fff;overflow:hidden;box-shadow:0 -14px 50px rgba(20,18,28,.22);position:relative}
+    .ph .isl{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:50px;height:12px;border-radius:7px;background:#1B1A21;z-index:2}
+    .pui{position:absolute;inset:0;padding:28px 10px 10px;display:flex;flex-direction:column;gap:7px;animation:puiscroll 8s ease-in-out infinite}
+    .pui .top2{height:30px;border-radius:8px;background:var(--vio);opacity:.92}
+    .pui .row{height:38px;border-radius:9px;background:#F1F1EC;display:flex;align-items:center;gap:7px;padding:0 8px;flex-shrink:0}
+    .pui .row i{width:22px;height:22px;border-radius:7px;background:var(--vio-soft);flex-shrink:0}
+    .pui .row div{flex:1}
+    .pui .row div b{display:block;height:6px;width:72%;border-radius:3px;background:#DDDDD5}
+    .pui .row div s{display:block;height:5px;width:46%;border-radius:3px;background:#EAEAE4;margin-top:4px}
+    .pui .feat{height:84px;border-radius:10px;background:linear-gradient(135deg,var(--vio-soft),#E4D9FB);position:relative;flex-shrink:0}
+    .pui .feat::after{content:'';position:absolute;left:10px;bottom:10px;width:44%;height:8px;border-radius:4px;background:rgba(124,58,237,.35)}
+    @keyframes puiscroll{0%,20%{transform:translateY(0)}45%,60%{transform:translateY(-56px)}85%,100%{transform:translateY(0)}}
+
+    /* demo: website assembling */
+    .v-site{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+    .bro{width:100%;height:100%;border-radius:14px;border:1px solid var(--hair2);background:#fff;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .bro .top{height:28px;display:flex;align-items:center;gap:5px;padding:0 10px;border-bottom:1px solid var(--hair)}
+    .bro .top i{width:7px;height:7px;border-radius:50%;background:var(--hair2)}
+    .bro .top .url{flex:1;height:12px;border-radius:6px;background:var(--bg);margin-left:6px}
+    .bro .cv{flex:1;padding:12px;display:flex;flex-direction:column;gap:8px}
+    .blk{border-radius:7px;background:#EFEFEA;opacity:0;transform:translateY(10px);animation:blkin 6.5s ease-in-out infinite;position:relative;overflow:hidden}
+    .blk::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.75) 50%,transparent 70%);animation:shim 2.2s linear infinite}
+    @keyframes shim{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+    .blk.hero2{height:42%;background:linear-gradient(135deg,var(--vio-soft),#E4D9FB)}
+    .blk.mid{height:15%;animation-delay:.3s}
+    .brow2{flex:1;display:flex;gap:8px}
+    .brow2 .blk{flex:1;height:100%}
+    .brow2 .blk:nth-child(1){animation-delay:.55s}.brow2 .blk:nth-child(2){animation-delay:.75s}.brow2 .blk:nth-child(3){animation-delay:.95s}
+    @keyframes blkin{0%{opacity:0;transform:translateY(10px)}10%,80%{opacity:1;transform:translateY(0)}93%,100%{opacity:0;transform:translateY(10px)}}
+
+    /* ── real results (why video ads) ── */
+    .res{padding:6.5rem 0 0}
+    .res-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center;background:var(--card);border:1px solid var(--hair);border-radius:28px;box-shadow:var(--shadow);padding:clamp(1.6rem,4vw,3.2rem)}
+    .res h2{font-size:clamp(1.8rem,4.2vw,2.9rem);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin-top:.85rem}
+    .res .src{color:var(--dim);font-size:.74rem;margin-top:2rem}
+    .chart{display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:2rem;max-width:220px}
+    .chart i{flex:1;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,var(--vio),#B79BF2);box-shadow:0 8px 22px rgba(124,58,237,.25);transform-origin:bottom;animation:bar 3.6s ease-in-out infinite}
+    .chart i:nth-child(1){height:38%}.chart i:nth-child(2){height:66%;animation-delay:.15s}.chart i:nth-child(3){height:46%;animation-delay:.3s}.chart i:nth-child(4){height:88%;animation-delay:.45s}.chart i:nth-child(5){height:100%;animation-delay:.6s}
+    @keyframes bar{0%,100%{transform:scaleY(.86)}50%{transform:scaleY(1)}}
+    .res-stats{display:flex;flex-direction:column}
+    .rstat{display:flex;align-items:baseline;gap:1.4rem;padding:1.35rem 0;border-bottom:1px solid var(--hair)}
+    .rstat:last-child{border-bottom:none}
+    .rstat b{font-family:'Inter Tight',sans-serif;font-size:clamp(2.4rem,5.5vw,3.6rem);font-weight:700;letter-spacing:-.03em;line-height:1;min-width:3.6ch;font-variant-numeric:tabular-nums}
+    .rstat span{color:var(--mut);font-size:.95rem;font-weight:500}
+    @media (max-width:880px){.res-in{grid-template-columns:1fr}.chart{margin-top:1.4rem}}
+
+    /* ── OUR WORK: real 3D ring ── */
+    .work{padding:7rem 0 0;overflow:hidden}
+    .stage3d{margin-top:1.5rem;height:400px;display:flex;align-items:center;justify-content:center;perspective:1200px}
+    .ring3d{position:relative;width:184px;height:262px;transform-style:preserve-3d;animation:spin 40s linear infinite;will-change:transform}
+    .work:hover .ring3d{animation-play-state:paused}
+    .card3d{position:absolute;inset:0;border-radius:20px;overflow:hidden;border:1px solid var(--hair);background:#fff;box-shadow:0 18px 50px rgba(20,18,28,.16);backface-visibility:hidden}
+    .card3d img{width:100%;height:100%;object-fit:cover;display:block}
+    .card3d.icny{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(165deg,#FFFFFF,#F2F2ED)}
+    .card3d.icny img{width:72px;height:72px;border-radius:18px;box-shadow:var(--shadow-lift)}
+    .card3d.icny b{font-family:'Inter Tight',sans-serif;font-size:.88rem;font-weight:700}
+    .card3d .lbl{position:absolute;left:.75rem;bottom:.75rem;font-size:.68rem;font-weight:700;color:#fff;background:rgba(12,11,16,.55);backdrop-filter:blur(6px);padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.16)}
+    @keyframes spin{from{transform:rotateY(0)}to{transform:rotateY(-360deg)}}
+    .work .hint{text-align:center;color:var(--dim);font-size:.75rem;margin-top:1.2rem}
+    @media (max-width:640px){.stage3d{height:330px;perspective:950px}.ring3d{width:150px;height:214px}}
+
+    /* mobile: tighter vertical rhythm so it never scrolls forever */
+    @media (max-width:640px){
+      .hero{padding:7rem 0 3.5rem}
+      .crafts,.res,.numbers{padding-top:4rem}
+      .work{padding-top:4.5rem}
+      .faq,.end{padding-top:4rem}
+      .craft .view{height:240px}
+      footer{margin-top:3rem}
+    }
+
+    /* ── numbers / faq / contact ── */
+    .numbers{padding:6.5rem 0 0;text-align:center}
+    .numbers .line{font-family:'Inter Tight',sans-serif;font-size:clamp(1.3rem,3.6vw,2.3rem);font-weight:700;letter-spacing:-.02em}
+    .numbers .line b{color:var(--vio);font-variant-numeric:tabular-nums}
+    .numbers small{display:block;margin-top:.8rem;color:var(--dim);font-size:.8rem}
+
+    .faq{max-width:640px;margin:0 auto;padding:6.5rem 0 0;width:92%}
+    .faq h2{text-align:center;font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:700;letter-spacing:-.02em;margin:.85rem 0 1.8rem}
+    details{border-bottom:1px solid var(--hair)}
+    summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.15rem .1rem;font-weight:600;font-size:.95rem}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:'+';font-size:1.25rem;font-weight:400;color:var(--vio);transition:transform .3s;line-height:1}
+    details[open] summary::after{transform:rotate(45deg)}
+    details p{color:var(--mut);font-size:.88rem;padding:0 .1rem 1.2rem;max-width:58ch}
+
+    .end{padding:6.5rem 0 2rem;text-align:center}
+    .end h2{font-size:clamp(2.2rem,6vw,4rem);font-weight:700;letter-spacing:-.03em;line-height:1.02;margin-top:.9rem}
+    .end .mail{display:inline-block;margin:1.4rem 0 2.2rem;color:var(--mut);text-decoration:none;font-size:clamp(.95rem,1.7vw,1.1rem);border-bottom:1px solid var(--hair2);padding-bottom:2px}
+    .end .mail:hover{color:var(--ink)}
+    .mini{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--hair);border-radius:20px;box-shadow:var(--shadow);padding:1.35rem;display:flex;flex-direction:column;gap:.7rem;text-align:left}
+    .mini input,.mini textarea{width:100%;background:var(--bg);border:1px solid var(--hair);border-radius:11px;padding:.9rem 1rem;color:var(--ink);font-family:inherit;font-size:16px;transition:border-color .2s,box-shadow .2s;resize:vertical}
+    .mini input:focus,.mini textarea:focus{outline:none;border-color:#C9B4F5;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+    .send{border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:.95rem;color:#fff;background:var(--vio);border-radius:11px;padding:.95rem;transition:transform .2s,box-shadow .2s}
+    .send:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(124,58,237,.35)}
+
+    footer{border-top:1px solid var(--hair);margin-top:5rem;background:#FCFCFB;position:relative;z-index:1}
+    .foot{max-width:1080px;width:92%;margin:0 auto;padding:1.9rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .foot nav{display:flex;gap:.1rem;flex-wrap:wrap}
+    .foot nav a{color:var(--dim);font-size:.78rem;text-decoration:none;padding:.3rem .5rem;border-radius:8px}
+    .foot nav a:hover{color:var(--mut)}
+    .foot .cp{color:var(--dim);font-size:.72rem}
+
+    /* the scroll orb — colour-leaking companion in the page gutter */
+    .scroll-orb{position:fixed;top:0;left:0;width:64px;height:64px;border-radius:50%;
+      pointer-events:none;z-index:2;opacity:0;filter:blur(6px);
+      background:radial-gradient(circle at 32% 30%,#C4B5FD,#7C3AED 62%,#4C1D95);
+      box-shadow:0 0 70px 26px rgba(124,58,237,.18);
+      transition:opacity .5s;will-change:transform,filter}
+
+    .rv{opacity:0;transform:translateY(24px)}
+    @media (prefers-reduced-motion:reduce){
+      .scroll-orb{display:none!important}
+      .rv{opacity:1;transform:none}
+      .ring3d,.blk,.blk::after,.prog i,.out,.fld code::after,.chip i,.pui{animation:none!important}
+      .blk,.out{opacity:1;transform:none}
+      html{scroll-behavior:auto}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Three.js / Particle Canvas -->
-  <canvas id="backgroundCanvas"></canvas>
+  <div class="bgfx"><div class="blob bl1" id="bl1"></div><div class="blob bl2" id="bl2"></div><div class="blob bl3" id="bl3"></div><div class="dots" id="dots"></div></div>
 
-  <!-- Navigation -->
-  <header class="navbar">
-    <div class="container nav-content">
-      <a href="index.html" class="logo">
-        <img src="images/MoroboIconFinal.png" alt="Morobo" class="logo-icon">
-        Morobo
-      </a>
-      <nav class="nav-tabs" id="navTabs">
-        <a href="apps.html" class="nav-tab">Apps</a>
-        <a href="websites.html" class="nav-tab">Websites</a>
-        <a href="about.html" class="nav-tab">About</a>
-        <a href="#contact" class="nav-tab">Contact</a>
-      </nav>
-      <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ─── HERO ─── -->
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <h1 class="hero-headline">
-        We build<br>
-        <span class="accent-word">software</span><br>
-        that matters.
-      </h1>
-      <p class="hero-sub">Apps, websites, and digital tools crafted with obsessive attention to detail.</p>
-      <div class="hero-actions">
-        <a href="#apps" class="hero-link">See our work <span class="arrow">→</span></a>
-        <a href="#contact" class="hero-link secondary">Get in touch <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      <span>Scroll</span>
-    </div>
-  </section>
-
-  <!-- ─── APPS ─── -->
-  <section id="apps" class="section">
-    <span class="section-number">01</span>
-    <div class="container">
-      <p class="section-eyebrow">Our Apps</p>
-      <h2 class="section-title">Built to last.<br>Designed to delight.</h2>
-      <p class="section-description">Four apps, each focused on doing one thing exceptionally well.</p>
-
-      <div class="apps-grid">
-        <div class="card app-card gsap-fade-up">
-          <img src="images/PregamifyLogo.png" alt="Pregamify" class="app-card-icon" onerror="this.src='placeholder_app.png'">
-          <div>
-            <p class="app-card-name">Pregamify</p>
-            <p class="app-card-desc">Warm up your reaction, tracking, visual, and precision before every gaming session.</p>
-          </div>
-          <a href="apps/pregamify/" class="app-card-link">Learn more →</a>
-        </div>
-
-        <div class="card app-card gsap-fade-up">
-          <img src="images/motonia_app.png" alt="Motonia" class="app-card-icon" onerror="this.src='placeholder_app.png'">
-          <div>
-            <p class="app-card-name">Motonia</p>
-            <p class="app-card-desc">GPS navigation built for motorcycle riders. Find scenic routes, track rides, ride safely.</p>
-          </div>
-          <a href="apps/motonia/" class="app-card-link">Learn more →</a>
-        </div>
-
-        <div class="card app-card gsap-fade-up">
-          <img src="images/AgentBoardIcon.png" alt="AgentBoard" class="app-card-icon" onerror="this.src='placeholder_app.png'">
-          <div>
-            <p class="app-card-name">AgentBoard</p>
-            <p class="app-card-desc">Universal dashboard for AI voice agents. Track performance, analyze metrics, share insights.</p>
-          </div>
-          <a href="apps/agentboard/" class="app-card-link">Learn more →</a>
-        </div>
-
-        <div class="card app-card gsap-fade-up">
-          <img src="images/ThriftaholicLogo.png" alt="Thriftaholic" class="app-card-icon" onerror="this.src='placeholder_app.png'">
-          <div>
-            <p class="app-card-name">Thriftaholic</p>
-            <p class="app-card-desc">Discover thrift store gems near you. Never miss a great deal at stores in your area.</p>
-          </div>
-          <a href="apps/thriftaholic/" class="app-card-link">Learn more →</a>
-        </div>
-      </div>
-
-      <div class="section-cta">
-        <a href="questionnaire/" class="btn btn-primary">Request a quote →</a>
-        <a href="apps.html" class="hero-link">View all apps <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── WEBSITES ─── -->
-  <section id="websites" class="section">
-    <span class="section-number">02</span>
-    <div class="container">
-      <p class="section-eyebrow">Client Work</p>
-      <h2 class="section-title">Websites that<br>stand out.</h2>
-      <p class="section-description">From portfolios to platforms — we build digital presences that captivate.</p>
-
-      <div class="portfolio-grid">
-        <div class="portfolio-card large gsap-fade-up">
-          <img src="images/MerivillaSS.png" alt="Merivilla" onerror="this.style.background='#141414'">
-          <span class="portfolio-card-name">Merivilla</span>
-          <div class="portfolio-card-overlay">
-            <p class="portfolio-card-desc">Luxury real estate development in Mérida, Mexico</p>
-            <a href="https://morobollc.github.io/MerivillaWebsite/" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-card gsap-fade-up">
-          <img src="images/MorganMillerIcon.png" alt="Morgan Miller" onerror="this.style.background='#141414'">
-          <span class="portfolio-card-name">Morgan Miller</span>
-          <div class="portfolio-card-overlay">
-            <p class="portfolio-card-desc">UGC content creator portfolio</p>
-            <a href="https://morganmiller.site" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-card gsap-fade-up">
-          <img src="images/MorganBlakeSS.png" alt="Morgan Blake Photography" onerror="this.style.background='#141414'">
-          <span class="portfolio-card-name">Morgan Blake</span>
-          <div class="portfolio-card-overlay">
-            <p class="portfolio-card-desc">Model photography studio</p>
-            <a href="https://morganblakestudio.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-card gsap-fade-up">
-          <img src="images/RLPhotographySS.png" alt="RL Photography" onerror="this.style.background='#141414'">
-          <span class="portfolio-card-name">RL Photography</span>
-          <div class="portfolio-card-overlay">
-            <p class="portfolio-card-desc">Wedding & couple photography</p>
-            <a href="https://rlphotography.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-card gsap-fade-up">
-          <img src="images/LensCraftSS.png" alt="Lenscraft" onerror="this.style.background='#141414'">
-          <span class="portfolio-card-name">Lenscraft</span>
-          <div class="portfolio-card-overlay">
-            <p class="portfolio-card-desc">Family & senior portrait photography</p>
-            <a href="https://lenscraft.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-card gsap-fade-up">
-          <img src="images/LaReinaDelDisfrazSS.png" alt="La Reina Del Disfraz" onerror="this.style.background='#141414'">
-          <span class="portfolio-card-name">La Reina Del Disfraz</span>
-          <div class="portfolio-card-overlay">
-            <p class="portfolio-card-desc">Costume & party supply e-commerce</p>
-            <a href="https://lareinadeldisfraz.lovable.app" target="_blank" rel="noopener" class="portfolio-card-link">Visit site →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-cta">
-        <a href="websites.html" class="hero-link">View all work <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── STATEMENT ─── -->
-  <section class="statement-section">
-    <div class="container">
-      <p class="statement-text gsap-fade-up">
-        Morobo is an<br>
-        <span class="dim">independent</span><br>
-        software <span class="highlight">studio.</span>
-      </p>
-      <a href="about.html" class="statement-link gsap-fade-up">About us <span>→</span></a>
-    </div>
-  </section>
-
-  <!-- ─── MARQUEE ─── -->
-  <div class="marquee-section">
-    <div class="marquee-track">
-      <span class="marquee-item">Merivilla</span>
-      <span class="marquee-item">Morgan Miller</span>
-      <span class="marquee-item">Morgan Blake Photography</span>
-      <span class="marquee-item">RL Photography</span>
-      <span class="marquee-item">Lenscraft</span>
-      <span class="marquee-item">La Reina Del Disfraz</span>
-      <span class="marquee-item">Merivilla</span>
-      <span class="marquee-item">Morgan Miller</span>
-      <span class="marquee-item">Morgan Blake Photography</span>
-      <span class="marquee-item">RL Photography</span>
-      <span class="marquee-item">Lenscraft</span>
-      <span class="marquee-item">La Reina Del Disfraz</span>
-    </div>
-  </div>
-
-  <!-- ─── CONTACT ─── -->
-  <section id="contact" class="section">
-    <span class="section-number">03</span>
-    <div class="container">
-      <p class="section-eyebrow">Contact</p>
-      <div class="contact-grid">
-        <div class="contact-info gsap-fade-up">
-          <h2 class="contact-info-title">Have an idea?<br>Let's talk.</h2>
-          <p class="contact-info-text">Email us at <a href="mailto:contact@morobo.org">contact@morobo.org</a></p>
-          <p class="contact-info-text" style="margin-top:1.25rem;">
-            <a href="questionnaire/" class="hero-link">Got an app idea? Start the questionnaire <span class="arrow">→</span></a>
-          </p>
-        </div>
-        <form class="contact-form gsap-fade-up" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="f94f9d09-33e6-4c2b-8516-bb3cf7e06fe4">
-          <input type="hidden" name="subject" value="New Contact Form Submission from Morobo.org">
-          <input type="hidden" name="redirect" value="https://morobo.org/thank-you.html">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
-          </div>
-          <input type="checkbox" name="botcheck" style="display:none">
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── TRACK BANNER ─── -->
-  <div style="padding: 0 0 4rem; position: relative; z-index: 1;">
-    <div class="container">
-      <div class="track-banner">
-        <div class="track-banner-text">
-          <h4>Already working with us?</h4>
-          <p>Track the progress of your project in real time.</p>
-        </div>
-        <a href="track.html" class="btn btn-secondary">Track your project</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── FOOTER ─── -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <a href="index.html" class="footer-logo-link">
-        <img src="images/MoroboIconFinal.png" alt="Morobo">
-        Morobo
-      </a>
-      <div class="footer-links">
+  <header id="hd">
+    <div class="hd">
+      <a class="brand" href="index.html"><img src="images/MoroboIconFinal.png" alt=""><span class="bt">Morobo</span></a>
+      <nav class="menu" id="menu">
+        <a href="#ads">AI Ads</a>
         <a href="apps.html">Apps</a>
         <a href="websites.html">Websites</a>
         <a href="about.html">About</a>
-        <a href="legal.html">Legal</a>
-        <a href="track.html">Track Project</a>
         <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="questionnaire/">Start a project</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero col" id="ads">
+      <span class="chip rv"><i></i>Morobo Ads — early access open</span>
+      <h1 class="rv">We make apps <em>famous</em>.</h1>
+      <p class="sub rv">AI video ads · app development · websites — one team.</p>
+      <div class="bar rv">
+        <form id="barForm" novalidate>
+          <input id="barLink" type="text" inputmode="url" placeholder="Paste your App Store link or website…" aria-label="Your app or website link">
+          <button type="submit" id="barBtn">Get my ads →</button>
+        </form>
+        <div class="ok" id="barOk">✓ You're on the early-access list — we'll be in touch.</div>
+        <p class="micro">Generated by AI, checked by humans. Or <a href="questionnaire/">start an app or website project →</a></p>
       </div>
-      <div style="display:flex; align-items:center; gap:0.75rem;">
-        <p class="footer-copy">© <span id="year"></span> Morobo LLC</p>
-        <ul class="social-links">
-          <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
-          <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-        </ul>
+    </section>
+
+    <!-- CRAFTS: ai ads → apps → websites -->
+    <section class="crafts col" id="crafts">
+      <div class="sec-head">
+        <span class="kicker">What we do</span>
+        <h2 class="rv">Three crafts. One team.</h2>
       </div>
+      <div class="craft-grid">
+        <article class="craft rv">
+          <div class="view"><div class="v-ads">
+            <div class="fld"><span class="ic"></span><code id="typer">apps.apple.com/us/app/</code></div>
+            <div class="prog"><i></i></div>
+            <div class="outs"><div class="out"><span class="lv">LIVE</span></div><div class="out"></div><div class="out"></div></div>
+          </div></div>
+          <div class="meta">
+            <b>AI Ad Studio <span>Coming soon</span></b>
+            <p>Store link in — scroll-stopping video ads, 3D mockups, and banners out. Minutes, not weeks.</p>
+            <a href="pricing.html">Done-for-you packages →</a>
+          </div>
+        </article>
+        <article class="craft rv">
+          <div class="view"><div class="v-phone"><div class="ph"><span class="isl"></span>
+            <div class="pui">
+              <div class="top2"></div>
+              <div class="row"><i></i><div><b></b><s></s></div></div>
+              <div class="feat"></div>
+              <div class="row"><i></i><div><b></b><s></s></div></div>
+              <div class="row"><i></i><div><b></b><s></s></div></div>
+            </div>
+          </div></div></div>
+          <div class="meta">
+            <b>App Development <span>iOS · Android</span></b>
+            <p>Designed, built, and shipped to both stores end-to-end. Our own apps ship first.</p>
+            <a href="apps.html">Explore our apps →</a>
+          </div>
+        </article>
+        <article class="craft rv">
+          <div class="view"><div class="v-site"><div class="bro">
+            <div class="top"><i></i><i></i><i></i><div class="url"></div></div>
+            <div class="cv"><div class="blk hero2"></div><div class="blk mid"></div><div class="brow2"><div class="blk"></div><div class="blk"></div><div class="blk"></div></div></div>
+          </div></div></div>
+          <div class="meta">
+            <b>Websites <span>Design · Build</span></b>
+            <p>Animated sites that sell — engineered like this one, built around your brand.</p>
+            <a href="websites.html">See client work →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- REAL RESULTS: why video ads -->
+    <section class="res col">
+      <div class="res-in rv">
+        <div>
+          <span class="kicker">Why video ads</span>
+          <h2>Real results.</h2>
+          <div class="chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="src">*Sources: Meta, Wistia, HubSpot, Creatify benchmarks</p>
+        </div>
+        <div class="res-stats">
+          <div class="rstat"><b>2.7x</b><span>More leads vs. static image ads</span></div>
+          <div class="rstat"><b>1.7x</b><span>Higher ROI*</span></div>
+          <div class="rstat"><b>90%</b><span>Lower production cost</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR WORK: true 3D ring -->
+    <section class="work" id="work">
+      <div class="sec-head col">
+        <span class="kicker">Our work</span>
+        <h2 class="rv">Shipped and live.</h2>
+      </div>
+      <div class="stage3d rv">
+        <div class="ring3d" id="ring3d">
+          <div class="card3d icny"><img src="images/motonia_app.png" alt="Motonia" onerror="this.style.display='none'"><b>Motonia</b><span class="lbl">iOS · Android</span></div>
+          <div class="card3d"><img src="images/MerivillaSS.png" alt="Merivilla website" onerror="this.parentElement.style.background='#EEE'"><span class="lbl">Merivilla — client site</span></div>
+          <div class="card3d icny"><img src="images/PregamifyLogo.png" alt="Pregamify" onerror="this.style.display='none'"><b>Pregamify</b><span class="lbl">iOS</span></div>
+          <div class="card3d"><img src="images/MorganBlakeSS.png" alt="Morgan Blake website" onerror="this.parentElement.style.background='#EEE'"><span class="lbl">Morgan Blake — client site</span></div>
+          <div class="card3d icny"><img src="images/AgentBoardIcon.png" alt="AgentBoard" onerror="this.style.display='none'"><b>AgentBoard</b><span class="lbl">iOS</span></div>
+          <div class="card3d"><img src="images/RLPhotographySS.png" alt="RL Photography website" onerror="this.parentElement.style.background='#EEE'"><span class="lbl">RL Photography — client site</span></div>
+          <div class="card3d icny"><img src="images/ThriftaholicLogo.png" alt="Thriftaholic" onerror="this.style.display='none'"><b>Thriftaholic</b><span class="lbl">iOS</span></div>
+          <div class="card3d"><img src="images/LensCraftSS.png" alt="Lenscraft website" onerror="this.parentElement.style.background='#EEE'"><span class="lbl">Lenscraft — client site</span></div>
+        </div>
+      </div>
+      <p class="hint">Hover to pause · every card is a real, live project</p>
+    </section>
+
+    <!-- NUMBERS -->
+    <section class="numbers col rv">
+      <div class="line"><b>5</b> apps shipped · <b>10+</b> projects delivered · <b>6+</b> websites built</div>
+      <small>Founded 2024 · Working worldwide</small>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <span class="kicker rv" style="display:block;text-align:center">Questions</span>
+      <h2 class="rv">The short answers.</h2>
+      <details class="rv"><summary>What is Morobo Ads?</summary><p>Our AI ad studio: paste your App Store link and it generates demo videos, 3D device mockups, and banners for your app. In development — drop your link above for early access, or hire us for done-for-you ad packages today.</p></details>
+      <details class="rv"><summary>What else do you build?</summary><p>iOS &amp; Android apps end-to-end, and animated websites and landing pages. Hire us for one piece or the full package: app + website + marketing.</p></details>
+      <details class="rv"><summary>How does pricing work?</summary><p>No price lists. Tell us what you're building via the 3-minute questionnaire and we'll come back with a clear, itemized quote — most projects land far below typical agency pricing.</p></details>
+      <details class="rv"><summary>How long does a project take?</summary><p>Websites: days to a couple of weeks. Apps: a focused first version typically takes a few weeks once content is ready — with a private real-time progress link the whole way.</p></details>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="end col" id="contact">
+      <span class="kicker rv">Contact</span>
+      <h2 class="rv">Let's build yours.</h2>
+      <a class="mail rv" href="mailto:contact@morobo.org">contact@morobo.org</a>
+      <form class="mini rv" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="f94f9d09-33e6-4c2b-8516-bb3cf7e06fe4">
+        <input type="hidden" name="subject" value="New Contact Form Submission from Morobo.org">
+        <input type="hidden" name="redirect" value="https://morobo.org/thank-you.html">
+        <input name="name" type="text" placeholder="Your name" required>
+        <input name="email" type="email" placeholder="your@email.com" required>
+        <textarea name="message" rows="4" placeholder="Tell us about your project…" required></textarea>
+        <input type="checkbox" name="botcheck" style="display:none">
+        <button class="send" type="submit">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <a class="brand" href="index.html"><img src="images/MoroboIconFinal.png" alt=""><span class="bt">Morobo</span></a>
+      <nav>
+        <a href="apps.html">Apps</a><a href="websites.html">Websites</a><a href="about.html">About</a>
+        <a href="pricing.html">Work With Us</a><a href="legal.html">Legal</a><a href="track.html">Track Project</a>
+      </nav>
+      <span class="cp">© <span id="yr"></span> Morobo LLC</span>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"></script>
-  <script src="script.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    document.getElementById("yr").textContent = new Date().getFullYear();
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* header: bar → floating pill */
+    var hd = document.getElementById("hd");
+    var onS = function(){ hd.classList.toggle("pill", window.scrollY > 56); };
+    window.addEventListener("scroll", onS, {passive:true}); onS();
+    var burger = document.getElementById("burger"), menu = document.getElementById("menu");
+    burger.addEventListener("click", function(){ menu.classList.toggle("open"); });
+    menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ menu.classList.remove("open"); }); });
+
+    /* hero bar → early-access capture */
+    var barForm = document.getElementById("barForm");
+    var barLink = document.getElementById("barLink");
+    var barBtn = document.getElementById("barBtn");
+    var barOk = document.getElementById("barOk");
+    var stage = 0, savedLink = "";
+    barForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var v = barLink.value.trim();
+      if (!v) { barLink.focus(); return; }
+      if (stage === 0) {
+        savedLink = v; stage = 1;
+        barLink.value = ""; barLink.type = "email";
+        barLink.placeholder = "Your email — we'll send your first ads";
+        barBtn.textContent = "Join early access →";
+        barLink.focus();
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { barLink.focus(); return; }
+      barBtn.disabled = true; barBtn.textContent = "Joining…";
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "f94f9d09-33e6-4c2b-8516-bb3cf7e06fe4",
+          subject: "Morobo Ads — Early Access signup",
+          from_name: "Morobo Ads early access",
+          email: v,
+          message: "Early-access signup\nLink: " + savedLink + "\nEmail: " + v,
+          botcheck: ""
+        })
+      }).then(function(r){ return r.json(); }).then(function(d){
+        if (d.success) { barForm.style.display = "none"; barOk.style.display = "flex"; }
+        else { throw new Error(); }
+      }).catch(function(){
+        barBtn.disabled = false; barBtn.textContent = "Join early access →";
+      });
+    });
+
+    /* typing demo */
+    (function type(el) {
+      if (!el || reduced) return;
+      var APPS = ["motonia", "your-app", "pregamify", "thriftaholic"];
+      var base = "apps.apple.com/us/app/", i = 0;
+      (function cycle() {
+        var w = APPS[i % APPS.length], k = 0;
+        el.textContent = base;
+        var t = setInterval(function () {
+          el.textContent = base + w.slice(0, ++k);
+          if (k >= w.length) { clearInterval(t); setTimeout(cycle, 4000); i++; }
+        }, 92);
+      })();
+    })(document.getElementById("typer"));
+
+    /* 3D ring: place cards around the circle */
+    var ring = document.getElementById("ring3d");
+    var cards = ring.children;
+    var n = cards.length, radius = window.matchMedia("(max-width:640px)").matches ? 225 : 315;
+    for (var i = 0; i < n; i++) {
+      cards[i].style.transform = "rotateY(" + (i * 360 / n) + "deg) translateZ(" + radius + "px)";
+    }
+
+    /* subtle scroll-reactive background + reveals */
+    if (window.gsap && !reduced) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to(".hero .rv", { opacity: 1, y: 0, duration: .95, ease: "power3.out", stagger: .1, delay: .1 });
+      document.querySelectorAll("main .rv").forEach(function (el) {
+        if (el.closest(".hero")) return;
+        gsap.to(el, { opacity: 1, y: 0, duration: .85, ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 86%" } });
+      });
+      // background drift with scroll (clearly visible, still tasteful)
+      gsap.to("#bl1", { y: 720, x: -160, scale: 1.35, ease: "none", scrollTrigger: { trigger: document.body, start: "top top", end: "max", scrub: 1.1 } });
+      gsap.to("#bl2", { y: -560, x: -220, scale: 1.2, ease: "none", scrollTrigger: { trigger: document.body, start: "top top", end: "max", scrub: 1.3 } });
+      gsap.to("#bl3", { y: -700, x: 180, scale: 1.25, ease: "none", scrollTrigger: { trigger: document.body, start: "top top", end: "max", scrub: 1.5 } });
+      gsap.to("#dots", { y: -420, ease: "none", scrollTrigger: { trigger: document.body, start: "top top", end: "max", scrub: 1 } });
+    } else {
+      document.querySelectorAll(".rv").forEach(function (el) { el.style.opacity = 1; el.style.transform = "none"; });
+    }
+
+    /* the scroll orb — rides the gutter, leaks colour with scroll */
+    if (!reduced) {
+      var orb = document.createElement("div");
+      orb.className = "scroll-orb";
+      orb.setAttribute("aria-hidden", "true");
+      document.body.appendChild(orb);
+      var ox = -100, oy = -100, shown = false;
+      (function orbLoop() {
+        var vw = window.innerWidth, vh = window.innerHeight;
+        var contentW = Math.min(1080, vw * 0.92);
+        var gutter = (vw - contentW) / 2;
+        var max = Math.max(1, document.documentElement.scrollHeight - vh);
+        var p = Math.min(1, Math.max(0, window.scrollY / max));
+        if (gutter < 96) {
+          if (shown) { orb.style.opacity = "0"; shown = false; }
+        } else {
+          if (!shown) { orb.style.opacity = "0.6"; shown = true; }
+          var sway = Math.sin(p * Math.PI * 6) * Math.min(26, gutter * 0.16);
+          var tx = vw - gutter / 2 - 32 + sway;
+          var ty = 90 + p * (vh - 240) + Math.sin(p * Math.PI * 4) * 28;
+          ox += (tx - ox) * 0.07;
+          oy += (ty - oy) * 0.07;
+          orb.style.transform = "translate(" + ox + "px, " + oy + "px) scale(" + (0.85 + 0.3 * Math.sin(p * Math.PI)) + ")";
+          orb.style.filter = "blur(6px) hue-rotate(" + (p * 320) + "deg)";
+        }
+        requestAnimationFrame(orbLoop);
+      })();
+    }
+  })();
+  </script>
 </body>
 </html>
