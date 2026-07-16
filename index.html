@@ -231,26 +231,24 @@
     .foot nav a:hover{color:var(--mut)}
     .foot .cp{color:var(--dim);font-size:.72rem}
 
-    /* the scroll blob — flat liquid shape, morphs + distorts as it sweeps behind the content */
-    .scroll-orb{position:fixed;top:0;left:0;width:104px;height:104px;
-      pointer-events:none;z-index:0;opacity:0;filter:blur(6px);
-      background:linear-gradient(130deg,#C4B5FD 0%,#8B5CF6 48%,#6D28D9 100%);
-      box-shadow:0 0 90px 40px rgba(124,58,237,.25);
-      border-radius:47% 53% 61% 39% / 45% 51% 49% 55%;
-      animation:orbMorph 9s ease-in-out infinite;
-      transition:opacity .5s;will-change:transform,filter,border-radius}
-    @keyframes orbMorph{
-      0%,100%{border-radius:47% 53% 61% 39% / 45% 51% 49% 55%}
-      20%{border-radius:63% 37% 44% 56% / 61% 42% 58% 39%}
-      40%{border-radius:38% 62% 57% 43% / 40% 64% 36% 60%}
-      60%{border-radius:56% 44% 36% 64% / 59% 35% 65% 41%}
-      80%{border-radius:42% 58% 66% 34% / 36% 57% 43% 64%}
+    /* the scroll blob — gooey violet liquid with a smearing trail + leaking droplets */
+    .blobfx{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;
+      transition:opacity .6s;
+      filter:url(#goo) drop-shadow(0 0 44px rgba(124,58,237,.32))}
+    .blobfx .seg{position:absolute;top:0;left:0;border-radius:50%;
+      background:linear-gradient(130deg,#A78BFA,#7C3AED 60%,#6D28D9);
+      will-change:transform}
+    .blobfx .head{animation:blobMorph 6.5s ease-in-out infinite}
+    @keyframes blobMorph{
+      0%,100%{border-radius:44% 56% 63% 37% / 41% 58% 42% 59%}
+      25%{border-radius:68% 32% 41% 59% / 65% 37% 63% 35%}
+      50%{border-radius:33% 67% 58% 42% / 36% 68% 32% 64%}
+      75%{border-radius:61% 39% 30% 70% / 62% 30% 70% 38%}
     }
-    @media (max-width:640px){.scroll-orb{width:64px;height:64px;box-shadow:0 0 60px 26px rgba(124,58,237,.22)}}
 
     .rv{opacity:0;transform:translateY(24px)}
     @media (prefers-reduced-motion:reduce){
-      .scroll-orb{display:none!important}
+      .blobfx{display:none!important}
       .rv{opacity:1;transform:none}
       .ring3d,.blk,.blk::after,.prog i,.out,.fld code::after,.chip i,.pui{animation:none!important}
       .blk,.out{opacity:1;transform:none}
@@ -521,33 +519,83 @@
       document.querySelectorAll(".rv").forEach(function (el) { el.style.opacity = 1; el.style.transform = "none"; });
     }
 
-    /* the scroll blob — flat liquid shape that leaks colour and distorts with motion */
+    /* the scroll blob — gooey violet liquid: smearing trail, droplets that
+       pinch off and re-merge, wandering an abstract (non-repeating) path */
     if (!reduced) {
-      var orb = document.createElement("div");
-      orb.className = "scroll-orb";
-      orb.setAttribute("aria-hidden", "true");
-      document.body.appendChild(orb);
-      var ox = -140, oy = -140, shown = false;
-      (function orbLoop() {
+      var gooSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      gooSvg.setAttribute("width", "0");
+      gooSvg.setAttribute("height", "0");
+      gooSvg.setAttribute("aria-hidden", "true");
+      gooSvg.style.position = "absolute";
+      gooSvg.innerHTML = '<filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="11"/><feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"/></filter>';
+      document.body.appendChild(gooSvg);
+
+      var fx = document.createElement("div");
+      fx.className = "blobfx";
+      fx.setAttribute("aria-hidden", "true");
+      var sizes = window.innerWidth <= 640
+        ? [64, 46, 34, 24, 16, 14, 11]
+        : [104, 76, 56, 40, 26, 22, 17]; /* head, 4 trail, 2 droplets */
+      var segs = [], pos = [];
+      for (var i = 0; i < sizes.length; i++) {
+        var s = document.createElement("div");
+        s.className = "seg" + (i === 0 ? " head" : "");
+        s.style.width = sizes[i] + "px";
+        s.style.height = sizes[i] + "px";
+        fx.appendChild(s);
+        segs.push(s);
+        pos.push({ x: -180, y: -180 });
+      }
+      document.body.appendChild(fx);
+
+      var shown = false;
+      (function blobLoop() {
         var vw = window.innerWidth, vh = window.innerHeight;
-        var size = vw <= 640 ? 64 : 104;
+        var size = sizes[0];
         var max = Math.max(1, document.documentElement.scrollHeight - vh);
         var p = Math.min(1, Math.max(0, window.scrollY / max));
-        if (!shown) { orb.style.opacity = "0.9"; shown = true; }
-        var margin = Math.max(28, vw * 0.04);
-        var tx = vw / 2 + Math.sin(p * Math.PI * 4) * (vw / 2 - margin - size / 2) - size / 2;
-        var ty = 70 + p * (vh - 210) + Math.sin(p * Math.PI * 7) * 46;
-        var dx = (tx - ox) * 0.07, dy = (ty - oy) * 0.07;
-        ox += dx;
-        oy += dy;
-        /* squash & stretch along the direction of travel = liquid, not sphere */
+        if (!shown) { fx.style.opacity = "0.9"; shown = true; }
+
+        /* abstract wander: three off-beat waves summed — drifts, lingers,
+           crosses at irregular moments instead of metronome left-right */
+        var span = vw / 2 - Math.max(28, vw * 0.04) - size / 2;
+        var tx = vw / 2 - size / 2 + span * (
+          Math.sin(p * 6.1 + 0.7) * 0.55 +
+          Math.sin(p * 13.7 + 2.1) * 0.30 +
+          Math.sin(p * 3.3 + 4.5) * 0.15);
+        var ty = 70 + p * (vh - 210) + Math.sin(p * 9.3 + 1.2) * 56;
+
+        var dx = (tx - pos[0].x) * 0.08, dy = (ty - pos[0].y) * 0.08;
+        pos[0].x += dx;
+        pos[0].y += dy;
+
+        /* head: squash & stretch along the direction of travel */
         var v = Math.sqrt(dx * dx + dy * dy);
-        var stretch = Math.min(1.45, 1 + v / 90);
+        var st = Math.min(1.6, 1 + v / 70);
         var ang = Math.atan2(dy, dx) * 180 / Math.PI;
-        var base = 0.85 + 0.4 * Math.sin(p * Math.PI);
-        orb.style.transform = "translate(" + ox + "px, " + oy + "px) rotate(" + ang + "deg) scale(" + (base * stretch) + ", " + (base / stretch) + ") rotate(" + (-ang) + "deg)";
-        orb.style.filter = "blur(6px) hue-rotate(" + (p * 360) + "deg) saturate(" + (1.1 + 0.5 * Math.sin(p * Math.PI * 2)) + ")";
-        requestAnimationFrame(orbLoop);
+        segs[0].style.transform = "translate(" + pos[0].x + "px, " + pos[0].y + "px) rotate(" + ang + "deg) scale(" + st + ", " + (1 / st) + ") rotate(" + (-ang) + "deg)";
+
+        /* trail: each segment chases the one ahead — goo melts them into a smear */
+        for (var i = 1; i < 5; i++) {
+          pos[i].x += (pos[i - 1].x + (sizes[i - 1] - sizes[i]) / 2 - pos[i].x) * 0.3;
+          pos[i].y += (pos[i - 1].y + (sizes[i - 1] - sizes[i]) / 2 - pos[i].y) * 0.3;
+          segs[i].style.transform = "translate(" + pos[i].x + "px, " + pos[i].y + "px)";
+        }
+
+        /* droplets: drift around the head, pinching off and re-merging */
+        var t = performance.now() / 1000;
+        var cx = pos[0].x + size / 2, cy = pos[0].y + size / 2;
+        for (var j = 5; j < sizes.length; j++) {
+          var k = j - 4;
+          var r = size * (0.55 + 0.45 * Math.sin(t * 0.6 + k * 2.4));
+          var a = t * (k === 1 ? 0.7 : -0.5) + k * 2.1;
+          var gx = cx + Math.cos(a) * r - sizes[j] / 2;
+          var gy = cy + Math.sin(a) * r * 0.8 - sizes[j] / 2;
+          pos[j].x += (gx - pos[j].x) * 0.12;
+          pos[j].y += (gy - pos[j].y) * 0.12;
+          segs[j].style.transform = "translate(" + pos[j].x + "px, " + pos[j].y + "px)";
+        }
+        requestAnimationFrame(blobLoop);
       })();
     }
   })();
