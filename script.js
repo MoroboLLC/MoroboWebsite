@@ -94,28 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
     orb.setAttribute('aria-hidden', 'true');
     document.body.appendChild(orb);
 
-    let ox = -100, oy = -100, shown = false;
+    let ox = -120, oy = -120, shown = false;
     const orbLoop = () => {
       const vw = window.innerWidth, vh = window.innerHeight;
-      const contentW = Math.min(1200, vw * 0.92);      // widest content column on inner pages
-      const gutter = (vw - contentW) / 2;
+      const size = vw <= 640 ? 60 : 96;
       const max = Math.max(1, document.documentElement.scrollHeight - vh);
       const p = Math.min(1, Math.max(0, window.scrollY / max));
 
-      if (gutter < 96) {                               // no room — stay out of the content
-        if (shown) { orb.style.opacity = '0'; shown = false; }
-      } else {
-        if (!shown) { orb.style.opacity = '0.6'; shown = true; }
-        // ride the right-hand gutter: down the page with the reader,
-        // swaying inside the gutter band, never crossing the content
-        const sway = Math.sin(p * Math.PI * 6) * Math.min(26, gutter * 0.16);
-        const tx = vw - gutter / 2 - 32 + sway;
-        const ty = 90 + p * (vh - 240) + Math.sin(p * Math.PI * 4) * 28;
-        ox += (tx - ox) * 0.07;
-        oy += (ty - oy) * 0.07;
-        orb.style.transform = `translate(${ox}px, ${oy}px) scale(${0.85 + 0.3 * Math.sin(p * Math.PI)})`;
-        orb.style.filter = `blur(6px) hue-rotate(${p * 320}deg)`;   // the colour "leak"
-      }
+      if (!shown) { orb.style.opacity = '0.9'; shown = true; }
+      // dramatic full-width weave: edge → edge as the reader scrolls,
+      // gliding behind the content layer so it never blocks anything
+      const margin = Math.max(28, vw * 0.04);
+      const tx = vw / 2 + Math.sin(p * Math.PI * 4) * (vw / 2 - margin - size / 2) - size / 2;
+      const ty = 70 + p * (vh - 210) + Math.sin(p * Math.PI * 7) * 46;
+      ox += (tx - ox) * 0.07;
+      oy += (ty - oy) * 0.07;
+      orb.style.transform = `translate(${ox}px, ${oy}px) scale(${0.8 + 0.45 * Math.sin(p * Math.PI)})`;
+      orb.style.filter = `blur(5px) hue-rotate(${p * 360}deg) saturate(${1.1 + 0.5 * Math.sin(p * Math.PI * 2)})`;
       requestAnimationFrame(orbLoop);
     };
     requestAnimationFrame(orbLoop);
