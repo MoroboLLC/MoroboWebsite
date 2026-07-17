@@ -2009,6 +2009,8 @@ body{background:var(--bg);color:var(--text)}
 .bgfx .b2{width:48vw;height:48vw;background:radial-gradient(circle,rgba(56,132,255,.11),transparent 62%);top:38%;right:-16vw}
 .bgfx .b3{width:44vw;height:44vw;background:radial-gradient(circle,rgba(124,58,237,.09),transparent 62%);bottom:-14vw;left:-12vw}
 .bgfx .dg{position:absolute;inset:-30% 0;background-image:radial-gradient(rgba(21,21,23,.07) 1.2px,transparent 1.8px);background-size:26px 26px;will-change:transform}
-.navbar,.footer,main,section,.container{position:relative;z-index:1}
+.footer,main,section,.container{position:relative;z-index:1}
+/* navbar keeps its original fixed positioning + z-index:1000 (rule near the top
+   of this file) — flattening it here put the open mobile menu UNDER page content */
 
 /* (the scroll blob lives only on the homepage — index.html carries its own styles) */

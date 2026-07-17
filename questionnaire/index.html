@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Start Your App Project – Morobo</title>
-  <meta name="description" content="Tell us about your app idea. A few quick questions and the Morobo team will be in touch with a tailored proposal.">
+  <title>Start Your Project – Morobo</title>
+  <meta name="description" content="Tell us about your app or website idea. A few quick questions and the Morobo team will be in touch with a tailored proposal.">
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -348,6 +348,21 @@
       .q-shell { padding: 1rem 1.05rem 8rem; }
       .q-progress { margin-bottom: 2rem; }
     }
+
+    /* ── Desktop polish (phones keep the layout above) ── */
+    @media (min-width: 900px) {
+      .q-shell { max-width: 800px; padding: 2.5rem 2rem 10rem; }
+      .q-top { padding-bottom: 2rem; }
+      .q-title { font-size: 2.6rem; }
+      .q-sub { font-size: 1.05rem; max-width: 620px; }
+      .q-field { margin-bottom: 2.3rem; }
+      .q-options { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+      .q-options.q-has-notes { grid-template-columns: 1fr; }
+      .q-opt-box { padding: 1.05rem 1.2rem; }
+      .q-nav-inner { max-width: 800px; }
+      .q-btn-primary { flex: none; min-width: 240px; margin-left: auto; }
+      .q-review-card { padding: 1.6rem 1.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -396,24 +411,34 @@
     // Pricing metadata (price = one-time $, monthly = recurring $) is read only
     // to build the internal estimate emailed to Morobo. Clients never see it.
     // Every question is required except those explicitly marked optional.
-    var STEPS = [
-      { type: "intro" },
+    var KIND_STEP = {
+      title: "Your project",
+      sub: "First things first — what are we building?",
+      fields: [
+        { key: "projectKind", type: "single", required: true, label: "What would you like us to build?", options: [
+          { value: "A mobile app", note: "iOS, Android, or both — designed, built, and published to the app stores." },
+          { value: "A website", note: "From a single landing page to a full site — designed, built, and live on your domain." }
+        ] }
+      ]
+    };
 
-      {
-        title: "First, the basics",
-        sub: "So we know who we're building for and how to reach you.",
-        fields: [
-          { key: "name", type: "text", label: "Your name", required: true, placeholder: "Jane Smith" },
-          { key: "email", type: "email", label: "Email", required: true, placeholder: "you@email.com" },
-          { key: "business", type: "text", label: "Business or project name (optional)", placeholder: "Acme Co." },
-          { key: "industry", type: "single", required: true, label: "What kind of business is this?", options: [
-            { value: "Restaurant / food" }, { value: "Retail / e-commerce" }, { value: "Health / fitness" },
-            { value: "Services / booking" }, { value: "Events / community" }, { value: "Personal / creator" },
-            { value: "Something else" }
-          ] }
-        ]
-      },
+    var BASICS_STEP = {
+      title: "First, the basics",
+      sub: "So we know who we're building for and how to reach you.",
+      fields: [
+        { key: "name", type: "text", label: "Your name", required: true, placeholder: "Jane Smith" },
+        { key: "email", type: "email", label: "Email", required: true, placeholder: "you@email.com" },
+        { key: "business", type: "text", label: "Business or project name (optional)", placeholder: "Acme Co." },
+        { key: "industry", type: "single", required: true, label: "What kind of business is this?", options: [
+          { value: "Restaurant / food" }, { value: "Retail / e-commerce" }, { value: "Health / fitness" },
+          { value: "Services / booking" }, { value: "Events / community" }, { value: "Personal / creator" },
+          { value: "Something else" }
+        ] }
+      ]
+    };
 
+    // ── App branch (the original questionnaire) ──
+    var APP_STEPS = [
       {
         title: "Your app at a glance",
         sub: "The big picture — we'll get into specifics next.",
@@ -583,10 +608,156 @@
         fields: [
           { key: "notes", type: "textarea", label: "Extra details (optional)", placeholder: "Tell us more…" }
         ]
+      }
+    ];
+
+    // ── Website branch ──
+    var WEB_STEPS = [
+      {
+        title: "Your website at a glance",
+        sub: "The big picture — we'll get into specifics next.",
+        fields: [
+          { key: "sitePurpose", type: "textarea", required: true, label: "In a sentence or two, what should the website do?", placeholder: "e.g. Show off our restaurant and let people book a table." },
+          { key: "webProjectType", type: "single", required: true, label: "Is this brand-new or a redesign?", options: [
+            { value: "Brand-new website from scratch", price: 0 },
+            { value: "Redesign of my current website", price: 0 },
+            { value: "Add pages or features to my current site", price: -100 }
+          ] },
+          { key: "currentSite", type: "text", label: "Current website link (optional)", placeholder: "https://…" }
+        ]
       },
 
-      { type: "review" }
+      {
+        title: "Pages & size",
+        sub: "A rough sense of scope. Best guesses are totally fine.",
+        fields: [
+          { key: "pages", type: "single", required: true, label: "How big should the site be?", options: [
+            { value: "One page (landing page)", price: 0 },
+            { value: "2–5 pages", price: 300 },
+            { value: "6–10 pages", price: 700 },
+            { value: "More than 10 pages", price: 1200 },
+            { value: "Not sure", price: 250 }
+          ] },
+          { key: "webContent", type: "single", required: true, label: "Who provides the content (text, photos)?", options: [
+            { value: "I'll provide everything", price: 0 },
+            { value: "A mix — some help needed", price: 150 },
+            { value: "I need help creating it", price: 300 }
+          ] }
+        ]
+      },
+
+      {
+        title: "Design & wow-factor",
+        sub: "The vibe you're going for — and how much motion and flair you want.",
+        fields: [
+          { key: "webDesignStyle", type: "single", required: true, label: "Which style fits your vision?", options: [
+            { value: "Minimal & clean", price: 0 },
+            { value: "Bold & colorful", price: 0 },
+            { value: "Elegant & premium", price: 200 },
+            { value: "Playful & fun", price: 0 },
+            { value: "Corporate & professional", price: 0 },
+            { value: "Not sure — guide me", price: 0 }
+          ] },
+          { key: "webTheme", type: "single", required: true, label: "Light or dark theme?", options: [
+            { value: "Light", price: 0 }, { value: "Dark", price: 0 },
+            { value: "Both (visitor can switch)", price: 100 }, { value: "No preference", price: 0 }
+          ] },
+          { key: "wow", type: "multi", required: true, label: "Any special effects?", customPlaceholder: "Describe the effect you have in mind…", options: [
+            { value: "Scroll animations (things move as you scroll)", price: 200 },
+            { value: "3D elements", price: 350 },
+            { value: "Interactive hover effects", price: 150 },
+            { value: "Video backgrounds", price: 150 },
+            { value: "Custom illustrations or graphics", price: 250 },
+            { value: "Keep it simple — no fancy effects", price: 0, exclusive: true },
+            { value: "Other (custom)", price: 150, custom: true }
+          ] },
+          { key: "webBranding", type: "single", required: true, label: "Do you have branding ready?", options: [
+            { value: "Full brand kit (logo, colors, fonts)", price: 0 },
+            { value: "Just a logo", price: 100 },
+            { value: "Nothing yet — design from scratch", price: 250 }
+          ] },
+          { key: "webReferences", type: "text", label: "Websites whose look you love? (optional)", placeholder: "e.g. apple.com, stripe.com" }
+        ]
+      },
+
+      {
+        title: "Features",
+        sub: "Pick everything you'd like — don't worry about cost or feasibility, we'll guide you.",
+        fields: [
+          { key: "webFeatures", type: "multi", required: true, label: "What should the website include?", customPlaceholder: "Tell us what else you'd like…", options: [
+            { value: "Contact form", price: 100 },
+            { value: "Booking & appointments", price: 250 },
+            { value: "Online store (sell products)", price: 500, monthly: 15 },
+            { value: "Blog / news section", price: 200 },
+            { value: "Photo & video galleries", price: 150 },
+            { value: "Customer reviews / testimonials", price: 100 },
+            { value: "Email newsletter signup", price: 100 },
+            { value: "AI chatbot (answers visitor questions)", price: 350, monthly: 15 },
+            { value: "Members-only area / login", price: 300, monthly: 10 },
+            { value: "Maps & directions", price: 75 },
+            { value: "Multiple languages", price: 200 },
+            { value: "Other (custom)", price: 150, custom: true }
+          ] }
+        ]
+      },
+
+      {
+        title: "Domain, hosting & Google",
+        sub: "The technical bits — we make these painless. Not sure? Pick the “advise me” options.",
+        fields: [
+          { key: "domain", type: "single", required: true, label: "Do you have a domain (web address)?", options: [
+            { value: "Yes — I own my domain", price: 0 },
+            { value: "No — help me get one", price: 50 },
+            { value: "Not sure what a domain is", price: 50 }
+          ] },
+          { key: "hosting", type: "single", required: true, label: "Hosting (keeping the site online)?", options: [
+            { value: "Handle it for me", monthly: 20 },
+            { value: "I already have hosting", price: 0 },
+            { value: "Not sure — advise me", monthly: 10 }
+          ] },
+          { key: "seo", type: "single", required: true, label: "Want help showing up on Google?", options: [
+            { value: "Basic SEO setup (recommended)", price: 150 },
+            { value: "Full SEO + Google Business profile", price: 350 },
+            { value: "Skip for now", price: 0 }
+          ] }
+        ]
+      },
+
+      {
+        title: "Timeline & upkeep",
+        sub: "When you want it, and what happens after launch.",
+        fields: [
+          { key: "webTimeline", type: "single", required: true, label: "When would you like it live?", options: [
+            { value: "Under 2 weeks (expedited)", rush: 0.15 },
+            { value: "2–4 weeks", rush: 0.05 },
+            { value: "1–2 months", rush: 0 },
+            { value: "Flexible / no rush", rush: 0 }
+          ] },
+          { key: "webMaintenance", type: "single", required: true, label: "After launch, do you want ongoing help?", options: [
+            { value: "Yes — updates & content changes", monthly: 50 },
+            { value: "Occasional updates only", monthly: 20 },
+            { value: "No — hand it off to me", monthly: 0, handoff: true }
+          ] }
+        ]
+      },
+
+      {
+        title: "Anything else?",
+        sub: "Your vision, must-haves, competitors, questions — anything that helps us understand the project.",
+        fields: [
+          { key: "webNotes", type: "textarea", label: "Extra details (optional)", placeholder: "Tell us more…" }
+        ]
+      }
     ];
+
+    // The flow branches on the first answer: intro → project kind → basics →
+    // app OR website questions → review.
+    var STEPS = [];
+    function rebuildSteps() {
+      var branch = answers.projectKind === "A website" ? WEB_STEPS : APP_STEPS;
+      STEPS = [{ type: "intro" }, KIND_STEP, BASICS_STEP].concat(branch, [{ type: "review" }]);
+      questionSteps = STEPS.filter(function (s) { return s.fields; }).length;
+    }
 
     // ── State ────────────────────────────────────────────────────────────────
     var answers = {};
@@ -601,7 +772,8 @@
     var successEl = document.getElementById("qSuccess");
     var navBar = document.getElementById("qNavBar");
 
-    var questionSteps = STEPS.filter(function (s) { return s.fields; }).length;
+    var questionSteps = 0;
+    rebuildSteps();
 
     // ── Helpers ────────────────────────────────────────────────────────────
     function esc(s) {
@@ -641,6 +813,7 @@
         var multi = f.type === "multi";
         html += '<p class="q-flabel">' + esc(f.label) + labelReq + "</p>" + help;
         var gridClass = f.options.length > 5 && !multi ? "" : (f.options.length >= 6 ? " q-grid-2" : "");
+        if (f.options.some(function (o) { return o.note; })) gridClass += " q-has-notes";
         html += '<div class="q-options' + gridClass + '">';
         f.options.forEach(function (o) {
           var checked = multi ? (Array.isArray(saved) && saved.indexOf(o.value) > -1) : (saved === o.value);
@@ -673,9 +846,9 @@
       if (step.type === "intro") {
         html =
           '<div class="q-step is-active">' +
-            '<p class="q-eyebrow">App Project Questionnaire</p>' +
-            '<h1 class="q-title">Let\'s build your app.</h1>' +
-            '<p class="q-sub">Answer a few quick questions about your idea — features, design, timeline — and the Morobo team will follow up with a tailored plan and proposal. Takes just a few minutes.</p>' +
+            '<p class="q-eyebrow">Project Questionnaire</p>' +
+            '<h1 class="q-title">Let\'s build something great.</h1>' +
+            '<p class="q-sub">App or website — answer a few quick questions about your idea (features, design, timeline) and the Morobo team will follow up with a tailored plan and proposal. Takes just a few minutes.</p>' +
             '<div class="q-intro-meta">' +
               '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> A few minutes</span>' +
               '<span class="q-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No commitment</span>' +
@@ -836,6 +1009,7 @@
       errorEl.style.display = "none";
       readStep();
       if (dir > 0 && !validateStep()) return;
+      rebuildSteps(); // the flow branches on the project-kind answer
       var nextIdx = current + dir;
       if (nextIdx < 0 || nextIdx >= STEPS.length) return;
 
@@ -871,7 +1045,8 @@
     }
 
     function computeEstimate() {
-      var oneTime = 1500, monthly = 0, rush = 0, handoff = false;
+      var isWeb = answers.projectKind === "A website";
+      var oneTime = isWeb ? 500 : 1500, monthly = 0, rush = 0, handoff = false;
       STEPS.forEach(function (s) {
         (s.fields || []).forEach(function (f) {
           var v = answers[f.key];
@@ -892,16 +1067,16 @@
           }
         });
       });
-      oneTime = Math.max(1500, oneTime);
+      oneTime = Math.max(isWeb ? 500 : 1500, oneTime);
       oneTime = Math.round(oneTime * (1 + rush) / 50) * 50;
-      oneTime = Math.min(7500, oneTime); // keep the internal estimate in a believable small-business band
-      monthly = handoff ? 0 : Math.max(25, Math.round(monthly / 5) * 5);
+      oneTime = Math.min(isWeb ? 6000 : 7500, oneTime); // keep the internal estimate in a believable small-business band
+      monthly = handoff ? 0 : (isWeb ? Math.round(monthly / 5) * 5 : Math.max(25, Math.round(monthly / 5) * 5));
       return { oneTime: oneTime, monthly: monthly, rush: rush, handoff: handoff };
     }
 
     function buildSummary(est) {
       var L = [];
-      L.push("=== MOROBO APP QUESTIONNAIRE ===", "");
+      L.push("=== MOROBO " + (answers.projectKind === "A website" ? "WEBSITE" : "APP") + " QUESTIONNAIRE ===", "");
       L.push("INTERNAL ESTIMATE (not shown to client):");
       L.push("  One-time build:  $" + est.oneTime.toLocaleString());
       L.push("  Monthly:         " + (est.monthly ? "$" + est.monthly + "/mo" : "none (hand-off)"));
@@ -923,7 +1098,7 @@
       var est = computeEstimate();
       var payload = {
         access_key: ACCESS_KEY,
-        subject: "New App Questionnaire — " + (answers.business || answers.name || "Client"),
+        subject: "New " + (answers.projectKind === "A website" ? "Website" : "App") + " Questionnaire — " + (answers.business || answers.name || "Client"),
         from_name: "Morobo Questionnaire",
         replyto: answers.email || "",
         name: answers.name || "",
