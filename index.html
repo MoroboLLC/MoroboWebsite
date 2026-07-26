@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#F7F7F6">
   <title>Morobo — We make apps famous.</title>
   <meta name="description" content="AI video ads, app development, and websites — one team. Paste your App Store link and get scroll-stopping ads in minutes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +37,7 @@
     .dots{position:absolute;inset:-30% 0;background-image:radial-gradient(rgba(21,21,23,.075) 1.2px,transparent 1.8px);background-size:26px 26px;will-change:transform}
 
     /* ── floating header: bar → pill ── */
-    header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:center;pointer-events:none}
+    header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:center;pointer-events:none;padding-top:env(safe-area-inset-top)}
     .hd{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:.8rem;
       width:min(1080px,92%);margin-top:0;padding:1.15rem 0;background:rgba(247,247,246,0);border:1px solid transparent;border-radius:0;
       transition:width .55s cubic-bezier(.32,.9,.3,1),margin .55s cubic-bezier(.32,.9,.3,1),padding .55s cubic-bezier(.32,.9,.3,1),
@@ -224,7 +225,7 @@
     .send{border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:.95rem;color:#fff;background:var(--vio);border-radius:11px;padding:.95rem;transition:transform .2s,box-shadow .2s}
     .send:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(124,58,237,.35)}
 
-    footer{border-top:1px solid var(--hair);margin-top:5rem;background:#FCFCFB;position:relative;z-index:1}
+    footer{border-top:1px solid var(--hair);margin-top:5rem;background:#FCFCFB;position:relative;z-index:1;padding-bottom:env(safe-area-inset-bottom)}
     .foot{max-width:1080px;width:92%;margin:0 auto;padding:1.9rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
     .foot nav{display:flex;gap:.1rem;flex-wrap:wrap}
     .foot nav a{color:var(--dim);font-size:.78rem;text-decoration:none;padding:.3rem .5rem;border-radius:8px}
