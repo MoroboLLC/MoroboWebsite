@@ -20,7 +20,7 @@
       --shadow-lift:0 2px 6px rgba(20,18,28,.05),0 24px 60px rgba(20,18,28,.13);
     }
     *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;background:var(--bg)}
     body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
     h1,h2,h3{font-family:'Inter Tight','Inter',sans-serif}
     ::selection{background:var(--vio);color:#fff}
@@ -525,6 +525,8 @@
       document.body.appendChild(fx);
 
       var shown = false;
+      var isMobile = window.innerWidth <= 640;
+
       (function blobLoop() {
         var vw = window.innerWidth, vh = window.innerHeight;
         var size = sizes[0];
@@ -533,12 +535,17 @@
         if (!shown) { fx.style.opacity = "0.9"; shown = true; }
 
         /* abstract wander: three off-beat waves summed — drifts, lingers,
-           crosses at irregular moments instead of metronome left-right */
-        var span = vw / 2 - Math.max(28, vw * 0.04) - size / 2;
-        var tx = vw / 2 - size / 2 + span * (
+           crosses at irregular moments instead of metronome left-right.
+           Mobile gets a tighter edge margin + amplified wave so it actually
+           reaches edge-to-edge instead of hovering near center. */
+        var margin = isMobile ? Math.max(10, vw * 0.015) : Math.max(28, vw * 0.04);
+        var span = vw / 2 - margin - size / 2;
+        var wave =
           Math.sin(p * 6.1 + 0.7) * 0.55 +
           Math.sin(p * 13.7 + 2.1) * 0.30 +
-          Math.sin(p * 3.3 + 4.5) * 0.15);
+          Math.sin(p * 3.3 + 4.5) * 0.15;
+        if (isMobile) wave = Math.max(-1, Math.min(1, wave * 1.7));
+        var tx = vw / 2 - size / 2 + span * wave;
         var ty = 70 + p * (vh - 210) + Math.sin(p * 9.3 + 1.2) * 56;
 
         var dx = (tx - pos[0].x) * 0.08, dy = (ty - pos[0].y) * 0.08;
