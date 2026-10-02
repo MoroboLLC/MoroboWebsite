@@ -447,11 +447,13 @@
       e.preventDefault();
       var v = barLink.value.trim();
       barBtn.disabled = true; barBtn.textContent = "Opening your ad studio…";
-      /* nothing typed = still go: the app's own search handles it */
-      if (!v) { window.location.href = "https://app.morobo.org/new"; return; }
+      /* always hand off to the app's landing — it knows whether this device is
+         signed in: signed-in + typed → "is this your app?", signed-in → dashboard,
+         guest → the pitch with what they typed already filled in */
+      if (!v) { window.location.href = "https://app.morobo.org/"; return; }
       var looksLikeUrl = /^https?:\/\//i.test(v) || /^[a-z0-9.-]+\.[a-z]{2,}([\/?#].*)?$/i.test(v);
       var url = looksLikeUrl ? (/^https?:\/\//i.test(v) ? v : "https://" + v) : null;
-      var dest = "https://app.morobo.org/new?" +
+      var dest = "https://app.morobo.org/?" +
         (url ? "url=" + encodeURIComponent(url) : "q=" + encodeURIComponent(v));
       window.location.href = dest;
     });
