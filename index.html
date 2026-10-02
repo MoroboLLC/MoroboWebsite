@@ -446,8 +446,9 @@
     barForm.addEventListener("submit", function (e) {
       e.preventDefault();
       var v = barLink.value.trim();
-      if (!v) { barLink.focus(); return; }
       barBtn.disabled = true; barBtn.textContent = "Opening your ad studio…";
+      /* nothing typed = still go: the app's own search handles it */
+      if (!v) { window.location.href = "https://app.morobo.org/new"; return; }
       var looksLikeUrl = /^https?:\/\//i.test(v) || /^[a-z0-9.-]+\.[a-z]{2,}([\/?#].*)?$/i.test(v);
       var url = looksLikeUrl ? (/^https?:\/\//i.test(v) ? v : "https://" + v) : null;
       var dest = "https://app.morobo.org/new?" +
