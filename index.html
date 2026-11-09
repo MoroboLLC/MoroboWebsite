@@ -265,7 +265,7 @@
     <div class="hd">
       <a class="brand" href="index.html"><img src="images/MoroboIconFinal.png" alt=""><span class="bt">Morobo</span></a>
       <nav class="menu" id="menu">
-        <a href="https://app.morobo.org" target="_blank" rel="noopener">AI Ads</a>
+        <a href="https://adgen.morobo.org" target="_blank" rel="noopener">AI Ads</a>
         <a href="apps.html">Apps</a>
         <a href="websites.html">Websites</a>
         <a href="about.html">About</a>
@@ -307,7 +307,7 @@
           <div class="meta">
             <b>AI Ad Studio <span>Live</span></b>
             <p>Store link in — scroll-stopping video ads, 3D mockups, and banners out. Minutes, not weeks.</p>
-            <a href="https://app.morobo.org" target="_blank" rel="noopener">Make ads for your app →</a>
+            <a href="https://adgen.morobo.org" target="_blank" rel="noopener">Make ads for your app →</a>
           </div>
         </article>
         <article class="craft rv">
@@ -450,10 +450,10 @@
       /* always hand off to the app's landing — it knows whether this device is
          signed in: signed-in + typed → "is this your app?", signed-in → dashboard,
          guest → the pitch with what they typed already filled in */
-      if (!v) { window.location.href = "https://app.morobo.org/"; return; }
+      if (!v) { window.location.href = "https://adgen.morobo.org/"; return; }
       var looksLikeUrl = /^https?:\/\//i.test(v) || /^[a-z0-9.-]+\.[a-z]{2,}([\/?#].*)?$/i.test(v);
       var url = looksLikeUrl ? (/^https?:\/\//i.test(v) ? v : "https://" + v) : null;
-      var dest = "https://app.morobo.org/?" +
+      var dest = "https://adgen.morobo.org/?" +
         (url ? "url=" + encodeURIComponent(url) : "q=" + encodeURIComponent(v));
       window.location.href = dest;
     });
